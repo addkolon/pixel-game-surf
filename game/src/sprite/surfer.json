@@ -1,0 +1,66 @@
+{ "frames": {
+   "Sprite-0003 0.": {
+    "frame": { "x": 0, "y": 0, "w": 65, "h": 75 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 75 },
+    "sourceSize": { "w": 65, "h": 75 },
+    "duration": 100
+   },
+   "Sprite-0003 1.": {
+    "frame": { "x": 65, "y": 0, "w": 65, "h": 75 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 75 },
+    "sourceSize": { "w": 65, "h": 75 },
+    "duration": 100
+   },
+   "Sprite-0003 2.": {
+    "frame": { "x": 130, "y": 0, "w": 65, "h": 75 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 75 },
+    "sourceSize": { "w": 65, "h": 75 },
+    "duration": 100
+   },
+   "Sprite-0003 3.": {
+    "frame": { "x": 195, "y": 0, "w": 65, "h": 75 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 75 },
+    "sourceSize": { "w": 65, "h": 75 },
+    "duration": 100
+   },
+   "Sprite-0003 4.": {
+    "frame": { "x": 260, "y": 0, "w": 65, "h": 75 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 75 },
+    "sourceSize": { "w": 65, "h": 75 },
+    "duration": 100
+   },
+   "Sprite-0003 5.": {
+    "frame": { "x": 325, "y": 0, "w": 65, "h": 75 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 75 },
+    "sourceSize": { "w": 65, "h": 75 },
+    "duration": 100
+   }
+ },
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.2.34.1-x64",
+  "image": "surfer.png",
+  "format": "RGBA8888",
+  "size": { "w": 390, "h": 75 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "layers": [
+   { "name": "Flattened", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

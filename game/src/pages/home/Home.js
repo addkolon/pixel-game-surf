@@ -66,7 +66,7 @@ export const Home = ({ setGameAuth }) => {
   return (
     <div class="main">
       <main>
-        <img src={petter} alt="" className="petter" />
+        {/* <img src={petter} alt="" className="petter" /> */}
         <div id="fake-canvas">
           <div id="content">
             <If condition={!gameOverState}>

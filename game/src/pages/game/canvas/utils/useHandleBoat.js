@@ -1,7 +1,7 @@
 /** @format */
 
 import { useState } from "react";
-import boat3 from "../../../../sprite/boat-3.png";
+import boat3 from "../../../../sprite/board-sprite.png";
 import { useHandleBackground } from "./useHandleBackground";
 
 import { settings } from "../../settings";
@@ -22,8 +22,8 @@ export const useHandleBoat = () => {
     image: boatP,
     x: settings.boat.startPositionX,
     y: settings.boat.startPositionY,
-    width: 176,
-    height: 74,
+    width: 134,
+    height: 42,
     frameX: 0,
     frameY: 0,
     speed: settings.boat.speed,
@@ -64,7 +64,7 @@ export const useHandleBoat = () => {
             return {
               ...prev,
               y: prev.y - boat.speed,
-              frameY: 3,
+              frameY: 0,
               moving: "up",
             };
           });
@@ -85,7 +85,7 @@ export const useHandleBoat = () => {
             return {
               ...prev,
               y: prev.y + boat.speed,
-              frameY: 1,
+              frameY: 0,
               moving: "down",
             };
           });
@@ -127,7 +127,7 @@ export const useHandleBoat = () => {
             return {
               ...prev,
               x: prev.x - boat.speed,
-              frameY: 2,
+              frameY: 0,
               moving: "left",
             };
           });

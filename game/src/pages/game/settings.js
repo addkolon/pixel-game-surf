@@ -4,8 +4,8 @@ export const settings = {
   // general
   lives: 10,
   scorePerSave: 50,
-  canvasWidth: 1200,
-  canvasHeight: 800,
+  canvasWidth: 800,
+  canvasHeight: 600,
   gameSpeed: 1,
   // boat
   boat: {
