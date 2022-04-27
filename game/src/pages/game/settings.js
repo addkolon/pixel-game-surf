@@ -16,10 +16,12 @@ export const settings = {
   },
   // stones
   stones: {
-    spawnRate: 70,
+    spawnRate: 100,
     speed: 3,
-    minimumSize: 30,
-    maximumSize: 90,
+    // minimumSize: 30,
+    // maximumSize: 90,
+    minimumSize: 20,
+    maximumSize: 40,
     speedModifier: {
       boatMovement: {
         right: 4,
@@ -29,10 +31,12 @@ export const settings = {
   },
   // drowning people
   drowningPeople: {
-    spawnRate: 40,
+    spawnRate: 90,
     speed: 3,
-    minimumSize: 50,
-    maximumSize: 50,
+    // minimumSize: 50,
+    // maximumSize: 50,
+    minimumSize: 35,
+    maximumSize: 35,
     speedModifier: {
       boatMovement: {
         right: 4,
@@ -42,7 +46,8 @@ export const settings = {
   },
   // background
   background: {
-    height: 125,
+    // height: 125,
+    height: 150,
     mainSpeed: 1,
     bg1: {
       speed: 10,

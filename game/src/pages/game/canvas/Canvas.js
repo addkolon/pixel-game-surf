@@ -50,6 +50,7 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
 
     updateBackground(context, boat);
     drawBoat(context);
+
     moveBoat(keysArray, frame);
     updateObstacles(context, frame, boat);
     updatePickups(context, frame, boat);

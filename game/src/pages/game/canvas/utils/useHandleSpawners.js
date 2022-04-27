@@ -108,10 +108,12 @@ export const useHandleSpawners = () => {
       const random = (min, max) =>
         Math.floor(Math.random() * (max - min)) + min;
 
-      let y =
-        Math.random() *
-          (settings.canvasHeight - settings.background.height - 50) +
-        settings.background.height;
+      // y =
+      //   Math.random() *
+      //     (settings.canvasHeight - settings.background.height - 100) +
+      //   settings.background.height;
+      let y = random(200, 450);
+
       let x = settings.canvasWidth;
       let size = random(
         settings.stones.minimumSize,
@@ -136,10 +138,11 @@ export const useHandleSpawners = () => {
           );
         }).length > 0
       ) {
-        y =
-          Math.random() *
-            (settings.canvasHeight - settings.background.height - 100) +
-          settings.background.height;
+        // y =
+        //   Math.random() *
+        //     (settings.canvasHeight - settings.background.height - 100) +
+        //   settings.background.height;
+        y = random(200, 450);
       }
 
       if (obstacleArray.length > 30) {
@@ -161,10 +164,11 @@ export const useHandleSpawners = () => {
     if (frame % pickUpsSpawnRate === 0) {
       const random = (min, max) =>
         Math.floor(Math.random() * (max - min)) + min;
-      let y =
-        Math.random() *
-          (settings.canvasHeight - settings.background.height - 50) +
-        settings.background.height;
+
+      let y = random(200, 450);
+      // Math.random() *
+      //   (settings.canvasHeight - settings.background.height - 50) +
+      // settings.background.height;
       let x = settings.canvasWidth;
       let size = random(
         settings.drowningPeople.minimumSize,
@@ -189,10 +193,10 @@ export const useHandleSpawners = () => {
           );
         }).length > 0
       ) {
-        y =
-          Math.random() *
-            (settings.canvasHeight - settings.background.height - 100) +
-          settings.background.height;
+        y = random(200, 450);
+        // Math.random() *
+        //   (settings.canvasHeight - settings.background.height - 100) +
+        // settings.background.height;
       }
 
       if (pickUpsArray.length > 30) {

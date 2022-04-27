@@ -1,343 +1,335 @@
-/* @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+/**
+ * /* @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+ * 
+ * {
+ *     margin: 0;
+ *     padding: 0;
+ *     box-sizing: border-box;
+ *     font-family: 'VT323', monospace;
+ *     font-size: 32px;
+ *     color: black;
+ * }
+ * 
+ * .hidden {
+ *     display: none;
+ * }
+ * 
+ * body {
+ *     background: url('../sprite/bg.gif');
+ *     background-size: cover;
+ * }
+ * 
+ * .main {
+ *     display: flex;
+ *     align-items: center;
+ *     height: 100vh;
+ *     padding: 0 4rem;
+ * }
+ * 
+ * aside {
+ *     width: 100%;
+ *     height: 100%;
+ *     display: flex;
+ *     padding: 2rem;
+ *     text-align: center;
+ *     flex-direction: column;
+ *     
+ * }
+ * 
+ * .scoreboard {
+ *     text-align: left;
+ *     width: 100%;
+ *     padding: 1rem;
+ *     box-shadow:   -15px 0 0 0 white,
+ *                  15px 0 0 0 white,
+ *                  0 -15px 0 0 white,
+ *                  0 15px 0 0 white;
+ * }
+ * 
+ * ol {
+ *     margin-left: 1.5rem;
+ * }
+ * 
+ * .logo {
+ *     width: 320px;
+ *     margin-bottom: 2rem;
+ * }
+ * 
+ * h3 {
+ *     text-transform: uppercase;
+ *     font-size: 1.2rem;
+ *     letter-spacing: 5px;
+ *     margin-bottom: 0.5rem;
+ * }
+ * 
+ * 
+ * .canvas1 {
+ *     position: relative;
+ *     width: 1200px;
+ *     height: 800px;
+ *     border: 1px solid black;
+ *     background: url(../sprite/water9.png);
+ *     box-shadow:   -15px 0 0 0 white,
+ *                  15px 0 0 0 white,
+ *                  0 -15px 0 0 white,
+ *                  0 15px 0 0 white;
+ * }
+ * 
+ * .canvas1 .info {
+ *     position: absolute;
+ *     top: 1rem;
+ *     left: 1rem;
+ *     z-index: 999;
+ * }
+ *
+ * @format
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'VT323', monospace;
-    font-size: 32px;
-    color: black;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "VT323", monospace;
+  font-size: 32px;
+  color: white;
 }
 
 .hidden {
-    display: none;
+  visibility: hidden;
 }
 
 body {
-    background: url('../sprite/bg.gif');
-    background-size: cover;
-}
-
-.main {
-    display: flex;
-    align-items: center;
-    height: 100vh;
-    padding: 0 4rem;
-}
-
-aside {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    padding: 2rem;
-    text-align: center;
-    flex-direction: column;
-    
-}
-
-.scoreboard {
-    text-align: left;
-    width: 100%;
-    padding: 1rem;
-    box-shadow:   -15px 0 0 0 white,
-                 15px 0 0 0 white,
-                 0 -15px 0 0 white,
-                 0 15px 0 0 white;
-}
-
-ol {
-    margin-left: 1.5rem;
-}
-
-.logo {
-    width: 320px;
-    margin-bottom: 2rem;
-}
-
-h3 {
-    text-transform: uppercase;
-    font-size: 1.2rem;
-    letter-spacing: 5px;
-    margin-bottom: 0.5rem;
-}
-
-
-.canvas1 {
-    position: relative;
-    width: 1200px;
-    height: 800px;
-    border: 1px solid black;
-    background: url(../sprite/water9.png);
-    box-shadow:   -15px 0 0 0 white,
-                 15px 0 0 0 white,
-                 0 -15px 0 0 white,
-                 0 15px 0 0 white;
-}
-
-.canvas1 .info {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    z-index: 999;
-} */
-
-
-
-
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'VT323', monospace;
-    font-size: 32px;
-    color: white;
-}
-
-
-
-.hidden {
-    visibility: hidden;
-}
-
-body {
-    background: url('../sprite/bg.gif');
-    background-size: cover;
+  background: url("../sprite/bg.gif");
+  background-size: cover;
 }
 
 h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: #ddca91;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #ddca91;
 }
 
 #lives {
-    
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    z-index: 999;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 999;
 }
 
 #content {
-    position: absolute;
-    // top: 2rem;
-    left: 2rem;
-    width: 600px;
-    // height: 660px;
-    background-color: #948e7a;
-    display: flex;
-    // display: none;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    color: #ddca91;
-    padding: 1rem 2rem;
+  position: absolute;
+  // top: 2rem;
+  //   left: 2rem;
+  width: 600px;
+  // height: 660px;
+  background-color: #948e7a;
+  display: flex;
+  // display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #ddca91;
+  padding: 1rem 2rem;
+
+  //   olof
+  right: -100%;
 }
 
 #content form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
-input, input:active, input:focus, input:visited {
-    margin-bottom: 1rem;
-    color: #ddca91;
-    padding: 0.5rem;
-    border: none;
-    background-color: #676662;
-    box-shadow:   -5px 0 0 0 #ddca91,
-                 5px 0 0 0 #ddca91,
-                 0 -5px 0 0 #ddca91,
-                 0 5px 0 0 #ddca91;
+input,
+input:active,
+input:focus,
+input:visited {
+  margin-bottom: 1rem;
+  color: #ddca91;
+  padding: 0.5rem;
+  border: none;
+  background-color: #676662;
+  box-shadow: -5px 0 0 0 #ddca91, 5px 0 0 0 #ddca91, 0 -5px 0 0 #ddca91,
+    0 5px 0 0 #ddca91;
 }
 
 .petter {
-    position: absolute;
-    bottom: 0rem;
-    right: -1rem;
-    z-index: 999;
-    width: 60%;
+  position: absolute;
+  bottom: 0rem;
+  right: -1rem;
+  z-index: 999;
+  width: 60%;
 }
 
 button {
-    color: #ddca91;
-    padding: 0.5rem;
-    background-color: #444341;
-    box-shadow:   -5px 0 0 0 #ddca91,
-                 5px 0 0 0 #ddca91,
-                 0 -5px 0 0 #ddca91,
-                 0 5px 0 0 #ddca91;
-    cursor: pointer;
+  color: #ddca91;
+  padding: 0.5rem;
+  background-color: #444341;
+  box-shadow: -5px 0 0 0 #ddca91, 5px 0 0 0 #ddca91, 0 -5px 0 0 #ddca91,
+    0 5px 0 0 #ddca91;
+  cursor: pointer;
 }
 
 #rules {
-    border-top: 4px solid #444341;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    color: #444341;
-    width: 100%;
-    text-align: center;
+  border-top: 4px solid #444341;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  color: #444341;
+  width: 100%;
+  text-align: center;
 }
 
 #rules h2 {
-    font-size: 46px;
-    color: #ddca91;
-    margin-bottom: 1rem;
+  font-size: 46px;
+  color: #ddca91;
+  margin-bottom: 1rem;
 }
 
 #rules #instructions {
-    display: flex;
-    justify-content: center;
-    font-size: 32px;
-    color: #ddca91;
-    text-align: center;
+  display: flex;
+  justify-content: center;
+  font-size: 32px;
+  color: #ddca91;
+  text-align: center;
 }
 
 p {
-    font-size: 32px;
-    color: #ddca91;
-    line-height: 0.8;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+  font-size: 32px;
+  color: #ddca91;
+  line-height: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 h4 {
-    color: #444341;
-    font-size: 22px;
-    margin-bottom: 0.7rem;
+  color: #444341;
+  font-size: 22px;
+  margin-bottom: 0.7rem;
 }
 
 #rules div {
-    width: 100%;
+  width: 100%;
 }
 
 #rules img {
-    height: 1.5rem;
+  height: 1.5rem;
 }
 
 #saves {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    z-index: 999;
-    font-size: 3rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 999;
+  font-size: 3rem;
 }
 
 #lives ul {
-    display: flex;
-    list-style: none;
+  display: flex;
+  list-style: none;
 }
 
 #lives ul li {
-    margin-right: 0.3rem;
+  margin-right: 0.3rem;
 }
 
 .main {
-    position: relative;
-    display: flex;
-    align-items: center;
-    height: 100vh;
-    padding: 0 4rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  padding: 0 4rem;
 }
 
 main {
-    position: relative;
+  position: relative;
 }
 
 aside {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    padding: 4rem 2rem;
-    text-align: center;
-    flex-direction: column;
-    
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 4rem 2rem;
+  text-align: center;
+  flex-direction: column;
 }
 
 .scoreboard {
-    text-align: left;
-    width: 100%;
-    padding: 1rem;
-    box-shadow:   -15px 0 0 0 white,
-                 15px 0 0 0 white,
-                 0 -15px 0 0 white,
-                 0 15px 0 0 white;
-    display: none;
+  text-align: left;
+  width: 100%;
+  padding: 1rem;
+  box-shadow: -15px 0 0 0 white, 15px 0 0 0 white, 0 -15px 0 0 white,
+    0 15px 0 0 white;
+  display: none;
 }
 
 .your-rank {
-    padding-top: 1rem;
+  padding-top: 1rem;
 }
 
 // ol {
 //     margin-left: 1.5rem;
 // }
 #scoreB {
-    list-style: none;
+  list-style: none;
 }
 
 .logo {
-    width: 320px;
-    margin-bottom: 2rem;
-    display: none;
+  width: 320px;
+  margin-bottom: 2rem;
+  display: none;
 }
 
 h3 {
-    text-transform: uppercase;
-    font-size: 1.2rem;
-    letter-spacing: 5px;
-    margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  letter-spacing: 5px;
+  margin-bottom: 0.5rem;
 }
 
-
 .canvas1 {
-    /* olof tillfällig */
-    /* margin-left: 5rem; */
+  /* olof tillfällig */
+  /* margin-left: 5rem; */
 
-    position: relative;
-    width: 800px;
-    height: 600px;
-    border: 1px solid black;
-    background: url(../sprite/wave-bg.png);
-    box-shadow:   -15px 0 0 0 white,
-                 15px 0 0 0 white,
-                 0 -15px 0 0 white,
-                 0 15px 0 0 white;
+  position: relative;
+  width: 800px;
+  height: 600px;
+  border: 1px solid black;
+  background: url(../sprite/wave-bg.png);
+  box-shadow: -15px 0 0 0 white, 15px 0 0 0 white, 0 -15px 0 0 white,
+    0 15px 0 0 white;
 }
 
 #fake-canvas {
-/* olof */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-// -------------------
-    position: relative;
-    width: 800px;
-    height: 600px;
-    border: 1px solid black;
-    background: url(../sprite/wave-bg.png);
-    background-size: cover;
-    box-shadow:   -15px 0 0 0 white,
-                 15px 0 0 0 white,
-                 0 -15px 0 0 white,
-                 0 15px 0 0 white;
+  /* olof */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // -------------------
+  position: relative;
+  width: 800px;
+  height: 600px;
+  border: 1px solid black;
+  background: url(../sprite/wave-bg.png);
+  background-size: cover;
+  box-shadow: -15px 0 0 0 white, 15px 0 0 0 white, 0 -15px 0 0 white,
+    0 15px 0 0 white;
 }
 
 .canvas1 .info {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    z-index: 999;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 999;
 }
 
 // olof
 .game-over-btns {
-    display: flex;
-    gap: 1rem;
-    padding-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  padding-top: 1rem;
 }
