@@ -1,5 +1,5 @@
 { "frames": {
-   "Sprite-0003 0.": {
+   "surfer-cropped 0.aseprite": {
     "frame": { "x": 0, "y": 0, "w": 65, "h": 75 },
     "rotated": false,
     "trimmed": false,
@@ -7,7 +7,7 @@
     "sourceSize": { "w": 65, "h": 75 },
     "duration": 100
    },
-   "Sprite-0003 1.": {
+   "surfer-cropped 1.aseprite": {
     "frame": { "x": 65, "y": 0, "w": 65, "h": 75 },
     "rotated": false,
     "trimmed": false,
@@ -15,7 +15,7 @@
     "sourceSize": { "w": 65, "h": 75 },
     "duration": 100
    },
-   "Sprite-0003 2.": {
+   "surfer-cropped 2.aseprite": {
     "frame": { "x": 130, "y": 0, "w": 65, "h": 75 },
     "rotated": false,
     "trimmed": false,
@@ -23,7 +23,7 @@
     "sourceSize": { "w": 65, "h": 75 },
     "duration": 100
    },
-   "Sprite-0003 3.": {
+   "surfer-cropped 3.aseprite": {
     "frame": { "x": 195, "y": 0, "w": 65, "h": 75 },
     "rotated": false,
     "trimmed": false,
@@ -31,7 +31,7 @@
     "sourceSize": { "w": 65, "h": 75 },
     "duration": 100
    },
-   "Sprite-0003 4.": {
+   "surfer-cropped 4.aseprite": {
     "frame": { "x": 260, "y": 0, "w": 65, "h": 75 },
     "rotated": false,
     "trimmed": false,
@@ -39,7 +39,7 @@
     "sourceSize": { "w": 65, "h": 75 },
     "duration": 100
    },
-   "Sprite-0003 5.": {
+   "surfer-cropped 5.aseprite": {
     "frame": { "x": 325, "y": 0, "w": 65, "h": 75 },
     "rotated": false,
     "trimmed": false,

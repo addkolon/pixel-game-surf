@@ -2,7 +2,7 @@
 
 export const settings = {
   // general
-  lives: 10,
+  lives: 5,
   scorePerSave: 50,
   canvasWidth: 800,
   canvasHeight: 600,
@@ -20,8 +20,8 @@ export const settings = {
     speed: 3,
     // minimumSize: 30,
     // maximumSize: 90,
-    minimumSize: 20,
-    maximumSize: 40,
+    minimumSize: 30,
+    maximumSize: 60,
     speedModifier: {
       boatMovement: {
         right: 4,
