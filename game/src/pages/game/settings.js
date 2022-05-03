@@ -5,7 +5,7 @@ export const settings = {
   lives: 10,
   scorePerSave: 50,
   canvasWidth: 800,
-  canvasHeight: 600,
+  canvasHeight: 400,
   gameSpeed: 1,
   // boat
   boat: {
@@ -31,7 +31,8 @@ export const settings = {
   },
   // drowning people
   drowningPeople: {
-    spawnRate: 90,
+    // spawnRate: 90,
+    spawnRate: 30,
     speed: 3,
     // minimumSize: 50,
     // maximumSize: 50,
@@ -47,7 +48,7 @@ export const settings = {
   // background
   background: {
     // height: 125,
-    height: 150,
+    height: 60,
     mainSpeed: 1,
     bg1: {
       speed: 10,

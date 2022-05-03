@@ -40,23 +40,26 @@ export const Game = ({}) => {
 
   return (
     <div class="main">
-      <main>
-        <div id="lives">
-          <ul id="livesUl">
-            {lives.map((l) => {
-              return (
-                <li>
-                  <img src={lifeRing} />
-                </li>
-              );
-            })}
-          </ul>
+      <main className="game-container">
+        <div className="top">
+          <div id="lives">
+            <ul id="livesUl">
+              {lives.map((l) => {
+                return (
+                  <li>
+                    <img src={lifeRing} />
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          <div id="saves">{score}</div>
         </div>
-        <div id="saves">{score}</div>
         <Canvas
           canvasWidth={settings.canvasWidth}
           canvasHeight={settings.canvasHeight}
         />
+        <div className="bottom">music</div>
       </main>
       <aside>
         <img class="logo" src={logotype} />

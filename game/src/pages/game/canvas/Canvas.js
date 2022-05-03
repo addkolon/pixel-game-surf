@@ -17,6 +17,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useHandlePickups } from "./utils/useHandlePickups";
 import { settings } from "../settings";
+import { useHandleFoam } from "./utils/useHandleFoam";
 
 export const Canvas = ({ canvasWidth, canvasHeight }) => {
   const canvasRef = useRef();
@@ -31,6 +32,8 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
   const { updateBackground } = useHandleBackground();
   const { handleCrashes } = useHandleCrashes();
   const { handlePickups } = useHandlePickups();
+
+  const { drawFoam } = useHandleFoam();
 
   useLayoutEffect(() => {
     let timerId;
@@ -48,26 +51,26 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
     canvas.focus();
     context.clearRect(0, 0, settings.canvasWidth, settings.canvasHeight);
 
-    updateBackground(context, boat);
+    // updateBackground(context, boat);
     drawBoat(context);
 
     moveBoat(keysArray, frame);
-    updateObstacles(context, frame, boat);
+    // updateObstacles(context, frame, boat);
     updatePickups(context, frame, boat);
-    if (handleCrashes(boat)) {
-      dispatch(lostLives());
-    }
-    if (handlePickups(boat)) {
-      dispatch(updateScore());
-      if (
-        (score % settings.difficulty.savings.saves) * settings.scorePerSave ===
-          0 &&
-        settings.difficulty.savings.saves !== 0 &&
-        score !== 0
-      ) {
-        dispatch(updateSpeed(1));
-      }
-    }
+    // if (handleCrashes(boat)) {
+    //   dispatch(lostLives());
+    // }
+    // if (handlePickups(boat)) {
+    //   dispatch(updateScore());
+    //   if (
+    //     (score % settings.difficulty.savings.saves) * settings.scorePerSave ===
+    //       0 &&
+    //     settings.difficulty.savings.saves !== 0 &&
+    //     score !== 0
+    //   ) {
+    //     dispatch(updateSpeed(1));
+    //   }
+    // }
 
     if (frame % (settings.difficulty.timer.seconds * 65) === 0) {
       dispatch(updateSpeed(1));
@@ -75,22 +78,22 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
   }, [frame]);
 
   return (
-    <div className="container">
-      <canvas
-        className="canvas1"
-        ref={canvasRef}
-        width={settings.canvasWidth}
-        height={settings.canvasHeight}
-        tabIndex="0"
-        onKeyDown={(e) => {
-          if (!keysArray.includes(e.code)) {
-            setKeysArray((prev) => {
-              return [...prev, e.code];
-            });
-          }
-        }}
-        onKeyUp={(e) => setKeysArray(keysArray.filter((k) => k !== e.code))}
-      />
-    </div>
+    // <div className="canvas-container">
+    <canvas
+      className="canvas1"
+      ref={canvasRef}
+      width={settings.canvasWidth}
+      height={settings.canvasHeight}
+      tabIndex="0"
+      onKeyDown={(e) => {
+        if (!keysArray.includes(e.code)) {
+          setKeysArray((prev) => {
+            return [...prev, e.code];
+          });
+        }
+      }}
+      onKeyUp={(e) => setKeysArray(keysArray.filter((k) => k !== e.code))}
+    />
+    // </div>
   );
 };

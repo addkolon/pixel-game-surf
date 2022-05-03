@@ -96,6 +96,46 @@
   color: white;
 }
 
+// olof
+.game-container {
+  display: flex;
+  flex-direction: column;
+  .top {
+    background-color: black;
+    display: flex;
+    height: 100px;
+    // border: 2px solid white;
+
+    #lives {
+      // z-index: 999;
+    }
+
+    #lives ul {
+      display: flex;
+      list-style: none;
+    }
+
+    #lives ul li {
+      margin-right: 0.3rem;
+    }
+
+    #saves {
+      font-size: 3rem;
+    }
+  }
+
+  .canvas-container {
+    border: 2px solid red;
+    height: 400px;
+  }
+
+  .bottom {
+    background-color: black;
+    height: 100px;
+    // border: 2px solid white;
+  }
+}
+
 .hidden {
   visibility: hidden;
 }
@@ -109,13 +149,6 @@ h1 {
   font-size: 2rem;
   margin-bottom: 1rem;
   color: #ddca91;
-}
-
-#lives {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  z-index: 999;
 }
 
 #content {
@@ -220,23 +253,6 @@ h4 {
   height: 1.5rem;
 }
 
-#saves {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  z-index: 999;
-  font-size: 3rem;
-}
-
-#lives ul {
-  display: flex;
-  list-style: none;
-}
-
-#lives ul li {
-  margin-right: 0.3rem;
-}
-
 .main {
   position: relative;
   display: flex;
@@ -296,12 +312,16 @@ h3 {
   /* margin-left: 5rem; */
 
   position: relative;
-  width: 800px;
-  height: 600px;
-  border: 1px solid black;
+  // width: 800px;
+  // height: 600px;
+  // border: 1px solid black;
   background: url(../sprite/wave-bg.png);
-  box-shadow: -15px 0 0 0 white, 15px 0 0 0 white, 0 -15px 0 0 white,
-    0 15px 0 0 white;
+  // box-shadow: -15px 0 0 0 white, 15px 0 0 0 white, 0 -15px 0 0 white,
+  //   0 15px 0 0 white;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 #fake-canvas {
@@ -312,12 +332,12 @@ h3 {
   // -------------------
   position: relative;
   width: 800px;
-  height: 600px;
+  height: 400px;
   border: 1px solid black;
   background: url(../sprite/wave-bg.png);
   background-size: cover;
-  box-shadow: -15px 0 0 0 white, 15px 0 0 0 white, 0 -15px 0 0 white,
-    0 15px 0 0 white;
+  // box-shadow: -15px 0 0 0 white, 15px 0 0 0 white, 0 -15px 0 0 white,
+  //   0 15px 0 0 white;
 }
 
 .canvas1 .info {

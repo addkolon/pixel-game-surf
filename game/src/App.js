@@ -11,6 +11,7 @@ import { status, getTopScores } from "./store/scoresSlice.js";
 
 import "./style/main.scss";
 import { NoAuthMessage } from "./pages/home/components/NoAuthMessage";
+import { NoPage } from "./pages/NoPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ function App() {
             exact
           />
           <Route element={<Home setGameAuth={setGameAuth} />} path="/" exact />
+          <Route element={<NoPage />} path="*" exact />
         </Routes>
       </Router>
     </div>

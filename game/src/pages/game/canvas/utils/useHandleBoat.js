@@ -1,21 +1,24 @@
 /** @format */
 
 import { useState } from "react";
-import boat3 from "../../../../sprite/board-sprite.png";
-import surfer from "../../../../sprite/surfer.png";
+// import boat3 from "../../../../sprite/board-sprite.png";
+
+import boardSprite from "../../../../sprite/board-sprite.png";
+
+import surferSprite from "../../../../sprite/surfer.png";
 import { useHandleBackground } from "./useHandleBackground";
 
 import { settings } from "../../settings";
 
 export const useHandleBoat = () => {
   // const boatAnimationSpeed = 10;
-  const surfer1 = new Image();
-  surfer1.src = surfer;
-  const boatP = new Image();
-  boatP.src = boat3;
+  const surferImage = new Image();
+  surferImage.src = surferSprite;
+  const boardImage = new Image();
+  boardImage.src = boardSprite;
 
   const [boat, setBoat] = useState({
-    image: boatP,
+    image: boardImage,
     x: settings.boat.startPositionX,
     y: settings.boat.startPositionY,
     width: 134,
@@ -24,6 +27,19 @@ export const useHandleBoat = () => {
     frameY: 0,
     speed: settings.boat.speed,
     moving: false,
+    animationSpeed: settings.boat.animationSpeed,
+  });
+
+  const [surfer, setSurfer] = useState({
+    image: surferImage,
+    x: settings.boat.startPositionX,
+    y: settings.boat.startPositionY,
+    width: 65,
+    height: 75,
+    frameX: 0,
+    frameY: 0,
+    // speed: settings.boat.speed,
+    // moving: false,
     animationSpeed: settings.boat.animationSpeed,
   });
 
@@ -43,28 +59,23 @@ export const useHandleBoat = () => {
     );
 
     // draw surfer
-    // TILLFÄLLIG LÖSNING
     context.drawImage(
-      surfer1,
-      0,
-      0,
-      390 / 6,
-      75,
-      boat.x + boat.width / 4,
-      boat.y - boat.width / 2.5,
-      390 / 6,
-      75
+      surferImage,
+      surfer.frameX * surfer.width,
+      surfer.frameY * surfer.height,
+      surfer.width,
+      surfer.height,
+      boat.x + 30,
+      boat.y - 53,
+      surfer.width,
+      surfer.height
     );
   };
 
   const moveBoat = (keysArray, frame) => {
     if (keysArray.length !== 0) {
       if (keysArray.includes("ArrowUp")) {
-        if (
-          // (boat.y > settings.background.height - 30)
-          boat.y >
-          settings.background.height + 25
-        ) {
+        if (boat.y > settings.background.height) {
           setBoat((prev) => {
             return {
               ...prev,
@@ -85,11 +96,7 @@ export const useHandleBoat = () => {
       }
 
       if (keysArray.includes("ArrowDown")) {
-        if (
-          // (boat.y < settings.canvasHeight - boat.height)
-          boat.y <
-          settings.canvasHeight - 135
-        ) {
+        if (boat.y < settings.canvasHeight - boat.height) {
           setBoat((prev) => {
             return {
               ...prev,

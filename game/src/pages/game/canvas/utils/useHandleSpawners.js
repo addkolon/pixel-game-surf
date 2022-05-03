@@ -68,7 +68,14 @@ export const useHandleSpawners = () => {
   };
 
   const drawPickUp = (context, x, y, s) => {
-    context.drawImage(pickUp, x, y, s, s);
+    if (y <= 200) {
+      context.drawImage(pickUp, x, y, s, s);
+    } else {
+      context.drawImage(obstacle, x, y, s, s);
+    }
+  };
+  const drawWavePickUp = (context, x, y, s) => {
+    context.drawImage(obstacle, x, y, s, s);
   };
 
   const updatePickUp = (context, o, boat) => {
@@ -165,15 +172,16 @@ export const useHandleSpawners = () => {
       const random = (min, max) =>
         Math.floor(Math.random() * (max - min)) + min;
 
-      let y = random(200, 450);
-      // Math.random() *
-      //   (settings.canvasHeight - settings.background.height - 50) +
-      // settings.background.height;
-      let x = settings.canvasWidth;
       let size = random(
         settings.drowningPeople.minimumSize,
         settings.drowningPeople.maximumSize
       );
+
+      let y = random(settings.background.height, settings.canvasHeight - size);
+
+      // let y = 200;
+
+      let x = settings.canvasWidth;
 
       while (
         obstacleArray.filter((s) => {
@@ -193,10 +201,7 @@ export const useHandleSpawners = () => {
           );
         }).length > 0
       ) {
-        y = random(200, 450);
-        // Math.random() *
-        //   (settings.canvasHeight - settings.background.height - 100) +
-        // settings.background.height;
+        y = random(settings.background.height, settings.canvasHeight - size);
       }
 
       if (pickUpsArray.length > 30) {
