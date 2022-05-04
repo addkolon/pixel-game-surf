@@ -2,8 +2,8 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import { Home } from "./pages/home/Home";
-import { Game } from "./pages/game/Game";
+import { Home } from "./pages/home/Home.js";
+import { Game } from "./pages/game/Game.js";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -21,7 +21,7 @@ function App() {
   useEffect(() => {
     if (scoresStatus === "idle") {
       // dispatch(getAllScores());
-      dispatch(getTopScores("page=1&limit=10"));
+      // dispatch(getTopScores("page=1&limit=10"));
     }
   }, [scoresStatus, dispatch]);
 

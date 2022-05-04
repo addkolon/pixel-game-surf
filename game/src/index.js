@@ -2,7 +2,7 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import App from "./App.js";
 import reportWebVitals from "./reportWebVitals";
 
 import { store } from "./store/store";

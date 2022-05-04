@@ -2,7 +2,7 @@
 
 export const settings = {
   // general
-  lives: 5,
+  lives: 10,
   scorePerSave: 50,
   canvasWidth: 800,
   canvasHeight: 400,
@@ -73,11 +73,11 @@ export const settings = {
   difficulty: {
     // on timer
     timer: {
-      seconds: 5,
+      seconds: 500,
     },
     // on saves
     savings: {
-      saves: 3,
+      saves: 300,
     },
   },
 };

@@ -1,5 +1,6 @@
-{ "frames": {
-   "surfer-cropped 0.aseprite": {
+{ "frames": 
+  {
+   "frame0": {
     "frame": { "x": 0, "y": 0, "w": 65, "h": 75 },
     "rotated": false,
     "trimmed": false,
@@ -7,7 +8,7 @@
     "sourceSize": { "w": 65, "h": 75 },
     "duration": 100
    },
-   "surfer-cropped 1.aseprite": {
+   "frame1": {
     "frame": { "x": 65, "y": 0, "w": 65, "h": 75 },
     "rotated": false,
     "trimmed": false,
@@ -15,7 +16,7 @@
     "sourceSize": { "w": 65, "h": 75 },
     "duration": 100
    },
-   "surfer-cropped 2.aseprite": {
+   "frame2": {
     "frame": { "x": 130, "y": 0, "w": 65, "h": 75 },
     "rotated": false,
     "trimmed": false,
@@ -23,7 +24,7 @@
     "sourceSize": { "w": 65, "h": 75 },
     "duration": 100
    },
-   "surfer-cropped 3.aseprite": {
+   "frame3": {
     "frame": { "x": 195, "y": 0, "w": 65, "h": 75 },
     "rotated": false,
     "trimmed": false,
@@ -31,7 +32,7 @@
     "sourceSize": { "w": 65, "h": 75 },
     "duration": 100
    },
-   "surfer-cropped 4.aseprite": {
+   "frame4": {
     "frame": { "x": 260, "y": 0, "w": 65, "h": 75 },
     "rotated": false,
     "trimmed": false,
@@ -39,7 +40,7 @@
     "sourceSize": { "w": 65, "h": 75 },
     "duration": 100
    },
-   "surfer-cropped 5.aseprite": {
+   "frame5": {
     "frame": { "x": 325, "y": 0, "w": 65, "h": 75 },
     "rotated": false,
     "trimmed": false,
@@ -54,8 +55,10 @@
   "image": "surfer.png",
   "format": "RGBA8888",
   "size": { "w": 390, "h": 75 },
+  "frameSize": { "w": 65, "h": 75 },
   "scale": "1",
   "frameTags": [
+    "frame0","frame1","frame2","frame3","frame4","frame5"
   ],
   "layers": [
    { "name": "Flattened", "opacity": 255, "blendMode": "normal" }

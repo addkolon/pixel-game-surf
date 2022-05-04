@@ -52,11 +52,12 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
     context.clearRect(0, 0, settings.canvasWidth, settings.canvasHeight);
 
     // updateBackground(context, boat);
+    updatePickups(context, frame, boat);
     drawBoat(context);
 
     moveBoat(keysArray, frame);
     // updateObstacles(context, frame, boat);
-    updatePickups(context, frame, boat);
+    // updatePickups(context, frame, boat);
     // if (handleCrashes(boat)) {
     //   dispatch(lostLives());
     // }

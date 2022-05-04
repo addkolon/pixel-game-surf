@@ -10,10 +10,16 @@ import { useHandleBackground } from "./useHandleBackground";
 
 import { settings } from "../../settings";
 
+// import surferData from "../../../../sprite/surfer.json";
+import surferData from "../../../../sprite/surferTest.json";
+
 export const useHandleBoat = () => {
+  // console.log(surferData.frames);
+  // console.log(surferData.meta.frameTags);
   // const boatAnimationSpeed = 10;
   const surferImage = new Image();
   surferImage.src = surferSprite;
+
   const boardImage = new Image();
   boardImage.src = boardSprite;
 
@@ -32,14 +38,22 @@ export const useHandleBoat = () => {
 
   const [surfer, setSurfer] = useState({
     image: surferImage,
+
     x: settings.boat.startPositionX,
     y: settings.boat.startPositionY,
-    width: 65,
-    height: 75,
+    width: surferData.meta.frameSize.w,
+    height: surferData.meta.frameSize.h,
     frameX: 0,
-    frameY: 0,
-    // speed: settings.boat.speed,
-    // moving: false,
+
+    // frameY: 0,
+
+    // x: settings.boat.startPositionX,
+    // y: settings.boat.startPositionY,
+    // width: 65,
+    // height: 75,
+    // frameX: 0,
+    // frameY: 0,
+
     animationSpeed: settings.boat.animationSpeed,
   });
 
@@ -62,7 +76,8 @@ export const useHandleBoat = () => {
     context.drawImage(
       surferImage,
       surfer.frameX * surfer.width,
-      surfer.frameY * surfer.height,
+      // surfer.frameY * surfer.height,
+      0,
       surfer.width,
       surfer.height,
       boat.x + 30,
@@ -158,23 +173,23 @@ export const useHandleBoat = () => {
         }
       }
 
-      if (frame % boat.animationSpeed === 0) {
-        if (boat.frameX < 2 && !!boat.moving) {
-          setBoat((prev) => {
-            return {
-              ...prev,
-              frameX: prev.frameX + 1,
-            };
-          });
-        } else {
-          setBoat((prev) => {
-            return {
-              ...prev,
-              frameX: 0,
-            };
-          });
-        }
-      }
+      // if (frame % boat.animationSpeed === 0) {
+      //   if (boat.frameX < 2 && !!boat.moving) {
+      //     setBoat((prev) => {
+      //       return {
+      //         ...prev,
+      //         frameX: prev.frameX + 1,
+      //       };
+      //     });
+      //   } else {
+      //     setBoat((prev) => {
+      //       return {
+      //         ...prev,
+      //         frameX: 0,
+      //       };
+      //     });
+      //   }
+      // }
     } else {
       setBoat((prev) => {
         return {
