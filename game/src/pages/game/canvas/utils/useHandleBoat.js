@@ -1,7 +1,6 @@
 /** @format */
 
 import { useState } from "react";
-// import boat3 from "../../../../sprite/board-sprite.png";
 
 import boardSprite from "../../../../sprite/board-sprite.png";
 
@@ -11,14 +10,11 @@ import { useHandleBackground } from "./useHandleBackground";
 import { settings } from "../../settings";
 
 // import surferData from "../../../../sprite/surfer.json";
-import surferData from "../../../../sprite/surferTest.json";
 
 export const useHandleBoat = () => {
-  // console.log(surferData.frames);
-  // console.log(surferData.meta.frameTags);
   // const boatAnimationSpeed = 10;
-  const surferImage = new Image();
-  surferImage.src = surferSprite;
+  // const surferImage = new Image();
+  // surferImage.src = surferSprite;
 
   const boardImage = new Image();
   boardImage.src = boardSprite;
@@ -36,26 +32,16 @@ export const useHandleBoat = () => {
     animationSpeed: settings.boat.animationSpeed,
   });
 
-  const [surfer, setSurfer] = useState({
-    image: surferImage,
+  // const [surfer, setSurfer] = useState({
+  //   image: surferImage,
 
-    x: settings.boat.startPositionX,
-    y: settings.boat.startPositionY,
-    width: surferData.meta.frameSize.w,
-    height: surferData.meta.frameSize.h,
-    frameX: 0,
-
-    // frameY: 0,
-
-    // x: settings.boat.startPositionX,
-    // y: settings.boat.startPositionY,
-    // width: 65,
-    // height: 75,
-    // frameX: 0,
-    // frameY: 0,
-
-    animationSpeed: settings.boat.animationSpeed,
-  });
+  //   x: settings.boat.startPositionX,
+  //   y: settings.boat.startPositionY,
+  //   width: 65,
+  //   height: 75,
+  //   frameX: 0,
+  //   animationSpeed: settings.boat.animationSpeed,
+  // });
 
   const { mainBackgroundHeight } = useHandleBackground();
 
@@ -72,19 +58,17 @@ export const useHandleBoat = () => {
       boat.height
     );
 
-    // draw surfer
-    context.drawImage(
-      surferImage,
-      surfer.frameX * surfer.width,
-      // surfer.frameY * surfer.height,
-      0,
-      surfer.width,
-      surfer.height,
-      boat.x + 30,
-      boat.y - 53,
-      surfer.width,
-      surfer.height
-    );
+    // context.drawImage(
+    //   surferImage,
+    //   surfer.frameX * surfer.width,
+    //   0,
+    //   surfer.width,
+    //   surfer.height,
+    //   boat.x + 30,
+    //   boat.y - 53,
+    //   surfer.width,
+    //   surfer.height
+    // );
   };
 
   const moveBoat = (keysArray, frame) => {

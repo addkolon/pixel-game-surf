@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHandlePickups } from "./utils/useHandlePickups";
 import { settings } from "../settings";
 import { useHandleFoam } from "./utils/useHandleFoam";
+import { useHandleSurfer } from "./utils/useHandleSurfer";
 
 export const Canvas = ({ canvasWidth, canvasHeight }) => {
   const canvasRef = useRef();
@@ -27,13 +28,14 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
   const [frame, setFrame] = useState(0);
   const [keysArray, setKeysArray] = useState([]);
 
+  const { drawSurfer, surferAnimation, surfer } = useHandleSurfer();
+  const { drawFoam } = useHandleFoam();
+
   const { moveBoat, drawBoat, boat } = useHandleBoat();
   const { updateObstacles, updatePickups } = useHandleSpawners();
   const { updateBackground } = useHandleBackground();
   const { handleCrashes } = useHandleCrashes();
   const { handlePickups } = useHandlePickups();
-
-  const { drawFoam } = useHandleFoam();
 
   useLayoutEffect(() => {
     let timerId;
@@ -52,8 +54,12 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
     context.clearRect(0, 0, settings.canvasWidth, settings.canvasHeight);
 
     // updateBackground(context, boat);
+
     updatePickups(context, frame, boat);
     drawBoat(context);
+    drawSurfer(context, boat);
+    surferAnimation(frame);
+    drawFoam(context);
 
     moveBoat(keysArray, frame);
     // updateObstacles(context, frame, boat);
