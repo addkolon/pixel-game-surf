@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import obstaclePic from "../../../../sprite/Stones.png";
-import pickUpPic from "../../../../sprite/Person.png";
+import pickUpPic from "../../../../sprite/pick-up.png";
 import { settings } from "../../settings";
 
 import { speed } from "../../../../store/gameplaySlice";
@@ -178,7 +178,6 @@ export const useHandleSpawners = () => {
       );
 
       let y = random(settings.background.height, settings.canvasHeight - size);
-
       // let y = 200;
 
       let x = settings.canvasWidth;

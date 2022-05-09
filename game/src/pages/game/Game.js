@@ -59,7 +59,8 @@ export const Game = ({}) => {
           canvasWidth={settings.canvasWidth}
           canvasHeight={settings.canvasHeight}
         />
-        <div className="bottom">music</div>
+        <div className="bottom">music
+        </div>
       </main>
       <aside>
         <img class="logo" src={logotype} />
