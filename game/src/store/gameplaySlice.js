@@ -45,7 +45,6 @@ export const gameplaySlice = createSlice({
     },
     updateSpeed: (state, action) => {
       state.speed += 0.3;
-      console.log(state.speed);
     },
     updateFrame: (state, action) => {
       state.frame++;

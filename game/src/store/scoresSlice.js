@@ -5,18 +5,15 @@ import { PROTECTED_GET, PROTECTED_POST, GET, POST } from "../utils/fetch";
 // fetches
 export const getAllScores = createAsyncThunk("getAllScores", async () => {
   const res = await GET(`/get_all_scores`);
-  console.log(res);
   return res;
 });
 
 export const getTopScores = createAsyncThunk("getTopScores", async (query) => {
   const res = await GET(`/get_top_scores?${query}`);
-  console.log(res);
   return res;
 });
 
 export const createScore = createAsyncThunk("createScore", async (newScore) => {
-  console.log(newScore);
   const res = await POST(`/create_score`, newScore);
   return res;
 });
@@ -55,7 +52,6 @@ export const scoresSlice = createSlice({
       })
       .addCase(getAllScores.fulfilled, (state, action) => {
         const { success, message, data } = action.payload;
-        console.log(data);
         if (success) {
           state.status = "succeeded";
           state.data = data;
@@ -75,7 +71,6 @@ export const scoresSlice = createSlice({
       })
       .addCase(getTopScores.fulfilled, (state, action) => {
         const { success, message, data } = action.payload;
-        console.log(data);
         if (success) {
           state.status = "succeeded";
           state.data = data;
@@ -95,7 +90,6 @@ export const scoresSlice = createSlice({
       })
       .addCase(createScore.fulfilled, (state, action) => {
         const { success, message, data } = action.payload;
-        console.log(data);
         if (success) {
           state.status = "succeeded";
           state.data = {

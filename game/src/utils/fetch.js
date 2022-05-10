@@ -50,7 +50,6 @@ export const PROTECTED_GET = async (endpoint, authLevel) => {
 
 // post
 export const POST = async (endpoint, data) => {
-  console.log(JSON.stringify(data));
   return await fetch(api_address + endpoint, {
     method: "POST",
     headers: {

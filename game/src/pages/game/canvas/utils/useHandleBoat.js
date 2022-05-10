@@ -32,8 +32,15 @@ export const useHandleBoat = () => {
     frameY: 0,
     speed: settings.boat.speed,
     moving: false,
-    // animationSpeed: settings.boat.animationSpeed,
   });
+
+  const [boatEdges, setBoatEdges] = useState([
+    // collision trying
+    { x: boat.x + 5, y: boat.y },
+    { x: boat.x + boat.width, y: boat.y + boat.height - 5 },
+    { x: boat.x + boat.width - 5, y: boat.y + boat.height },
+    { x: boat.x, y: boat.y + 5 },
+  ]);
 
   // const [surfer, setSurfer] = useState({
   //   image: surferImage,
@@ -60,6 +67,13 @@ export const useHandleBoat = () => {
       boat.width,
       boat.height
     );
+    setBoatEdges([
+      // collision trying
+      { x: boat.x + 5, y: boat.y },
+      { x: boat.x + boat.width, y: boat.y + boat.height - 5 },
+      { x: boat.x + boat.width - 5, y: boat.y + boat.height },
+      { x: boat.x, y: boat.y + 5 },
+    ]);
 
     // context.drawImage(
     //   surferImage,
@@ -161,7 +175,7 @@ export const useHandleBoat = () => {
 
         // board under foam but surfer over
         const check2 = () => {
-          return boat.y < settings.background.height + 65 &&
+          return boat.y < settings.background.height + 64 &&
             boat.x < foam.width - 30
             ? true
             : false;
@@ -186,6 +200,13 @@ export const useHandleBoat = () => {
           });
         }
       }
+    } else {
+      setBoat((prev) => {
+        return {
+          ...prev,
+          moving: false,
+        };
+      });
     }
   };
 
@@ -205,5 +226,6 @@ export const useHandleBoat = () => {
     moveBoat,
     boat,
     boardAnimation,
+    boatEdges,
   };
 };

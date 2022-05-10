@@ -7,6 +7,7 @@ import { settings } from "../../settings";
 
 import { speed } from "../../../../store/gameplaySlice";
 import { useSelector } from "react-redux";
+import { randomMinMax } from "../../../../utils/randomMinMax";
 
 export const obstacleArray = [];
 export const pickUpsArray = [];
@@ -68,40 +69,31 @@ export const useHandleSpawners = () => {
   };
 
   const drawPickUp = (context, x, y, s) => {
-    if (y <= 200) {
-      context.drawImage(pickUp, x, y, s, s);
-    } else {
-      context.drawImage(obstacle, x, y, s, s);
-    }
-  };
-  const drawWavePickUp = (context, x, y, s) => {
-    context.drawImage(obstacle, x, y, s, s);
+    context.drawImage(pickUp, x, y, s, s);
   };
 
   const updatePickUp = (context, o, boat) => {
     if (boat.moving) {
-      if (
-        boat.moving === "right" &&
-        boat.x < settings.canvasWidth - boat.width
-      ) {
-        setPickUpsSpeed(
-          settings.drowningPeople.speedModifier.boatMovement.right *
-            speed *
-            speedModifier
-        );
-      }
-      if (boat.moving === "left") {
-        setPickUpsSpeed(
-          settings.drowningPeople.speedModifier.boatMovement.left *
-            speed *
-            speedModifier
-        );
-      }
-      if (boat.moving === "down") {
+      if (boat.moving === "down" || boat.moving === "up") {
         setPickUpsSpeed(settings.drowningPeople.speed * speed * speedModifier);
-      }
-      if (boat.moving === "up") {
-        setPickUpsSpeed(settings.drowningPeople.speed * speed * speedModifier);
+      } else {
+        if (
+          boat.moving === "right" &&
+          boat.x < settings.canvasWidth - boat.width
+        ) {
+          setPickUpsSpeed(
+            settings.drowningPeople.speedModifier.boatMovement.right *
+              speed *
+              speedModifier
+          );
+        }
+        if (boat.moving === "left") {
+          setPickUpsSpeed(
+            settings.drowningPeople.speedModifier.boatMovement.left *
+              speed *
+              speedModifier
+          );
+        }
       }
     } else {
       setPickUpsSpeed(settings.drowningPeople.speed * speed * speedModifier);
@@ -112,20 +104,16 @@ export const useHandleSpawners = () => {
 
   const updateObstacles = (context, frame, boat) => {
     if (frame % obstaclesSpawnRate === 0) {
-      const random = (min, max) =>
-        Math.floor(Math.random() * (max - min)) + min;
-
-      // y =
-      //   Math.random() *
-      //     (settings.canvasHeight - settings.background.height - 100) +
-      //   settings.background.height;
-      let y = random(200, 450);
-
-      let x = settings.canvasWidth;
-      let size = random(
+      const size = randomMinMax(
         settings.stones.minimumSize,
         settings.stones.maximumSize
       );
+      let y = randomMinMax(
+        settings.background.height,
+        settings.canvasHeight - size
+      );
+
+      const x = settings.canvasWidth;
 
       while (
         pickUpsArray.filter((s) => {
@@ -145,11 +133,10 @@ export const useHandleSpawners = () => {
           );
         }).length > 0
       ) {
-        // y =
-        //   Math.random() *
-        //     (settings.canvasHeight - settings.background.height - 100) +
-        //   settings.background.height;
-        y = random(200, 450);
+        y = randomMinMax(
+          settings.background.height,
+          settings.canvasHeight - size
+        );
       }
 
       if (obstacleArray.length > 30) {
@@ -169,18 +156,17 @@ export const useHandleSpawners = () => {
 
   const updatePickups = (context, frame, boat) => {
     if (frame % pickUpsSpawnRate === 0) {
-      const random = (min, max) =>
-        Math.floor(Math.random() * (max - min)) + min;
-
-      let size = random(
+      const size = randomMinMax(
         settings.drowningPeople.minimumSize,
         settings.drowningPeople.maximumSize
       );
 
-      let y = random(settings.background.height, settings.canvasHeight - size);
-      // let y = 200;
+      let y = randomMinMax(
+        settings.background.height,
+        settings.canvasHeight - size
+      );
 
-      let x = settings.canvasWidth;
+      const x = settings.canvasWidth;
 
       while (
         obstacleArray.filter((s) => {
@@ -200,7 +186,10 @@ export const useHandleSpawners = () => {
           );
         }).length > 0
       ) {
-        y = random(settings.background.height, settings.canvasHeight - size);
+        y = randomMinMax(
+          settings.background.height,
+          settings.canvasHeight - size
+        );
       }
 
       if (pickUpsArray.length > 30) {

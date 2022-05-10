@@ -101,6 +101,8 @@
   display: flex;
   flex-direction: column;
   .top {
+    display: flex;
+    justify-content: space-between;
     background-color: black;
     display: flex;
     height: 100px;

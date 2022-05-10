@@ -31,7 +31,8 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
   const { drawSurfer, surferAnimation, surfer } = useHandleSurfer();
   const { drawFoam, foamAnimation } = useHandleFoam();
 
-  const { moveBoat, drawBoat, boat, boardAnimation } = useHandleBoat();
+  const { moveBoat, drawBoat, boat, boardAnimation, boatEdges } =
+    useHandleBoat();
   const { updateObstacles, updatePickups } = useHandleSpawners();
   const { updateBackground } = useHandleBackground();
   const { handleCrashes } = useHandleCrashes();
@@ -56,6 +57,7 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
     // updateBackground(context, boat);
 
     updatePickups(context, frame, boat);
+    updateObstacles(context, frame, boat);
     drawBoat(context);
     boardAnimation(frame);
     drawSurfer(context, boat);
@@ -64,26 +66,25 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
     foamAnimation(frame);
 
     moveBoat(keysArray, frame);
-    // updateObstacles(context, frame, boat);
-    // updatePickups(context, frame, boat);
-    // if (handleCrashes(boat)) {
-    //   dispatch(lostLives());
-    // }
-    // if (handlePickups(boat)) {
-    //   dispatch(updateScore());
-    //   if (
-    //     (score % settings.difficulty.savings.saves) * settings.scorePerSave ===
-    //       0 &&
-    //     settings.difficulty.savings.saves !== 0 &&
-    //     score !== 0
-    //   ) {
-    //     dispatch(updateSpeed(1));
-    //   }
-    // }
 
-    if (frame % (settings.difficulty.timer.seconds * 65) === 0) {
-      dispatch(updateSpeed(1));
+    if (handleCrashes(boatEdges)) {
+      dispatch(lostLives());
     }
+    if (handlePickups(boatEdges)) {
+      dispatch(updateScore());
+      if (
+        (score % settings.difficulty.savings.saves) * settings.scorePerSave ===
+          0 &&
+        settings.difficulty.savings.saves !== 0 &&
+        score !== 0
+      ) {
+        dispatch(updateSpeed(1));
+      }
+    }
+
+    // if (frame % (settings.difficulty.timer.seconds * 65) === 0) {
+    //   dispatch(updateSpeed(1));
+    // }
   }, [frame]);
 
   return (
