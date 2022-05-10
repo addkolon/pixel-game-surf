@@ -37,8 +37,6 @@ export const useHandleFoam = () => {
     );
   };
 
-  // matte
-
   const foamAnimation = (frame) => {
     if (frame % settings.foam.animationSpeed === 0) {
       setFoam((prev) => {

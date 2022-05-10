@@ -10,11 +10,11 @@ import {
 
 import { data, getTopScores } from "../../store/scoresSlice";
 
-import lifeRing from "../../sprite/life-ring.png";
+import lifeRing from "../../sprite/heart.png";
 import logotype from "../../sprite/logotype.png";
 import { useDispatch, useSelector } from "react-redux";
 import { Canvas } from "./canvas/Canvas.js";
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { settings } from "./settings";
 import { Scoreboard } from "../../components/Scoreboard";
@@ -47,7 +47,7 @@ export const Game = ({}) => {
               {lives.map((l) => {
                 return (
                   <li>
-                    <img src={lifeRing} />
+                    <img src={lifeRing} width="35px" />
                   </li>
                 );
               })}
