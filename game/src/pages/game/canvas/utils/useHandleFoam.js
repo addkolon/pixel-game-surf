@@ -8,11 +8,15 @@ export const useHandleFoam = () => {
   const foamImage = new Image();
   foamImage.src = foamSprite;
 
+  // frame width 351
+
   const [foam, setFoam] = useState({
     image: foamImage,
     x: 0,
     y: 60,
-    width: 275,
+    // width: 275,
+    // height: 175,
+    width: 351,
     height: 175,
     frameX: 0,
     frameY: 0,
@@ -33,21 +37,25 @@ export const useHandleFoam = () => {
     );
   };
 
+  // matte
+
   const foamAnimation = (frame) => {
-    if (foam.frameX < 5) {
-      setFoam((prev) => {
-        return {
-          ...prev,
-          frameX: prev.frameX + 1,
-        };
-      });
-    } else {
-      setFoam((prev) => {
-        return {
-          ...prev,
-          frameX: 0,
-        };
-      });
+    if (frame % settings.foam.animationSpeed === 0) {
+      if (foam.frameX < 5) {
+        setFoam((prev) => {
+          return {
+            ...prev,
+            frameX: prev.frameX + 1,
+          };
+        });
+      } else {
+        setFoam((prev) => {
+          return {
+            ...prev,
+            frameX: 0,
+          };
+        });
+      }
     }
   };
   return {

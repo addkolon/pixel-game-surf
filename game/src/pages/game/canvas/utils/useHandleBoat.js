@@ -123,7 +123,6 @@ export const useHandleBoat = () => {
               x: prev.x + boat.speed,
               frameY: 0,
               moving: "right",
-              
             };
           });
         } else {
@@ -215,22 +214,21 @@ export const useHandleBoat = () => {
         }
       }
 
-        if (boat.frameX < 4 && !!boat.moving) {
-          setBoat((prev) => {
-            return {
-              ...prev,
-              frameX: prev.frameX + 1,
-            };
-          });
-        } else {
-          setBoat((prev) => {
-            return {
-              ...prev,
-              frameX: 0,
-            };
-          });
-        }
-
+      if (boat.frameX < 4 && !!boat.moving) {
+        setBoat((prev) => {
+          return {
+            ...prev,
+            frameX: prev.frameX + 1,
+          };
+        });
+      } else {
+        setBoat((prev) => {
+          return {
+            ...prev,
+            frameX: 0,
+          };
+        });
+      }
     } else {
       setBoat((prev) => {
         return {

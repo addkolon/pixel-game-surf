@@ -29,7 +29,7 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
   const [keysArray, setKeysArray] = useState([]);
 
   const { drawSurfer, surferAnimation, surfer } = useHandleSurfer();
-  const { drawFoam } = useHandleFoam();
+  const { drawFoam, foamAnimation } = useHandleFoam();
 
   const { moveBoat, drawBoat, boat } = useHandleBoat();
   const { updateObstacles, updatePickups } = useHandleSpawners();
@@ -60,6 +60,7 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
     drawSurfer(context, boat);
     surferAnimation(frame);
     drawFoam(context);
+    foamAnimation(frame);
 
     moveBoat(keysArray, frame);
     // updateObstacles(context, frame, boat);

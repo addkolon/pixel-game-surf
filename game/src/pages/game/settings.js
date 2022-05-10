@@ -49,6 +49,10 @@ export const settings = {
       },
     },
   },
+  // foam
+  foam: {
+    animationSpeed: 9,
+  },
   // background
   background: {
     // height: 125,
