@@ -1,7 +1,7 @@
 /** @format */
 
 import { useState } from "react";
-import foamSprite from "../../../../sprite/foam.png";
+import foamSprite from "../../../../sprite/foam-sprite.png";
 import { settings } from "../../settings";
 
 export const useHandleFoam = () => {
@@ -32,7 +32,26 @@ export const useHandleFoam = () => {
       foam.height
     );
   };
+
+  const foamAnimation = (frame) => {
+    if (foam.frameX < 5) {
+      setFoam((prev) => {
+        return {
+          ...prev,
+          frameX: prev.frameX + 1,
+        };
+      });
+    } else {
+      setFoam((prev) => {
+        return {
+          ...prev,
+          frameX: 0,
+        };
+      });
+    }
+  };
   return {
     drawFoam,
+    foamAnimation,
   };
 };
