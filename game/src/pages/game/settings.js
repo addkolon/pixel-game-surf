@@ -18,6 +18,17 @@ export const settings = {
     startPositionX: 100,
     startPositionY: 300,
   },
+
+  // surfer
+  surfer: {
+    // height ej dynamisk atm
+    height: 75,
+    // ---
+    alignmentOnBoardX: 30,
+    alignmentOnBoardY: 53,
+    animationSpeed: 10,
+  },
+
   // stones
   stones: {
     spawnRate: 100,

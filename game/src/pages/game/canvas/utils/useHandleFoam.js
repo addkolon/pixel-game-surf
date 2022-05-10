@@ -41,24 +41,16 @@ export const useHandleFoam = () => {
 
   const foamAnimation = (frame) => {
     if (frame % settings.foam.animationSpeed === 0) {
-      if (foam.frameX < 5) {
-        setFoam((prev) => {
-          return {
-            ...prev,
-            frameX: prev.frameX + 1,
-          };
-        });
-      } else {
-        setFoam((prev) => {
-          return {
-            ...prev,
-            frameX: 0,
-          };
-        });
-      }
+      setFoam((prev) => {
+        return {
+          ...prev,
+          frameX: prev.frameX < 5 ? prev.frameX + 1 : 0,
+        };
+      });
     }
   };
   return {
+    foam,
     drawFoam,
     foamAnimation,
   };

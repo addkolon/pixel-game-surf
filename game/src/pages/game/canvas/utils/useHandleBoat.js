@@ -8,6 +8,7 @@ import surferSprite from "../../../../sprite/surfer.png";
 import { useHandleBackground } from "./useHandleBackground";
 
 import { settings } from "../../settings";
+import { useHandleFoam } from "./useHandleFoam";
 
 // import surferData from "../../../../sprite/surfer.json";
 
@@ -19,6 +20,8 @@ export const useHandleBoat = () => {
   const boardImage = new Image();
   boardImage.src = boardSprite;
 
+  const { foam } = useHandleFoam();
+
   const [boat, setBoat] = useState({
     image: boardImage,
     x: settings.boat.startPositionX,
@@ -29,7 +32,7 @@ export const useHandleBoat = () => {
     frameY: 0,
     speed: settings.boat.speed,
     moving: false,
-    animationSpeed: settings.boat.animationSpeed,
+    // animationSpeed: settings.boat.animationSpeed,
   });
 
   // const [surfer, setSurfer] = useState({
@@ -74,21 +77,30 @@ export const useHandleBoat = () => {
   const moveBoat = (keysArray, frame) => {
     if (keysArray.length !== 0) {
       if (keysArray.includes("ArrowUp")) {
-        if (boat.y > settings.background.height) {
+        const onCanvas = boat.y > settings.background.height;
+
+        // huvud under foam
+        const check1 = () => {
+          return boat.x + settings.surfer.alignmentOnBoardX + 5 < foam.width &&
+            boat.y < settings.background.height + 65
+            ? true
+            : false;
+        };
+
+        // huvud över men bräda under foam
+        const check2 = () => {
+          return boat.y < settings.background.height + 15 && boat.x < foam.width
+            ? true
+            : false;
+        };
+
+        if (onCanvas && !check1() && !check2()) {
           setBoat((prev) => {
             return {
               ...prev,
               y: prev.y - boat.speed,
               frameY: 0,
               moving: "up",
-            };
-          });
-        } else {
-          setBoat((prev) => {
-            return {
-              ...prev,
-              frameX: 0,
-              moving: false,
             };
           });
         }
@@ -137,64 +149,25 @@ export const useHandleBoat = () => {
       }
 
       if (keysArray.includes("ArrowLeft")) {
-        const foamWidth = 275;
-        const surfHeight = 75;
-
-        // works
-
         const onCanvas = boat.x > 0;
 
-        // const onTopOfFoam =
-        // boat.y < settings.background.height + 20 && boat.x < foamWidth + 5;
-
-        // const headAboveFoam =
-        //   boat.y < settings.background.height + surfHeight - 10 &&
-        //   boat.x < foamWidth - 25;
-
-        const foamConsts = {
-          one: {
-            yStart: settings.background.height,
-            yEnd: settings.background.height + 20,
-            x: foamWidth + 5,
-          },
-          two: {
-            yStart: settings.background.height + surfHeight - 10,
-            yEnd: settings.background.height + surfHeight - 20,
-            xStart: foamWidth - 25,
-            xEnd: foamWidth - 25,
-          },
-          three: {
-            yStart: settings.background.height + surfHeight - 20,
-            yEnd: settings.background.height + surfHeight - 30,
-            x: foamWidth - 45,
-          },
+        // board over foam
+        const check1 = () => {
+          return boat.y < settings.background.height + 20 &&
+            boat.x < foam.width + 5
+            ? true
+            : false;
         };
 
-        // head (three) = y: 108, x: 226
+        // board under foam but surfer over
+        const check2 = () => {
+          return boat.y < settings.background.height + 65 &&
+            boat.x < foam.width - 30
+            ? true
+            : false;
+        };
 
-        // conditions
-
-        const check1 =
-          boat.y < foamConsts.one.yEnd && boat.x < foamConsts.one.x;
-
-        const check2 =
-          // boat.y < settings.background.height + surfHeight - 10 &&
-          // boat.y > settings.background.height + surfHeight - 20 &&
-          // boat.x < foamWidth - 25;
-
-          // boat.y > foamConsts.two.yStart &&
-          // boat.y < foamConsts.two.yEnd &&
-          boat.y > 80 && boat.y < 100 && boat.x < 245;
-        // && boat.x < 275 - 50
-
-        // const check2 =
-        //   boat.y < settings.background.height + surfHeight - 20 &&
-        //   boat.x < foamWidth - 45;
-
-        // if (boat.x > 0 && conditionY) {
-        // if (!onTopOfFoam) {
-        // console.log(boat.y, boat.x);
-        if (onCanvas && !check1 && !check2) {
+        if (onCanvas && !check1() && !check2()) {
           setBoat((prev) => {
             return {
               ...prev,
@@ -213,28 +186,15 @@ export const useHandleBoat = () => {
           });
         }
       }
+    }
+  };
 
-      if (boat.frameX < 4 && !!boat.moving) {
-        setBoat((prev) => {
-          return {
-            ...prev,
-            frameX: prev.frameX + 1,
-          };
-        });
-      } else {
-        setBoat((prev) => {
-          return {
-            ...prev,
-            frameX: 0,
-          };
-        });
-      }
-    } else {
+  const boardAnimation = (frame) => {
+    if (frame % settings.boat.animationSpeed === 0) {
       setBoat((prev) => {
         return {
           ...prev,
-          moving: false,
-          frameX: 0,
+          frameX: prev.frameX < 5 ? prev.frameX + 1 : 0,
         };
       });
     }
@@ -244,5 +204,6 @@ export const useHandleBoat = () => {
     drawBoat,
     moveBoat,
     boat,
+    boardAnimation,
   };
 };

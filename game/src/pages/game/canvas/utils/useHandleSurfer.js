@@ -30,30 +30,21 @@ export const useHandleSurfer = () => {
       0,
       surfer.width,
       surfer.height,
-      boat.x + 30,
-      boat.y - 53,
+      boat.x + settings.surfer.alignmentOnBoardX,
+      boat.y - settings.surfer.alignmentOnBoardY,
       surfer.width,
       surfer.height
     );
   };
 
   const surferAnimation = (frame) => {
-    if (frame % boat.animationSpeed === 0) {
-      if (surfer.frameX < 5) {
-        setSurfer((prev) => {
-          return {
-            ...prev,
-            frameX: prev.frameX + 1,
-          };
-        });
-      } else {
-        setSurfer((prev) => {
-          return {
-            ...prev,
-            frameX: 0,
-          };
-        });
-      }
+    if (frame % settings.surfer.animationSpeed === 0) {
+      setSurfer((prev) => {
+        return {
+          ...prev,
+          frameX: prev.frameX < 5 ? prev.frameX + 1 : 0,
+        };
+      });
     }
   };
 
