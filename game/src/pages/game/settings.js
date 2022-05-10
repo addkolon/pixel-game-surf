@@ -1,5 +1,9 @@
 /** @format */
 
+// stenar o skräp 4 frames var
+// foam 6 frames,
+//
+
 export const settings = {
   // general
   lives: 10,
@@ -9,7 +13,7 @@ export const settings = {
   gameSpeed: 1,
   // boat
   boat: {
-    speed: 6,
+    speed: 2,
     animationSpeed: 10,
     startPositionX: 100,
     startPositionY: 300,

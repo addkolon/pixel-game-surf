@@ -137,7 +137,64 @@ export const useHandleBoat = () => {
       }
 
       if (keysArray.includes("ArrowLeft")) {
-        if (boat.x > 0) {
+        const foamWidth = 275;
+        const surfHeight = 75;
+
+        // works
+
+        const onCanvas = boat.x > 0;
+
+        // const onTopOfFoam =
+        // boat.y < settings.background.height + 20 && boat.x < foamWidth + 5;
+
+        // const headAboveFoam =
+        //   boat.y < settings.background.height + surfHeight - 10 &&
+        //   boat.x < foamWidth - 25;
+
+        const foamConsts = {
+          one: {
+            yStart: settings.background.height,
+            yEnd: settings.background.height + 20,
+            x: foamWidth + 5,
+          },
+          two: {
+            yStart: settings.background.height + surfHeight - 10,
+            yEnd: settings.background.height + surfHeight - 20,
+            xStart: foamWidth - 25,
+            xEnd: foamWidth - 25,
+          },
+          three: {
+            yStart: settings.background.height + surfHeight - 20,
+            yEnd: settings.background.height + surfHeight - 30,
+            x: foamWidth - 45,
+          },
+        };
+
+        // head (three) = y: 108, x: 226
+
+        // conditions
+
+        const check1 =
+          boat.y < foamConsts.one.yEnd && boat.x < foamConsts.one.x;
+
+        const check2 =
+          // boat.y < settings.background.height + surfHeight - 10 &&
+          // boat.y > settings.background.height + surfHeight - 20 &&
+          // boat.x < foamWidth - 25;
+
+          // boat.y > foamConsts.two.yStart &&
+          // boat.y < foamConsts.two.yEnd &&
+          boat.y > 80 && boat.y < 100 && boat.x < 245;
+        // && boat.x < 275 - 50
+
+        // const check2 =
+        //   boat.y < settings.background.height + surfHeight - 20 &&
+        //   boat.x < foamWidth - 45;
+
+        // if (boat.x > 0 && conditionY) {
+        // if (!onTopOfFoam) {
+        // console.log(boat.y, boat.x);
+        if (onCanvas && !check1 && !check2) {
           setBoat((prev) => {
             return {
               ...prev,
