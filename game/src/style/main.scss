@@ -96,53 +96,111 @@
   color: white;
 }
 
+
+body {
+  background: url("../sprite/bg-machine.png"), linear-gradient(90deg, rgba(187,78,153,1) 0%, rgba(215,123,186,1) 10%, rgba(215,123,186,1) 90%, rgba(187,78,153,1) 100%);
+
+  background-position: top center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  height: 100vh;
+}
+
+
 // olof
 .game-container {
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  width: 808px;
+  height: 600px;
+  margin: 200px auto 0;
+  border: 4px solid rgba(73, 78, 99, 0.663);
+  border-radius: 1rem;
+  overflow: hidden;
   .top {
-    background-color: black;
+
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: #222;
     display: flex;
     height: 100px;
     // border: 2px solid white;
 
     #lives {
-      // z-index: 999;
-    }
-
-    #lives ul {
-      display: flex;
-      list-style: none;
+      position: absolute;
+      top: 30px;
+      right: 20px;
+      ul {
+        display: flex;
+        list-style: none;
+      }
     }
 
     #lives ul li {
       margin-right: 0.3rem;
     }
 
+    .in-game-score {
+      position: absolute;
+      top: 15px;
+      left: 40px;
+      
+    }
+
+    
+
     #saves {
-      font-size: 3rem;
+      
     }
   }
 
-  .canvas-container {
-    border: 2px solid red;
+  .music {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    font-size: 0.5rem !important;
+  }
+
+  h2 {
+    text-shadow: 0.06rem 0 0.06rem #ea36af, -0.125rem 0 0.06rem #75fa69;
+   letter-spacing: 0.125em;
+   animation-duration: 0.01s;
+   animation-name: textflicker;
+   animation-iteration-count: infinite;
+   animation-direction: alternate;
+  }
+
+  @keyframes textflicker {
+    from {
+      text-shadow: 1px 0 0 #ea36af, -2px 0 0 #75fa69;
+    }
+    to {
+      text-shadow: 2px 0.5px 2px #ea36af, -1px -0.5px 2px #75fa69;
+    }
+  }
+
+  canvas {
     height: 400px;
+    position: absolute;
+    top: 100px;
+    left: 0;
   }
 
   .bottom {
-    background-color: black;
+    position: absolute;
+    background-color: #222;
     height: 100px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+
     // border: 2px solid white;
   }
 }
 
 .hidden {
   visibility: hidden;
-}
-
-body {
-  background: url("../sprite/bg.gif");
-  background-size: cover;
 }
 
 h1 {
@@ -254,11 +312,11 @@ h4 {
 }
 
 .main {
-  position: relative;
-  display: flex;
-  align-items: center;
-  height: 100vh;
-  padding: 0 4rem;
+  // position: relative;
+  // display: flex;
+  // align-items: center;
+  // height: 100vh;
+  // padding: 0 4rem;
 }
 
 main {
@@ -352,4 +410,128 @@ h3 {
   display: flex;
   gap: 1rem;
   padding-top: 1rem;
+}
+
+.screen {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 999;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background: repeating-linear-gradient( 0deg, rgba(255, 0, 0, .2), transparent 2px, rgba(255, 0, 0, .5) 10px, transparent 10px );
+  opacity: .15;
+  filter: blur(1px) contrast(110%) brighness(5);
+  animation: jitter 5s ease-in-out infinite;
+  animation-delay: 2s;
+  transform-origin: center center;
+}
+
+.screen:before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  top: -5px;
+  left: -5px;
+  position: absolute;
+  background: repeating-linear-gradient( 0deg, rgba(0, 0, 255, .2), transparent 2px, rgba(0, 255, 0, .5) 10px, transparent 10px );
+  filter: brighness(10);
+  animation: jitter 3s ease-in-out infinite;
+  animation-delay: 1s;
+  transform-origin: center center;
+}
+
+.screen:after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  top: -2px;
+  left: -2px;
+  position: absolute;
+  animation: jitter 2s ease-in-out infinite;
+  background: repeating-linear-gradient( 0deg, rgba(255, 255, 255, .2), transparent 2px, rgba(255, 255, 255, .5) 10px, transparent 10px );
+  transform-origin: center center;
+}
+
+@keyframes jitter {
+  0% {
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+
+  20% {
+    margin-top: -10px;
+    margin-left: -5px;
+  }
+
+  25% {
+    margin-top: 2px;
+    margin-left: 3px;
+  }
+
+  26% {
+    margin-top: 4px;
+    margin-left: -1px;
+  }
+
+  27% {
+    margin-top: 0px;
+    margin-left: 0px;
+  }
+
+  30% {
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+
+  50% {
+    margin-top: -1px;
+    margin-left: 1px;
+  }
+
+  61% {
+    margin-top: 1px;
+    margin-left: -1px;
+  }
+
+  63% {
+    margin-top: -30px;
+    left: -70%;
+    transform: skewX(-10deg);
+    width: 250%;
+    height: 250%;
+  }
+
+  67% {
+    margin-top: -10px;
+    margin-left: -15px;
+  }
+
+  69% {
+    margin-top: 5px;
+    margin-left: 5px;
+  }
+
+  70% {
+    top: -100px;
+    margin-left: 5px;
+    transform: skewY(10deg);
+    width: 250%;
+    height: 250%;
+  }
+
+  80% {
+  }
+
+  81% {
+    margin-top: 0px;
+    margin-left: 0px;
+  }
+
+  100% {
+    margin-top: 10px;
+    margin-left: 5px;
+  }
 }
