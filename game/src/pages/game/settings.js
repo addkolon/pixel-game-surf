@@ -6,15 +6,15 @@
 
 export const settings = {
   // general
-  lives: 10,
+  lives: 5,
   scorePerSave: 50,
   canvasWidth: 800,
   canvasHeight: 400,
   gameSpeed: 1,
   // boat
   boat: {
-    speed: 2,
-    animationSpeed: 10,
+    speed: 5,
+    animationSpeed: 5,
     startPositionX: 100,
     startPositionY: 300,
   },
@@ -26,7 +26,7 @@ export const settings = {
     // ---
     alignmentOnBoardX: 30,
     alignmentOnBoardY: 53,
-    animationSpeed: 10,
+    animationSpeed: 5,
   },
 
   // stones
@@ -62,7 +62,7 @@ export const settings = {
   },
   // foam
   foam: {
-    animationSpeed: 9,
+    animationSpeed: 15,
   },
   // background
   background: {

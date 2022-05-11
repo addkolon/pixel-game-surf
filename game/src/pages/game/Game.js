@@ -39,8 +39,9 @@ export const Game = ({}) => {
   }, []);
 
   return (
-    <div class="main">
+    <div className="main">
       <main className="game-container">
+        <div className="screen"></div>
         <div className="top">
           <div id="lives">
             <ul id="livesUl">
@@ -53,13 +54,22 @@ export const Game = ({}) => {
               })}
             </ul>
           </div>
-          <div id="saves">{score}</div>
+          <div className="in-game-score">
+            <h2>
+              HIGH SCORE: <span id="high-scoure">12500</span>
+            </h2>
+            <h2>
+              YOUR SCORE: <span id="saves">{score}</span>
+            </h2>
+          </div>
         </div>
         <Canvas
           canvasWidth={settings.canvasWidth}
           canvasHeight={settings.canvasHeight}
         />
-        <div className="bottom">music</div>
+        <div className="bottom">
+          <h2 className="music">&#9835; EVIG FERIE - ENESTE</h2>
+        </div>
       </main>
       <aside>
         <img class="logo" src={logotype} />
