@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import bg1Pic from "../../../../sprite/bg1.png";
-import bg2Pic from "../../../../sprite/bg2.png";
-import bg3Pic from "../../../../sprite/bg3.png";
-import bg4Pic from "../../../../sprite/bg4.png";
-import { speed } from "../../../../store/gameplaySlice";
+import bg1Pic from "../../../sprite/bg1.png";
+import bg2Pic from "../../../sprite/bg2.png";
+import bg3Pic from "../../../sprite/bg3.png";
+import bg4Pic from "../../../sprite/bg4.png";
+import { speed } from "../../../store/gameplaySlice";
 
-import { settings } from "../../settings";
+import { settings } from "../settings";
 
 export const useHandleBackground = () => {
   const speed = useSelector((state) => state.gameplay.speed);

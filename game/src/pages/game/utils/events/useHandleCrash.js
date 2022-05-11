@@ -1,7 +1,7 @@
 /** @format */
 
 import { checkIfHit } from "../../../../utils/checkIfHit";
-import { obstacleArray } from "./useHandleSpawners";
+import { obstacleArray } from "../spawners/useHandleSpawners";
 
 // OLD
 // export const useHandleCrashes = () => {
@@ -29,11 +29,11 @@ import { obstacleArray } from "./useHandleSpawners";
 // };
 
 // NEW
-export const useHandleCrashes = () => {
-  const handleCrashes = (boatEdges) => {
+export const useHandleCrash = () => {
+  const handleCrashes = (edges) => {
     let collision = false;
     obstacleArray.forEach((o) => {
-      const hit = checkIfHit(boatEdges, o.x, o.y, o.size, o.size);
+      const hit = checkIfHit(edges, o.x, o.y, o.size, o.size);
       if (hit) {
         o.y = 1000;
         collision = true;

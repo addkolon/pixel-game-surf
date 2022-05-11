@@ -1,8 +1,8 @@
 /** @format */
 
 import { useState } from "react";
-import foamSprite from "../../../../sprite/foam-sprite.png";
-import { settings } from "../../settings";
+import foamSprite from "../../../sprite/foam-sprite.png";
+import { settings } from "../settings";
 
 export const useHandleFoam = () => {
   const foamImage = new Image();
@@ -14,13 +14,11 @@ export const useHandleFoam = () => {
     image: foamImage,
     x: 0,
     y: 60,
-    // width: 275,
-    // height: 175,
     width: 351,
     height: 175,
     frameX: 0,
     frameY: 0,
-    animationSpeed: settings.boat.animationSpeed,
+    animationSpeed: settings.foam.animationSpeed,
   });
 
   const drawFoam = (context) => {

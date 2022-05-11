@@ -1,11 +1,19 @@
 /** @format */
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { useHandleBoat } from "./utils/useHandleBoat";
-import { useHandleSpawners } from "./utils/useHandleSpawners";
-import { useHandleBackground } from "./utils/useHandleBackground";
-import { useHandleCrashes } from "./utils/useHandleCrashes";
+// playerObject
+import { useHandlePlayerObject } from "../utils/playerObject/useHandlePlayerObject";
+import { useHandleSurfer } from "../utils/playerObject/useHandleSurfer";
+
+// spawners
+import { useHandleObstacles } from "../utils/spawners/useHandleObstacles";
+import { useHandlePickups } from "../utils/spawners/useHandlePickups";
+
+// events
+import { useHandleCrash } from "../utils/events/useHandleCrash";
+import { useHandlePickup } from "../utils/events/useHandlePickup";
 
 import {
   lostLives,
@@ -14,11 +22,9 @@ import {
   updateSpeed,
   speed,
 } from "../../../store/gameplaySlice";
-import { useDispatch, useSelector } from "react-redux";
-import { useHandlePickups } from "./utils/useHandlePickups";
 import { settings } from "../settings";
-import { useHandleFoam } from "./utils/useHandleFoam";
-import { useHandleSurfer } from "./utils/useHandleSurfer";
+import { useHandleFoam } from "../utils/useHandleFoam";
+import { useHandleBackground } from "../utils/useHandleBackground";
 
 export const Canvas = ({ canvasWidth, canvasHeight }) => {
   const canvasRef = useRef();
@@ -31,12 +37,19 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
   const { drawSurfer, surferAnimation, surfer } = useHandleSurfer();
   const { drawFoam, foamAnimation } = useHandleFoam();
 
-  const { moveBoat, drawBoat, boat, boardAnimation, boatEdges } =
-    useHandleBoat();
-  const { updateObstacles, updatePickups } = useHandleSpawners();
+  const {
+    movePlayerObject,
+    drawPlayerObject,
+    playerObject,
+    playerObjectAnimation,
+    playerObjectEdges,
+  } = useHandlePlayerObject();
+  const { updateObstacles } = useHandleObstacles();
+  const { updatePickups } = useHandlePickups();
+  const { handleCrash } = useHandleCrash();
+  const { handlePickup } = useHandlePickup();
+
   const { updateBackground } = useHandleBackground();
-  const { handleCrashes } = useHandleCrashes();
-  const { handlePickups } = useHandlePickups();
 
   useLayoutEffect(() => {
     let timerId;
@@ -56,21 +69,21 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
 
     // updateBackground(context, boat);
 
-    updatePickups(context, frame, boat);
-    updateObstacles(context, frame, boat);
-    drawBoat(context);
-    boardAnimation(frame);
-    drawSurfer(context, boat);
+    updatePickups(context, frame, playerObject);
+    updateObstacles(context, frame, playerObject);
+    drawPlayerObject(context);
+    playerObjectAnimation(frame);
+    drawSurfer(context, playerObject);
     surferAnimation(frame);
     drawFoam(context);
     foamAnimation(frame);
 
-    moveBoat(keysArray, frame);
+    movePlayerObject(keysArray, frame);
 
-    if (handleCrashes(boatEdges)) {
+    if (handleCrash(playerObjectEdges)) {
       dispatch(lostLives());
     }
-    if (handlePickups(boatEdges)) {
+    if (handlePickup(playerObjectEdges)) {
       dispatch(updateScore());
       if (
         (score % settings.difficulty.savings.saves) * settings.scorePerSave ===

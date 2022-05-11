@@ -11,13 +11,15 @@ import { randomMinMax } from "../../../../utils/randomMinMax";
 
 export const obstacleArray = [];
 export const pickUpsArray = [];
+
 export const useHandleSpawners = () => {
-  const speed = useSelector((state) => state.gameplay.speed);
   const obstacle = new Image();
   obstacle.src = obstaclePic;
   const pickUp = new Image();
   pickUp.src = pickUpPic;
-  const speedModifier = 0.35;
+
+  const speed = useSelector((state) => state.gameplay.speed);
+
   const [obstaclesSpeed, setObstaclesSpeed] = useState(
     settings.stones.speed * speed
   );
@@ -31,6 +33,8 @@ export const useHandleSpawners = () => {
   const [pickUpsSpawnRate, setPickUpsSpawnRate] = useState(
     settings.drowningPeople.spawnRate
   );
+
+  const speedModifier = 0.35;
 
   const drawObstacle = (context, x, y, s) => {
     context.drawImage(obstacle, x, y, s, s);

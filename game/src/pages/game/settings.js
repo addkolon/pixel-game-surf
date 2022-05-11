@@ -11,8 +11,10 @@ export const settings = {
   canvasWidth: 800,
   canvasHeight: 400,
   gameSpeed: 1,
+  gameSpeedUpdate: 0.3, // hur mycket speeden ökar när difficulty ökar
+
   // boat
-  boat: {
+  playerObject: {
     speed: 5,
     animationSpeed: 5,
     startPositionX: 100,
@@ -30,7 +32,7 @@ export const settings = {
   },
 
   // stones
-  stones: {
+  obstacles: {
     spawnRate: 100,
     speed: 3,
     // minimumSize: 30,
@@ -38,14 +40,14 @@ export const settings = {
     minimumSize: 30,
     maximumSize: 60,
     speedModifier: {
-      boatMovement: {
+      playerObjectMovement: {
         right: 4,
         left: 2.5,
       },
     },
   },
   // drowning people
-  drowningPeople: {
+  pickups: {
     // spawnRate: 90,
     spawnRate: 30,
     speed: 3,
@@ -54,7 +56,7 @@ export const settings = {
     minimumSize: 35,
     maximumSize: 35,
     speedModifier: {
-      boatMovement: {
+      playerObjectMovement: {
         right: 4,
         left: 2.5,
       },

@@ -3,23 +3,23 @@ import { useState } from "react";
 import surferSprite from "../../../../sprite/surfer.png";
 
 import { settings } from "../../settings";
-import { useHandleBoat } from "./useHandleBoat";
+import { useHandlePlayerObject } from "./useHandlePlayerObject";
 
 export const useHandleSurfer = () => {
   const surferImage = new Image();
   surferImage.src = surferSprite;
 
-  const { boat } = useHandleBoat();
+  const { playerObject } = useHandlePlayerObject();
 
   const [surfer, setSurfer] = useState({
     image: surferImage,
 
-    x: settings.boat.startPositionX,
-    y: settings.boat.startPositionY,
+    x: settings.playerObject.startPositionX,
+    y: settings.playerObject.startPositionY,
     width: 65,
     height: 75,
     frameX: 0,
-    animationSpeed: settings.boat.animationSpeed,
+    animationSpeed: settings.surfer.animationSpeed,
   });
 
   const drawSurfer = (context, boat) => {
