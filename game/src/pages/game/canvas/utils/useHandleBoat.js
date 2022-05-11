@@ -114,7 +114,7 @@ export const useHandleBoat = () => {
             return {
               ...prev,
               y: prev.y - boat.speed,
-              frameY: 0,
+              //frameY: 0,
               moving: "up",
             };
           });
@@ -127,7 +127,7 @@ export const useHandleBoat = () => {
             return {
               ...prev,
               y: prev.y + boat.speed,
-              frameY: 0,
+              //frameY: 0,
               moving: "down",
             };
           });
