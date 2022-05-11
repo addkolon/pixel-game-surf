@@ -18,7 +18,7 @@
 
 // ----
 
-// prio1: stenar olika sprites
+// prio1: stenar olika sprites YEP
 // 2. boom träff
 // 3. foam movement
 

@@ -20,7 +20,7 @@ export const useHandlePlayerObject = () => {
     x: settings.playerObject.startPositionX,
     y: settings.playerObject.startPositionY,
     width: 134,
-    height: 42,
+    height: 46,
     frameX: 0,
     frameY: 0,
     speed: settings.playerObject.speed,
@@ -28,17 +28,11 @@ export const useHandlePlayerObject = () => {
   });
 
   const [playerObjectEdges, setPlayerObjectEdges] = useState([
-    // collision trying
-    { x: playerObject.x + 5, y: playerObject.y },
-    {
-      x: playerObject.x + playerObject.width,
-      y: playerObject.y + playerObject.height - 5,
-    },
+    { x: playerObject.x, y: playerObject.y },
     {
       x: playerObject.x + playerObject.width - 5,
-      y: playerObject.y + playerObject.height,
+      y: playerObject.y + playerObject.height - 5,
     },
-    { x: playerObject.x, y: playerObject.y + 5 },
   ]);
 
   const drawPlayerObject = (context) => {
@@ -54,17 +48,11 @@ export const useHandlePlayerObject = () => {
       playerObject.height
     );
     setPlayerObjectEdges([
-      // collision trying
       { x: playerObject.x + 5, y: playerObject.y },
       {
-        x: playerObject.x + playerObject.width,
+        x: playerObject.x + playerObject.width - 5,
         y: playerObject.y + playerObject.height - 5,
       },
-      {
-        x: playerObject.x + playerObject.width - 5,
-        y: playerObject.y + playerObject.height,
-      },
-      { x: playerObject.x, y: playerObject.y + 5 },
     ]);
   };
 

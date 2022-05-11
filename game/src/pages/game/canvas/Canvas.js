@@ -18,7 +18,7 @@ import { useHandlePickup } from "../utils/events/useHandlePickup";
 import {
   lostLives,
   updateScore,
-  score,
+  gameScore,
   updateSpeed,
 } from "../../../store/gameplaySlice";
 import { settings } from "../settings";
@@ -28,7 +28,7 @@ import { useHandleBackground } from "../utils/useHandleBackground";
 export const Canvas = ({ canvasWidth, canvasHeight }) => {
   const canvasRef = useRef();
   const dispatch = useDispatch();
-  const score = useSelector((state) => state.gameplay.score);
+  const score = useSelector(gameScore);
   const [frame, setFrame] = useState(0);
   const [keysArray, setKeysArray] = useState([]);
 
@@ -62,7 +62,7 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
-    canvas.focus();
+    // canvas.focus();
     context.clearRect(0, 0, settings.canvasWidth, settings.canvasHeight);
 
     // updateBackground(context, boat);
@@ -98,8 +98,12 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
     }
   }, [frame]);
 
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    canvas.focus();
+  }, []);
+
   return (
-    // <div className="canvas-container">
     <canvas
       className="canvas1"
       ref={canvasRef}
@@ -115,6 +119,5 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
       }}
       onKeyUp={(e) => setKeysArray(keysArray.filter((k) => k !== e.code))}
     />
-    // </div>
   );
 };

@@ -83,7 +83,7 @@ export const error = (state) => state.gameplay.error;
 export const name = (state) => state.gameplay.playerName;
 export const email = (state) => state.gameplay.playerEmail;
 export const lives = (state) => state.gameplay.lives;
-export const score = (state) => state.gameplay.score;
+export const gameScore = (state) => state.gameplay.score;
 export const gameSpeed = (state) => state.gameplay.speed;
 export const gameOver = (state) => state.gameplay.gameOver;
 // export const data = (state) => state.scores.data;

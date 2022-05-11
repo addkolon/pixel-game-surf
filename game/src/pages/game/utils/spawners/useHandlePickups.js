@@ -11,6 +11,7 @@ import { gameSpeed } from "../../../../store/gameplaySlice";
 import { useSelector } from "react-redux";
 import { randomMinMax } from "../../../../utils/randomMinMax";
 import { obstaclesArray } from "./useHandleObstacles";
+import { failSpawnPosition } from "./utils/failSpawnPosition";
 
 export const pickupsArray = [];
 
@@ -64,36 +65,21 @@ export const useHandlePickups = () => {
   };
 
   const updatePickups = (context, frame, playerObject) => {
-    if (frame % pickupsSpawnRate === 0) {
+    const timeToSpawn = frame % pickupsSpawnRate === 0;
+    if (timeToSpawn) {
       const size = randomMinMax(
         settings.pickups.minimumSize,
         settings.pickups.maximumSize
       );
-
+      const x = settings.canvasWidth;
       let y = randomMinMax(
         settings.background.height,
         settings.canvasHeight - size
       );
 
-      const x = settings.canvasWidth;
-
       while (
-        obstaclesArray.filter((s) => {
-          return (
-            x < s.x + s.size &&
-            x + s.size > s.x &&
-            y < s.y + s.size &&
-            y + s.size > s.y
-          );
-        }).length > 0 ||
-        pickupsArray.filter((s) => {
-          return (
-            x < s.x + s.size &&
-            x + s.size > s.x &&
-            y < s.y + s.size &&
-            y + s.size > s.y
-          );
-        }).length > 0
+        failSpawnPosition(pickupsArray, x, y) ||
+        failSpawnPosition(obstaclesArray, x, y)
       ) {
         y = randomMinMax(
           settings.background.height,
@@ -111,9 +97,10 @@ export const useHandlePickups = () => {
         size: size,
       });
     }
-    pickupsArray.forEach((o) => {
-      updatePickup(context, o, playerObject);
-    });
+
+    for (let i = 0; i < pickupsArray.length; i++) {
+      updatePickup(context, pickupsArray[i], playerObject);
+    }
   };
 
   return {

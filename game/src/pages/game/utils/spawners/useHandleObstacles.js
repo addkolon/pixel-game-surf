@@ -10,6 +10,7 @@ import { gameSpeed } from "../../../../store/gameplaySlice";
 import { useSelector } from "react-redux";
 import { randomMinMax } from "../../../../utils/randomMinMax";
 import { pickupsArray } from "./useHandlePickups";
+import { failSpawnPosition } from "./utils/failSpawnPosition";
 
 export const obstaclesArray = [];
 
@@ -21,79 +22,61 @@ export const useHandleObstacles = () => {
   const [obstaclesSpeed, setObstaclesSpeed] = useState(
     settings.obstacles.speed * speed
   );
-  const [obstaclesSpawnRate, setObstaclesSpawnRate] = useState(
-    settings.obstacles.spawnRate
-  );
+
+  // not sure if this actually will be modified, so state seems unnecessary
+  const obstaclesSpawnRate = settings.obstacles.spawnRate;
+  // const [obstaclesSpawnRate, setObstaclesSpawnRate] = useState(
+  //   settings.obstacles.spawnRate
+  // );
 
   const speedModifier = 0.35;
 
   const drawObstacle = (context, x, y, s, frame) => {
-    console.log(frame);
-    // context.drawImage(obstacleImage, x, y, s, s);
     context.drawImage(obstacleImage, 0, frame * 24, 24, 24, x, y, s, s);
   };
 
   const updateObstacle = (context, o, playerObject) => {
-    if (playerObject.moving) {
-      if (
-        playerObject.moving === "right" &&
-        playerObject.x < settings.canvasWidth - playerObject.width
-      ) {
+    switch (playerObject.moving) {
+      case "right":
         setObstaclesSpeed(
           settings.obstacles.speedModifier.playerObjectMovement.right *
             speed *
             speedModifier
         );
-      }
-      if (playerObject.moving === "left") {
+        break;
+
+      case "left":
         setObstaclesSpeed(
           settings.obstacles.speedModifier.playerObjectMovement.left *
             speed *
             speedModifier
         );
-      }
-      if (playerObject.moving === "down") {
+        break;
+
+      default:
         setObstaclesSpeed(settings.obstacles.speed * speed * speedModifier);
-      }
-      if (playerObject.moving === "up") {
-        setObstaclesSpeed(settings.obstacles.speed * speed * speedModifier);
-      }
-    } else {
-      setObstaclesSpeed(settings.obstacles.speed * speed * speedModifier);
+        break;
     }
     o.x = o.x - obstaclesSpeed;
     drawObstacle(context, o.x, o.y, o.size, o.frame);
   };
 
   const updateObstacles = (context, frame, playerObject) => {
-    if (frame % obstaclesSpawnRate === 0) {
+    const timeToSpawn = frame % obstaclesSpawnRate === 0;
+    if (timeToSpawn) {
       const size = randomMinMax(
         settings.obstacles.minimumSize,
         settings.obstacles.maximumSize
       );
+      const x = settings.canvasWidth;
       let y = randomMinMax(
         settings.background.height,
         settings.canvasHeight - size
       );
-      const x = settings.canvasWidth;
 
       while (
-        pickupsArray.filter((s) => {
-          return (
-            x < s.x + s.size &&
-            x + s.size > s.x &&
-            y < s.y + s.size &&
-            y + s.size > s.y
-          );
-        }).length > 0 ||
-        obstaclesArray.filter((s) => {
-          return (
-            x < s.x + s.size &&
-            x + s.size > s.x &&
-            y < s.y + s.size &&
-            y + s.size > s.y
-          );
-        }).length > 0
+        failSpawnPosition(pickupsArray, x, y) ||
+        failSpawnPosition(obstaclesArray, x, y)
       ) {
         y = randomMinMax(
           settings.background.height,
@@ -112,9 +95,10 @@ export const useHandleObstacles = () => {
         frame: Math.floor(Math.random() * 3),
       });
     }
-    obstaclesArray.forEach((o) => {
-      updateObstacle(context, o, playerObject);
-    });
+
+    for (let i = 0; i < obstaclesArray.length; i++) {
+      updateObstacle(context, obstaclesArray[i], playerObject);
+    }
   };
 
   return {
