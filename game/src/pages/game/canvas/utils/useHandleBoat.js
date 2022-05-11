@@ -27,7 +27,7 @@ export const useHandleBoat = () => {
     x: settings.boat.startPositionX,
     y: settings.boat.startPositionY,
     width: 134,
-    height: 42,
+    height: 46,
     frameX: 0,
     frameY: 0,
     speed: settings.boat.speed,
