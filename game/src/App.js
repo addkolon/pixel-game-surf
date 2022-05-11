@@ -1,4 +1,21 @@
 /** @format */
+
+// NoGameAuth ("/game"), message eller bara redirect till home? förmodligen redirect när jag tänker efter. kanske samma för felaktig route ("/bajsabjasa") ?
+
+// board vinklas lite om man kör upp/ner osv? - vidare: annan sprite till surfer för uppåt o neråt.
+
+// mp3 filen
+
+// hur va upplägget kring musiksektionen?
+
+// säker på att man ska förlora liv om man ej tar ett skräp? alternativ: förlora lite score?
+
+// spawners (stones and trash), ska dom fortfarande ändras i speed när man kör fram/bak?
+
+// the "startsekvens", har vi en klar bild av den? eller det växer fram efterhand?
+
+// söndrig bräda sprites, klara?
+
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
