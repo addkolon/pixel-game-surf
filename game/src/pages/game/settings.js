@@ -31,7 +31,7 @@ export const settings = {
 
   // stones
   stones: {
-    spawnRate: 100,
+    spawnRate: 150,
     speed: 3,
     // minimumSize: 30,
     // maximumSize: 90,
@@ -47,7 +47,7 @@ export const settings = {
   // drowning people
   drowningPeople: {
     // spawnRate: 90,
-    spawnRate: 30,
+    spawnRate: 100,
     speed: 3,
     // minimumSize: 50,
     // maximumSize: 50,

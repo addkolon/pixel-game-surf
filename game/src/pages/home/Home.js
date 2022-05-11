@@ -103,7 +103,7 @@ const GameOver = ({ player }) => {
   }, []);
   return (
     <>
-      <h1>GAME OVER</h1>
+      <h2>GAME OVER</h2>
       <h5>Thanks for playing!</h5>
       <h3>Score: {player.score}</h3>
       <div className="game-over-btns">

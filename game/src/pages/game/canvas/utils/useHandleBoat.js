@@ -65,7 +65,8 @@ export const useHandleBoat = () => {
       boat.x,
       boat.y,
       boat.width,
-      boat.height
+      boat.height,
+      boat.scale
     );
     setBoatEdges([
       // collision trying
@@ -186,7 +187,7 @@ export const useHandleBoat = () => {
             return {
               ...prev,
               x: prev.x - boat.speed,
-              frameY: 0,
+              frameY: 1,
               moving: "left",
             };
           });

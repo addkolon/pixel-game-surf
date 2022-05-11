@@ -93,7 +93,7 @@
   box-sizing: border-box;
   font-family: "VT323", monospace;
   color: white;
-  font-size: 24px;
+  font-size: 32px;
 
   text-shadow: 0.06rem 0 0.06rem #ea36af, -0.125rem 0 0.06rem #75fa69;
     letter-spacing: 0.125em;
@@ -129,7 +129,6 @@ body {
 }
 
 h2 {
-  font-size: 32px;
 }
 
 // olof
@@ -237,7 +236,6 @@ input:visited {
   color: #fff;
   padding: 0.5rem;
   border: none;
-  font-size: 1.5rem;
   background-color: white;
   box-shadow: -5px 0 0 0 #acacac, 5px 0 0 0 #acacac, 0 -5px 0 0 #acacac,
     0 5px 0 0 #acacac;
