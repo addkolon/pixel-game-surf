@@ -49,7 +49,7 @@ export const settings = {
   // drowning people
   pickups: {
     // spawnRate: 90,
-    spawnRate: 30,
+    spawnRate: 100,
     speed: 3,
     // minimumSize: 50,
     // maximumSize: 50,

@@ -67,10 +67,10 @@ export const Home = ({ setGameAuth }) => {
     <div class="main">
       <main>
         {/* <img src={petter} alt="" className="petter" /> */}
-        <div id="fake-canvas">
+        <div id="fake-canvas" className="game-container">
+          <div className="screen"></div>
           <div id="content">
             <If condition={!gameOverState}>
-              <h1>Mission Briefing</h1>
               <Form setInputsState={setInputsState} />
               <Startbutton checkAuth={checkAuth} inputsState={inputsState} />
               <Rules />
@@ -103,7 +103,7 @@ const GameOver = ({ player }) => {
   }, []);
   return (
     <>
-      <h1>GAME OVER</h1>
+      <h2>GAME OVER</h2>
       <h5>Thanks for playing!</h5>
       <h3>Score: {player.score}</h3>
       <div className="game-over-btns">
@@ -199,8 +199,8 @@ const Startbutton = ({ checkAuth, inputsState }) => {
 const Rules = () => {
   return (
     <div id="rules">
-      <h2>How to play!</h2>
-      <div id="instructions">
+      <h2>Insert coin</h2>
+      {/* <div id="instructions">
         <div class="keys">
           <h4>How to stear:</h4>
           <p>Use arrow keys</p>
@@ -213,7 +213,7 @@ const Rules = () => {
           <h4>Watch out for:</h4>
           <img src={stones} />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
