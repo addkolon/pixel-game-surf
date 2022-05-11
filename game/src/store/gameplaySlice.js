@@ -15,7 +15,7 @@ const initialState = {
   playerEmail: "",
   lives: initLives(),
   score: 0,
-  gameSpeed: 1,
+  gameSpeed: settings.gameSpeed,
   gameOver: false,
   status: "idle",
   error: null,

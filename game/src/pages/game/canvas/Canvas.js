@@ -93,9 +93,9 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
       }
     }
 
-    // if (frame % (settings.difficulty.timer.seconds * 65) === 0) {
-    //   dispatch(updateSpeed(1));
-    // }
+    if (frame % (settings.difficulty.timer.seconds * 65) === 0) {
+      dispatch(updateSpeed(1));
+    }
   }, [frame]);
 
   return (

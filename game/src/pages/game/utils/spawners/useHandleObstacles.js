@@ -1,7 +1,8 @@
 /** @format */
 
 import { useState } from "react";
-import obstaclePic from "../../../../sprite/Stones.png";
+// import obstaclePic from "../../../../sprite/Stones.png";
+import obstaclePic from "../../../../sprite/stones-sprite.png";
 import { settings } from "../../settings";
 
 // import { speed } from "../../../../store/gameplaySlice";
@@ -26,8 +27,10 @@ export const useHandleObstacles = () => {
 
   const speedModifier = 0.35;
 
-  const drawObstacle = (context, x, y, s) => {
-    context.drawImage(obstacleImage, x, y, s, s);
+  const drawObstacle = (context, x, y, s, frame) => {
+    console.log(frame);
+    // context.drawImage(obstacleImage, x, y, s, s);
+    context.drawImage(obstacleImage, 0, frame * 24, 24, 24, x, y, s, s);
   };
 
   const updateObstacle = (context, o, playerObject) => {
@@ -59,7 +62,7 @@ export const useHandleObstacles = () => {
       setObstaclesSpeed(settings.obstacles.speed * speed * speedModifier);
     }
     o.x = o.x - obstaclesSpeed;
-    drawObstacle(context, o.x, o.y, o.size);
+    drawObstacle(context, o.x, o.y, o.size, o.frame);
   };
 
   const updateObstacles = (context, frame, playerObject) => {
@@ -106,6 +109,7 @@ export const useHandleObstacles = () => {
         x: x,
         y: y,
         size: size,
+        frame: Math.floor(Math.random() * 3),
       });
     }
     obstaclesArray.forEach((o) => {
