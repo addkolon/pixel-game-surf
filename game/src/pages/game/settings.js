@@ -21,6 +21,11 @@ export const settings = {
     startPositionY: 300,
   },
 
+  // boardFoam
+  boardFoam: {
+    animationSpeed: 5,
+  },
+
   // surfer
   surfer: {
     // height ej dynamisk atm

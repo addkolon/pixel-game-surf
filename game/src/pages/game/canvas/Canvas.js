@@ -24,6 +24,7 @@ import {
 import { settings } from "../settings";
 import { useHandleFoam } from "../utils/useHandleFoam";
 import { useHandleBackground } from "../utils/useHandleBackground";
+import { useHandleBoardFoam } from "../utils/playerObject/useHandleBoardFoam";
 
 export const Canvas = ({ canvasWidth, canvasHeight }) => {
   const canvasRef = useRef();
@@ -34,6 +35,8 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
 
   const { drawSurfer, surferAnimation, surfer } = useHandleSurfer();
   const { drawFoam, foamAnimation } = useHandleFoam();
+
+  const { drawBoardFoam } = useHandleBoardFoam();
 
   const {
     movePlayerObject,
@@ -71,6 +74,7 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
     updateObstacles(context, frame, playerObject);
     drawPlayerObject(context);
     playerObjectAnimation(frame);
+    drawBoardFoam(context, playerObject);
     drawSurfer(context, playerObject);
     surferAnimation(frame);
     drawFoam(context);
@@ -78,20 +82,20 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
 
     movePlayerObject(keysArray, frame);
 
-    if (handleCrash(playerObjectEdges)) {
-      dispatch(lostLives());
-    }
-    if (handlePickup(playerObjectEdges)) {
-      dispatch(updateScore());
-      if (
-        (score % settings.difficulty.savings.saves) * settings.scorePerSave ===
-          0 &&
-        settings.difficulty.savings.saves !== 0 &&
-        score !== 0
-      ) {
-        dispatch(updateSpeed(1));
-      }
-    }
+    // if (handleCrash(playerObjectEdges)) {
+    //   dispatch(lostLives());
+    // }
+    // if (handlePickup(playerObjectEdges)) {
+    //   dispatch(updateScore());
+    //   if (
+    //     (score % settings.difficulty.savings.saves) * settings.scorePerSave ===
+    //       0 &&
+    //     settings.difficulty.savings.saves !== 0 &&
+    //     score !== 0
+    //   ) {
+    //     dispatch(updateSpeed(1));
+    //   }
+    // }
 
     if (frame % (settings.difficulty.timer.seconds * 65) === 0) {
       dispatch(updateSpeed(1));
