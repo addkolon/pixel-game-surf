@@ -7,7 +7,7 @@ import pickUpPic from "../../../../sprite/pick-up.png";
 // import { speed } from "../../../../store/gameplaySlice";
 import { settings } from "../../settings";
 
-import { speed1 } from "../../../../store/gameplaySlice";
+import { gameSpeed } from "../../../../store/gameplaySlice";
 import { useSelector } from "react-redux";
 import { randomMinMax } from "../../../../utils/randomMinMax";
 import { obstaclesArray } from "./useHandleObstacles";
@@ -18,7 +18,7 @@ export const useHandlePickups = () => {
   const pickupImage = new Image();
   pickupImage.src = pickUpPic;
 
-  const speed = useSelector((state) => state.gameplay.speed1);
+  const speed = useSelector(gameSpeed);
 
   const [pickupsSpeed, setPickupsSpeed] = useState(
     settings.pickups.speed * speed

@@ -1,7 +1,7 @@
 /** @format */
 
 import { checkIfHit } from "../../../../utils/checkIfHit";
-import { obstacleArray } from "../spawners/useHandleSpawners";
+import { obstaclesArray } from "../spawners/useHandleObstacles";
 
 // OLD
 // export const useHandleCrashes = () => {
@@ -30,9 +30,9 @@ import { obstacleArray } from "../spawners/useHandleSpawners";
 
 // NEW
 export const useHandleCrash = () => {
-  const handleCrashes = (edges) => {
+  const handleCrash = (edges) => {
     let collision = false;
-    obstacleArray.forEach((o) => {
+    obstaclesArray.forEach((o) => {
       const hit = checkIfHit(edges, o.x, o.y, o.size, o.size);
       if (hit) {
         o.y = 1000;
@@ -44,6 +44,6 @@ export const useHandleCrash = () => {
   };
 
   return {
-    handleCrashes,
+    handleCrash,
   };
 };

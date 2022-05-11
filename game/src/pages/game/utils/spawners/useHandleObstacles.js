@@ -5,7 +5,7 @@ import obstaclePic from "../../../../sprite/Stones.png";
 import { settings } from "../../settings";
 
 // import { speed } from "../../../../store/gameplaySlice";
-import { speed } from "../../../../store/gameplaySlice";
+import { gameSpeed } from "../../../../store/gameplaySlice";
 import { useSelector } from "react-redux";
 import { randomMinMax } from "../../../../utils/randomMinMax";
 import { pickupsArray } from "./useHandlePickups";
@@ -15,14 +15,13 @@ export const obstaclesArray = [];
 export const useHandleObstacles = () => {
   const obstacleImage = new Image();
   obstacleImage.src = obstaclePic;
-
-  const speed = useSelector(speed);
+  const speed = useSelector(gameSpeed);
 
   const [obstaclesSpeed, setObstaclesSpeed] = useState(
-    settings.stones.speed * speed
+    settings.obstacles.speed * speed
   );
   const [obstaclesSpawnRate, setObstaclesSpawnRate] = useState(
-    settings.stones.spawnRate
+    settings.obstacles.spawnRate
   );
 
   const speedModifier = 0.35;

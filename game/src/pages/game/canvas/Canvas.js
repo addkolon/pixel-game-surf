@@ -20,7 +20,6 @@ import {
   updateScore,
   score,
   updateSpeed,
-  speed,
 } from "../../../store/gameplaySlice";
 import { settings } from "../settings";
 import { useHandleFoam } from "../utils/useHandleFoam";
@@ -30,7 +29,6 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
   const canvasRef = useRef();
   const dispatch = useDispatch();
   const score = useSelector((state) => state.gameplay.score);
-  const speed = useSelector((state) => state.gameplay.speed);
   const [frame, setFrame] = useState(0);
   const [keysArray, setKeysArray] = useState([]);
 
