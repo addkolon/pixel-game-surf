@@ -18,6 +18,7 @@ export const useHandleObstacles = () => {
   const obstacleImage = new Image();
   obstacleImage.src = obstaclePic;
   const speed = useSelector(gameSpeed);
+  
 
   const [obstaclesSpeed, setObstaclesSpeed] = useState(
     settings.obstacles.speed * speed

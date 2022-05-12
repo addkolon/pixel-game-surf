@@ -3,9 +3,9 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import bg1Pic from "../../../sprite/clouds.png";
-import bg2Pic from "../../../sprite/bg2.png";
-import bg3Pic from "../../../sprite/bg3.png";
-import bg4Pic from "../../../sprite/bg4.png";
+import bg2Pic from "../../../sprite/ocean-floor.png";
+import bg3Pic from "../../../sprite/blank.png";
+import bg4Pic from "../../../sprite/blank.png";
 import { speed } from "../../../store/gameplaySlice";
 
 import { settings } from "../settings";
@@ -44,7 +44,7 @@ export const useHandleBackground = () => {
   const [bg1, setBg1] = useState({
     image: bg1P,
     x: 0,
-    y: 0,
+    y: 2,
     width: 800,
     height: settings.background.height,
     x2: 800,
@@ -53,7 +53,7 @@ export const useHandleBackground = () => {
   const [bg1Copy, setBg1Copy] = useState({
     image: bg1P,
     x: 800,
-    y: 0,
+    y: 2,
     width: 800,
     height: settings.background.height,
     x2: 1600,
@@ -62,19 +62,19 @@ export const useHandleBackground = () => {
   const [bg2, setBg2] = useState({
     image: bg2P,
     x: 0,
-    y: 0,
-    width: 800,
-    height: settings.background.height,
-    x2: 1600,
+    y: 234,
+    width: 1200,
+    height: settings.background.height + 100,
+    x2: 2400,
     speed: speedBg2 * mainSpeed,
   });
   const [bg2Copy, setBg2Copy] = useState({
     image: bg2P,
-    x: 800,
-    y: 0,
-    width: 800,
-    height: settings.background.height,
-    x2: 1600,
+    x: 1000,
+    y: 234,
+    width: 1200,
+    height: settings.background.height + 100,
+    x2: 2400,
     speed: speedBg2 * mainSpeed,
   });
   const [bg3, setBg3] = useState({
@@ -125,35 +125,37 @@ export const useHandleBackground = () => {
   };
 
   const updateBackground = (context, boat) => {
-    if (boat.moving) {
-      if (
-        boat.moving === "right" &&
-        boat.x < settings.canvasWidth - boat.width
-      ) {
-        setMainSpeed(
-          settings.background.speedModifier.boatMovement.right *
-            speed *
-            speedModifier *
-            0.2
-        );
-      }
-      if (boat.moving === "left") {
-        setMainSpeed(
-          settings.background.speedModifier.boatMovement.left *
-            speed *
-            speedModifier *
-            0.2
-        );
-      }
-      if (boat.moving === "down") {
-        setMainSpeed(settings.background.mainSpeed * speed * speedModifier);
-      }
-      if (boat.moving === "up") {
-        setMainSpeed(settings.background.mainSpeed * speed * speedModifier);
-      }
-    } else {
-      setMainSpeed(settings.background.mainSpeed * speed * speedModifier);
-    }
+    // if (boat.moving) {
+    //   if (
+    //     boat.moving === "right" &&
+    //     boat.x < settings.canvasWidth - boat.width
+    //   ) {
+    //     setMainSpeed(
+    //       settings.background.speedModifier.boatMovement.right *
+    //         speed *
+    //         speedModifier *
+    //         0.2
+    //     );
+    //   }
+    //   if (boat.moving === "left") {
+    //     setMainSpeed(
+    //       settings.background.speedModifier.boatMovement.left *
+    //         speed *
+    //         speedModifier *
+    //         0.2
+    //     );
+    //   }
+    //   if (boat.moving === "down") {
+    //     setMainSpeed(settings.background.mainSpeed * speed * speedModifier);
+    //   }
+    //   if (boat.moving === "up") {
+    //     setMainSpeed(settings.background.mainSpeed * speed * speedModifier);
+    //   }
+    // } else {
+    //   
+    // }
+    setMainSpeed(settings.background.mainSpeed * speed * speedModifier);
+
     if (bg4.x2 < 0) {
       setBg4((prev) => {
         return {
