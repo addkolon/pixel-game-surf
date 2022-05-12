@@ -19,15 +19,19 @@ export const useHandleSurfer = () => {
     width: 65,
     height: 75,
     frameX: 0,
+    frameY: 0,
     animationSpeed: settings.surfer.animationSpeed,
   });
 
   const drawSurfer = (context, boat) => {
+    const frameY = boat.moving === "left" ? 1 : 0;
     // draw surfer
     context.drawImage(
       surferImage,
       surfer.frameX * surfer.width,
-      0,
+      // 0,
+      // surfer.frameY * surfer.height,
+      frameY,
       surfer.width,
       surfer.height,
       boat.x + settings.surfer.alignmentOnBoardX,
@@ -52,5 +56,6 @@ export const useHandleSurfer = () => {
     drawSurfer,
     surferAnimation,
     surfer,
+    setSurfer,
   };
 };

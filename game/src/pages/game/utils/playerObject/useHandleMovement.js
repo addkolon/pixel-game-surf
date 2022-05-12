@@ -1,62 +1,24 @@
 /** @format */
 
-import { useState } from "react";
+import { useHandleBoardFoam } from "./useHandleBoardFoam";
+import { useHandlePlayerObject } from "./useHandlePlayerObject";
+import { useHandleSurfer } from "./useHandleSurfer";
 
-import boardSprite from "../../../../sprite/board-sprite.png";
+export const useHandleMovement = () => {
+  const { setSurfer } = useHandleSurfer();
+  const { setPlayerObject } = useHandlePlayerObject();
 
-import { useHandleBackground } from "../useHandleBackground";
+  //   const moveUp = () => {
+  //     setPlayerObject((prev) => {
+  //       return {
+  //         ...prev,
+  //         y: prev.y - playerObject.speed,
+  //         moving: "up",
+  //       };
+  //     });
+  //   };
 
-import { settings } from "../../settings";
-import { useHandleFoam } from "../useHandleFoam";
-
-export const useHandlePlayerObject = () => {
-  const boardImage = new Image();
-  boardImage.src = boardSprite;
-
-  const { foam } = useHandleFoam();
-
-  const [playerObject, setPlayerObject] = useState({
-    image: boardImage,
-    x: settings.playerObject.startPositionX,
-    y: settings.playerObject.startPositionY,
-    width: 134,
-    height: 46,
-    frameX: 0,
-    frameY: 0,
-    speed: settings.playerObject.speed,
-    moving: false,
-  });
-
-  const [playerObjectEdges, setPlayerObjectEdges] = useState([
-    { x: playerObject.x, y: playerObject.y },
-    {
-      x: playerObject.x + playerObject.width - 5,
-      y: playerObject.y + playerObject.height - 5,
-    },
-  ]);
-
-  const drawPlayerObject = (context) => {
-    context.drawImage(
-      playerObject.image,
-      playerObject.frameX * playerObject.width,
-      playerObject.frameY * playerObject.height,
-      playerObject.width,
-      playerObject.height,
-      playerObject.x,
-      playerObject.y,
-      playerObject.width,
-      playerObject.height
-    );
-    setPlayerObjectEdges([
-      { x: playerObject.x + 5, y: playerObject.y },
-      {
-        x: playerObject.x + playerObject.width - 5,
-        y: playerObject.y + playerObject.height - 5,
-      },
-    ]);
-  };
-
-  const movePlayerObject = (keysArray, frame) => {
+  const handleMovement = (keysArray, frame) => {
     if (keysArray.length !== 0) {
       if (keysArray.includes("ArrowUp")) {
         const onCanvas = playerObject.y > settings.background.height;
@@ -175,24 +137,5 @@ export const useHandlePlayerObject = () => {
         };
       });
     }
-  };
-
-  const playerObjectAnimation = (frame) => {
-    if (frame % settings.playerObject.animationSpeed === 0) {
-      setPlayerObject((prev) => {
-        return {
-          ...prev,
-          frameX: prev.frameX < 5 ? prev.frameX + 1 : 0,
-        };
-      });
-    }
-  };
-
-  return {
-    drawPlayerObject,
-    movePlayerObject,
-    playerObject,
-    playerObjectAnimation,
-    playerObjectEdges,
   };
 };
