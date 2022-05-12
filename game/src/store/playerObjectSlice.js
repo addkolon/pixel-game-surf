@@ -3,75 +3,106 @@ import { createSlice } from "@reduxjs/toolkit";
 import { settings } from "../pages/game/settings";
 
 const initialState = {
+  board: {
+    x: settings.board.startPositionX,
+    y: settings.board.startPositionY,
+    width: 134,
+    height: 46,
+    frameX: 0,
+    frameY: 0,
+    speed: settings.board.speed,
+    moving: false,
+  },
+  boardFoam: {
+    x: settings.board.startPositionX - settings.boardFoam.alignmentX,
+    y: settings.board.startPositionY - settings.boardFoam.alignmentY,
+    width: 84,
+    height: 39,
+    frameX: 0,
+    frameY: 0,
+    moving: false,
+  },
+  surfer: {
+    x: settings.board.startPositionX + settings.surfer.alignmentOnBoardX,
+    y: settings.board.startPositionY - settings.surfer.alignmentOnBoardY,
+    width: 65,
+    height: 75,
+    frameX: 0,
+    frameY: 0,
+  },
   status: "idle",
   error: null,
 };
 
-export const gameplaySlice = createSlice({
-  name: "gameplay",
+export const playerObjectSlice = createSlice({
+  name: "playerObject",
   initialState,
   reducers: {
-    startGame: (state, action) => {
-      const { name, email } = action.payload;
-      state.playerName = name;
-      state.playerEmail = email;
+    move: (state, action) => {
+      const direction = action.payload;
+      switch (direction) {
+        case "up":
+          state.board.y = state.board.y - state.board.speed;
+          break;
+
+        case "down":
+          state.board.y = state.board.y + state.board.speed;
+          break;
+
+        case "right":
+          state.board.x = state.board.x + state.board.speed;
+          state.board.frameY = 0;
+          //   state.boardFoam.frameY = 0;
+          state.surfer.frameY = 0;
+          break;
+
+        case "left":
+          state.board.x = state.board.x - state.board.speed;
+          state.board.frameY = 1;
+          //   state.boardFoam.frameY = 1;
+          state.surfer.frameY = 1;
+          break;
+
+        default:
+          state.board.moving = false;
+          break;
+      }
+      state.board.moving = direction;
     },
-    lostLives: (state, action) => {
-      state.lives.pop();
+    animateBoard: (state, action) => {
+      const newFrame = state.board.frameX < 5 ? state.board.frameX + 1 : 0;
+      state.board.frameX = newFrame;
     },
-    getLives: (state, action) => {
-      state.lives = action.payload;
+    animateBoardFoam: (state, action) => {
+      const newFrame =
+        state.boardFoam.frameX < 5 ? state.boardFoam.frameX + 1 : 0;
+      state.boardFoam.frameX = newFrame;
     },
-    updateScore: (state, action) => {
-      state.score += settings.scorePerSave;
-    },
-    updatePlayer: (state, action) => {
-      state.playerName = action.payload.name;
-      state.playerEmail = action.payload.email;
-    },
-    updateSpeed: (state, action) => {
-      state.speed += settings.gameSpeedUpdate;
-    },
-    updateFrame: (state, action) => {
-      state.frame++;
-    },
-    setGameOver: (state, action) => {
-      state.gameOver = action.payload;
-    },
-    reset: (state, action) => {
-      state.playerName = "";
-      state.playerEmail = "";
-      state.lives = initLives();
-      state.score = 0;
-      state.speed = settings.gameSpeed;
-      state.status = "idle";
-      state.error = null;
+    animateSurfer: (state, action) => {
+      const newFrame = state.surfer.frameX < 5 ? state.surfer.frameX + 1 : 0;
+      state.surfer.frameX = newFrame;
     },
   },
 });
 
 export const {
-  startGame,
-  updateSpeed,
-  updateFrame,
-  lostLives,
-  getLives,
-  updateScore,
-  setGameOver,
-  reset,
-} = gameplaySlice.actions;
+  move,
+  animateBoard,
+  // animateBoardFoam,
+  animateSurfer,
+} = playerObjectSlice.actions;
 
 // export states
-export const status = (state) => state.gameplay.status;
-export const error = (state) => state.gameplay.error;
+export const status = (state) => state.playerObject.status;
+export const error = (state) => state.playerObject.error;
 
 // export data
-export const name = (state) => state.gameplay.playerName;
-export const email = (state) => state.gameplay.playerEmail;
-export const lives = (state) => state.gameplay.lives;
-export const gameScore = (state) => state.gameplay.score;
-export const gameSpeed = (state) => state.gameplay.speed;
-export const gameOver = (state) => state.gameplay.gameOver;
-// export const data = (state) => state.scores.data;
+export const playerObject = (state) => {
+  return {
+    board: state.playerObject.board,
+    boardFoam: state.playerObject.boardFoam,
+    surfer: state.playerObject.surfer,
+  };
+};
 
-export default gameplaySlice.reducer;
+export default playerObjectSlice.reducer;

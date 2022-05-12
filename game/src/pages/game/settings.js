@@ -14,7 +14,7 @@ export const settings = {
   gameSpeedUpdate: 0.3, // hur mycket speeden ökar när difficulty ökar
 
   // boat
-  playerObject: {
+  board: {
     speed: 5,
     animationSpeed: 5,
     startPositionX: 100,
@@ -24,6 +24,8 @@ export const settings = {
   // boardFoam
   boardFoam: {
     animationSpeed: 5,
+    alignmentX: 40,
+    alignmentY: 17,
   },
 
   // surfer

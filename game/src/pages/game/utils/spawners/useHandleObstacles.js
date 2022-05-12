@@ -11,14 +11,15 @@ import { useSelector } from "react-redux";
 import { randomMinMax } from "../../../../utils/randomMinMax";
 import { pickupsArray } from "./useHandlePickups";
 import { failSpawnPosition } from "./utils/failSpawnPosition";
+import { playerObject } from "../../../../store/playerObjectSlice";
 
 export const obstaclesArray = [];
 
 export const useHandleObstacles = () => {
+  const { board } = useSelector(playerObject);
   const obstacleImage = new Image();
   obstacleImage.src = obstaclePic;
   const speed = useSelector(gameSpeed);
-  
 
   const [obstaclesSpeed, setObstaclesSpeed] = useState(
     settings.obstacles.speed * speed
@@ -37,7 +38,7 @@ export const useHandleObstacles = () => {
   };
 
   const updateObstacle = (context, o, playerObject) => {
-    switch (playerObject.moving) {
+    switch (board.moving) {
       case "right":
         setObstaclesSpeed(
           settings.obstacles.speedModifier.playerObjectMovement.right *

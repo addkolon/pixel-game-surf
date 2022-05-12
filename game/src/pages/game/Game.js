@@ -64,8 +64,8 @@ export const Game = ({}) => {
           </div>
         </div>
         <Canvas
-          canvasWidth={settings.canvasWidth}
-          canvasHeight={settings.canvasHeight}
+        // canvasWidth={settings.canvasWidth}
+        // canvasHeight={settings.canvasHeight}
         />
         <div className="bottom">
           <h2 className="music">&#9835; EVIG FERIE - ENESTE</h2>
