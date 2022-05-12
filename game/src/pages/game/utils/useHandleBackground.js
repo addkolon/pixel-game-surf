@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import bg1Pic from "../../../sprite/bg1.png";
+import bg1Pic from "../../../sprite/clouds.png";
 import bg2Pic from "../../../sprite/bg2.png";
 import bg3Pic from "../../../sprite/bg3.png";
 import bg4Pic from "../../../sprite/bg4.png";
@@ -45,72 +45,72 @@ export const useHandleBackground = () => {
     image: bg1P,
     x: 0,
     y: 0,
-    width: 2400,
+    width: 800,
     height: settings.background.height,
-    x2: 2400,
+    x2: 800,
     speed: speedBg1 * mainSpeed,
   });
   const [bg1Copy, setBg1Copy] = useState({
     image: bg1P,
-    x: 2400,
+    x: 800,
     y: 0,
-    width: 2400,
+    width: 800,
     height: settings.background.height,
-    x2: 4800,
+    x2: 1600,
     speed: speedBg1 * mainSpeed,
   });
   const [bg2, setBg2] = useState({
     image: bg2P,
     x: 0,
     y: 0,
-    width: 2400,
+    width: 800,
     height: settings.background.height,
-    x2: 2400,
+    x2: 1600,
     speed: speedBg2 * mainSpeed,
   });
   const [bg2Copy, setBg2Copy] = useState({
     image: bg2P,
-    x: 2400,
+    x: 800,
     y: 0,
-    width: 2400,
+    width: 800,
     height: settings.background.height,
-    x2: 4800,
+    x2: 1600,
     speed: speedBg2 * mainSpeed,
   });
   const [bg3, setBg3] = useState({
     image: bg3P,
     x: 0,
     y: 0,
-    width: 2400,
+    width: 800,
     height: settings.background.height,
-    x2: 2400,
+    x2: 800,
     speed: speedBg3 * mainSpeed,
   });
   const [bg3Copy, setBg3Copy] = useState({
     image: bg3P,
-    x: 2400,
+    x: 800,
     y: 0,
-    width: 2400,
+    width: 800,
     height: settings.background.height,
-    x2: 4800,
+    x2: 1600,
     speed: speedBg3 * mainSpeed,
   });
   const [bg4, setBg4] = useState({
     image: bg4P,
     x: 0,
     y: 0,
-    width: 2400,
+    width: 800,
     height: settings.background.height,
-    x2: 2400,
+    x2: 800,
     speed: speedBg4 * mainSpeed,
   });
   const [bg4Copy, setBg4Copy] = useState({
     image: bg3P,
-    x: 2400,
+    x: 800,
     y: 0,
-    width: 2400,
+    width: 800,
     height: settings.background.height,
-    x2: 4800,
+    x2: 1600,
     speed: speedBg4 * mainSpeed,
     // tempSpeed: speedBg4 / (mainSpeedModifier + 2),
   });
@@ -158,8 +158,8 @@ export const useHandleBackground = () => {
       setBg4((prev) => {
         return {
           ...prev,
-          x: 2400,
-          x2: 4800,
+          x: 800,
+          x2: 1600,
         };
       });
     } else {
@@ -176,8 +176,8 @@ export const useHandleBackground = () => {
       setBg4Copy((prev) => {
         return {
           ...prev,
-          x: 2400,
-          x2: 4800,
+          x: 800,
+          x2: 1600,
         };
       });
     } else {
@@ -196,8 +196,8 @@ export const useHandleBackground = () => {
       setBg3((prev) => {
         return {
           ...prev,
-          x: 2400,
-          x2: 4800,
+          x: 800,
+          x2: 1600,
         };
       });
     } else {
@@ -214,8 +214,8 @@ export const useHandleBackground = () => {
       setBg3Copy((prev) => {
         return {
           ...prev,
-          x: 2400,
-          x2: 4800,
+          x: 800,
+          x2: 1600,
         };
       });
     } else {
@@ -234,8 +234,8 @@ export const useHandleBackground = () => {
       setBg2((prev) => {
         return {
           ...prev,
-          x: 2400,
-          x2: 4800,
+          x: 800,
+          x2: 1600,
         };
       });
     } else {
@@ -252,8 +252,8 @@ export const useHandleBackground = () => {
       setBg2Copy((prev) => {
         return {
           ...prev,
-          x: 2400,
-          x2: 4800,
+          x: 800,
+          x2: 1600,
         };
       });
     } else {
@@ -272,8 +272,8 @@ export const useHandleBackground = () => {
       setBg1((prev) => {
         return {
           ...prev,
-          x: 2400,
-          x2: 4800,
+          x: 800,
+          x2: 1600,
         };
       });
     } else {
@@ -290,8 +290,8 @@ export const useHandleBackground = () => {
       setBg1Copy((prev) => {
         return {
           ...prev,
-          x: 2400,
-          x2: 4800,
+          x: 800,
+          x2: 1600,
         };
       });
     } else {
