@@ -15,10 +15,10 @@ export const settings = {
 
   // boat
   playerObject: {
-    speed: 5,
+    speed: 7,
     animationSpeed: 5,
-    startPositionX: 100,
-    startPositionY: 300,
+    startPositionX: 0,
+    startPositionY: 150,
   },
 
   // boardFoam
@@ -39,7 +39,7 @@ export const settings = {
   // stones
   obstacles: {
     spawnRate: 100,
-    speed: 3,
+    speed: 5,
     // minimumSize: 30,
     // maximumSize: 90,
     minimumSize: 24,
@@ -55,7 +55,7 @@ export const settings = {
   pickups: {
     // spawnRate: 90,
     spawnRate: 100,
-    speed: 3,
+    speed: 5,
     // minimumSize: 50,
     // maximumSize: 50,
     minimumSize: 35,
@@ -69,7 +69,7 @@ export const settings = {
   },
   // foam
   foam: {
-    animationSpeed: 15,
+    animationSpeed: 5,
   },
   // background
   background: {
