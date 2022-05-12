@@ -24,6 +24,7 @@ import {
 import { settings } from "../settings";
 import { useHandleFoam } from "../utils/useHandleFoam";
 import { useHandleBackground } from "../utils/useHandleBackground";
+import { useHandleForeground } from "../utils/useHandleForeground";
 import { useHandleBoardFoam } from "../utils/playerObject/useHandleBoardFoam";
 
 export const Canvas = ({ canvasWidth, canvasHeight }) => {
@@ -37,6 +38,7 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
   const { drawFoam, foamAnimation } = useHandleFoam();
 
   const { drawBoardFoam } = useHandleBoardFoam();
+  const { updateForeground } = useHandleForeground();
 
   const {
     movePlayerObject,
@@ -49,8 +51,8 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
   const { updatePickups } = useHandlePickups();
   const { handleCrash } = useHandleCrash();
   const { handlePickup } = useHandlePickup();
-
   const { updateBackground } = useHandleBackground();
+
 
   useLayoutEffect(() => {
     let timerId;
@@ -68,7 +70,7 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
     // canvas.focus();
     context.clearRect(0, 0, settings.canvasWidth, settings.canvasHeight);
 
-    // updateBackground(context, boat);
+    updateBackground(context, playerObject);
 
     updatePickups(context, frame, playerObject);
     updateObstacles(context, frame, playerObject);
@@ -79,8 +81,10 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
     surferAnimation(frame);
     drawFoam(context);
     foamAnimation(frame);
+    
 
     movePlayerObject(keysArray, frame);
+    updateForeground(context, playerObject);
 
     // ODÖDLIG START
     // if (handleCrash(playerObjectEdges)) {
