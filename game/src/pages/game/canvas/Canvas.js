@@ -82,24 +82,28 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
 
     movePlayerObject(keysArray, frame);
 
-    // if (handleCrash(playerObjectEdges)) {
-    //   dispatch(lostLives());
-    // }
-    // if (handlePickup(playerObjectEdges)) {
-    //   dispatch(updateScore());
-    //   if (
-    //     (score % settings.difficulty.savings.saves) * settings.scorePerSave ===
-    //       0 &&
-    //     settings.difficulty.savings.saves !== 0 &&
-    //     score !== 0
-    //   ) {
-    //     dispatch(updateSpeed(1));
-    //   }
-    // }
+    // ODÖDLIG START
+    if (handleCrash(playerObjectEdges)) {
+      dispatch(lostLives());
+    }
+    if (handlePickup(playerObjectEdges)) {
+      dispatch(updateScore());
+      if (
+        (score % settings.difficulty.savings.saves) * settings.scorePerSave ===
+          0 &&
+        settings.difficulty.savings.saves !== 0 &&
+        score !== 0
+      ) {
+        dispatch(updateSpeed(1));
+      }
+    }
+    // ODÖDLIG SLUT
 
+    // SVÅRIGHET ÖKAR START
     if (frame % (settings.difficulty.timer.seconds * 65) === 0) {
       dispatch(updateSpeed(1));
     }
+    // SVÅRIGHET ÖKAR SLUT
   }, [frame]);
 
   useEffect(() => {
