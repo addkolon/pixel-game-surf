@@ -94,6 +94,38 @@ export const playerObjectSlice = createSlice({
           ];
           break;
 
+        case "rightUp":
+          state.board.y = state.board.y - state.board.speed;
+          state.board.x = state.board.x + state.board.speed;
+          state.board.frameY = 0;
+          state.hitbox = [
+            {
+              x: state.board.x + 5,
+              y: state.board.y,
+            },
+            {
+              x: state.board.x + state.board.width - 5,
+              y: state.board.y + state.board.height - 5,
+            },
+          ];
+          break;
+
+        case "leftDown":
+          state.board.y = state.board.y + state.board.speed;
+          state.board.x = state.board.x - state.board.speed;
+          state.board.frameY = 1;
+          state.hitbox = [
+            {
+              x: state.board.x + 5,
+              y: state.board.y + state.board.height - 5,
+            },
+            {
+              x: state.board.x + state.board.width - 5,
+              y: state.board.y + 5,
+            },
+          ];
+          break;
+
         default:
           state.board.moving = false;
           break;

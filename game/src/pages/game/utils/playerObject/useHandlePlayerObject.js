@@ -1,29 +1,23 @@
 /** @format */
 
-import { useState } from "react";
-
 import boardSprite from "../../../../sprite/board-sprite.png";
 import boardFoamSprite from "../../../../sprite/board-foam-sprite.png";
 import surferSprite from "../../../../sprite/surfer.png";
 
-// import { useHandleBackground } from "../useHandleBackground";
-
 import { settings } from "../../settings";
-import { useHandleFoam } from "../useHandleFoam";
 
 import {
   animateBoard,
   animateSurfer,
-  move,
   playerObject,
 } from "../../../../store/playerObjectSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { gameSpeed, updateSpeed } from "../../../../store/gameplaySlice";
+import { updateSpeed } from "../../../../store/gameplaySlice";
+import { useHandleMovement } from "./utils/movePlayerObject";
 
 export const useHandlePlayerObject = () => {
   const dispatch = useDispatch();
   const { board, boardFoam, surfer, hitbox } = useSelector(playerObject);
-  const { speed } = useSelector(gameSpeed);
   // images
   const boardImage = new Image();
   boardImage.src = boardSprite;
@@ -32,7 +26,7 @@ export const useHandlePlayerObject = () => {
   const surferImage = new Image();
   surferImage.src = surferSprite;
 
-  const { foam } = useHandleFoam();
+  const { movePlayerObject } = useHandleMovement();
 
   const drawBoard = (context) => {
     context.drawImage(
@@ -80,73 +74,6 @@ export const useHandlePlayerObject = () => {
     drawBoard(context);
     drawBoardFoam(context);
     drawSurfer(context);
-  };
-
-  const movePlayerObject = (keysArray) => {
-    if (keysArray.length !== 0) {
-      if (keysArray.includes("ArrowUp")) {
-        const onCanvas = board.y > settings.background.height;
-
-        // huvud under foam
-        const check1 = () => {
-          return board.x + settings.surfer.alignmentOnBoardX + 5 < foam.width &&
-            board.y < settings.background.height + 65
-            ? true
-            : false;
-        };
-
-        // huvud över men bräda under foam
-        const check2 = () => {
-          return board.y < settings.background.height + 15 &&
-            board.x < foam.width
-            ? true
-            : false;
-        };
-
-        if (onCanvas && !check1() && !check2()) {
-          dispatch(move("up"));
-        }
-      }
-
-      if (keysArray.includes("ArrowDown")) {
-        if (board.y < settings.canvasHeight - board.height) {
-          dispatch(move("down"));
-        }
-      }
-
-      if (keysArray.includes("ArrowRight")) {
-        if (board.x < settings.canvasWidth - board.width) {
-          dispatch(move("right"));
-        }
-      }
-
-      if (keysArray.includes("ArrowLeft")) {
-        const onCanvas = board.x > 0;
-
-        // board over foam
-        const check1 = () => {
-          return board.y < settings.background.height + 20 &&
-            board.x < foam.width + 5
-            ? true
-            : false;
-        };
-
-        // board under foam but surfer over
-        const check2 = () => {
-          return board.y < settings.background.height + 64 &&
-            board.x < foam.width - 30
-            ? true
-            : false;
-        };
-
-        if (onCanvas && !check1() && !check2()) {
-          dispatch(move("left"));
-        }
-      }
-    }
-    // else {
-    //   dispatch(updateSpeed(0));
-    // }
   };
 
   const playerObjectAnimations = (frame) => {
