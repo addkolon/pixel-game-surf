@@ -30,6 +30,16 @@ const initialState = {
     frameX: 0,
     frameY: 0,
   },
+  hitbox: [
+    {
+      x: settings.board.startPositionX,
+      y: settings.board.startPositionY,
+    },
+    {
+      x: settings.board.startPositionX + 134 - 5,
+      y: settings.board.startPositionX + 46 - 5,
+    },
+  ],
   status: "idle",
   error: null,
 };
@@ -54,6 +64,16 @@ export const playerObjectSlice = createSlice({
           state.board.frameY = 0;
           //   state.boardFoam.frameY = 0;
           state.surfer.frameY = 0;
+          state.hitbox = [
+            {
+              x: state.board.x + 5,
+              y: state.board.y,
+            },
+            {
+              x: state.board.x + state.board.width - 5,
+              y: state.board.y + state.board.height - 5,
+            },
+          ];
           break;
 
         case "left":
@@ -61,6 +81,17 @@ export const playerObjectSlice = createSlice({
           state.board.frameY = 1;
           //   state.boardFoam.frameY = 1;
           state.surfer.frameY = 1;
+
+          state.hitbox = [
+            {
+              x: state.board.x + 5,
+              y: state.board.y + state.board.height - 5,
+            },
+            {
+              x: state.board.x + state.board.width - 5,
+              y: state.board.y + 5,
+            },
+          ];
           break;
 
         default:
@@ -102,6 +133,7 @@ export const playerObject = (state) => {
     board: state.playerObject.board,
     boardFoam: state.playerObject.boardFoam,
     surfer: state.playerObject.surfer,
+    hitbox: state.playerObject.hitbox,
   };
 };
 

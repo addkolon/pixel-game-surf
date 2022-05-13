@@ -71,6 +71,8 @@ export const Canvas = () => {
     const context = canvas.getContext("2d");
     context.clearRect(0, 0, settings.canvasWidth, settings.canvasHeight);
 
+    updateBackground(context, board);
+
     updatePickups(context, frame, board);
     updateObstacles(context, frame, board);
 
@@ -81,30 +83,29 @@ export const Canvas = () => {
     drawFoam(context);
     foamAnimation(frame);
 
-    updateBackground(context, board);
     updateForeground(context, board);
 
     // ODÖDLIG START
-    if (handleCrash(hitbox)) {
-      dispatch(lostLives());
-    }
-    if (handlePickup(hitbox)) {
-      dispatch(updateScore());
-      if (
-        (score % settings.difficulty.savings.saves) * settings.scorePerSave ===
-          0 &&
-        settings.difficulty.savings.saves !== 0 &&
-        score !== 0
-      ) {
-        dispatch(updateSpeed(1));
-      }
-    }
+    // if (handleCrash(hitbox)) {
+    //   dispatch(lostLives());
+    // }
+    // if (handlePickup(hitbox)) {
+    //   dispatch(updateScore());
+    //   if (
+    //     (score % settings.difficulty.savings.saves) * settings.scorePerSave ===
+    //       0 &&
+    //     settings.difficulty.savings.saves !== 0 &&
+    //     score !== 0
+    //   ) {
+    //     dispatch(updateSpeed(1));
+    //   }
+    // }
     // ODÖDLIG SLUT
 
     // SVÅRIGHET ÖKAR START
-    if (frame % (settings.difficulty.timer.seconds * 65) === 0) {
-      dispatch(updateSpeed(1));
-    }
+    // if (frame % (settings.difficulty.timer.seconds * 65) === 0) {
+    //   dispatch(updateSpeed(1));
+    // }
     // SVÅRIGHET ÖKAR SLUT
   }, [frame]);
 

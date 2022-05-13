@@ -22,7 +22,7 @@ import { gameSpeed, updateSpeed } from "../../../../store/gameplaySlice";
 
 export const useHandlePlayerObject = () => {
   const dispatch = useDispatch();
-  const { board, boardFoam, surfer } = useSelector(playerObject);
+  const { board, boardFoam, surfer, hitbox } = useSelector(playerObject);
   const { speed } = useSelector(gameSpeed);
   // images
   const boardImage = new Image();
@@ -33,14 +33,6 @@ export const useHandlePlayerObject = () => {
   surferImage.src = surferSprite;
 
   const { foam } = useHandleFoam();
-
-  const [hitbox, setHitbox] = useState([
-    { x: board.x, y: board.y },
-    {
-      x: board.x + board.width - 5,
-      y: board.y + board.height - 5,
-    },
-  ]);
 
   const drawBoard = (context) => {
     context.drawImage(
@@ -54,13 +46,6 @@ export const useHandlePlayerObject = () => {
       board.width,
       board.height
     );
-    setHitbox([
-      { x: board.x + 5, y: board.y },
-      {
-        x: board.x + board.width - 5,
-        y: board.y + board.height - 5,
-      },
-    ]);
   };
 
   const drawBoardFoam = (context) => {
