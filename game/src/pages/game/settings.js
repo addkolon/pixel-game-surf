@@ -75,43 +75,34 @@ export const settings = {
   },
   // background
   background: {
-    // height: 125,
     height: 60,
-    mainSpeed: 1,
+    mainSpeed: 0.1,
     bg1: {
-      speed: 10,
+      speed: 3,
     },
     bg2: {
-      speed: 40,
+      speed: 15,
     },
-    bg3: {
-      speed: 6,
-    },
-    bg4: {
-      speed: 0,
-    },
-    speedModifier: {
-      boatMovement: {
-        right: 7,
-        left: 4,
-      },
-    },
+    // speedModifier: {
+    //   playerObjectMovement: {
+    //     right: 7,
+    //     left: 4,
+    //   },
+    // },
   },
-
   // foreground
   foreground: {
-    // height: 125,
     height: 264,
-    mainSpeed: 8,
+    mainSpeed: 0.1,
     fg: {
       speed: 10,
     },
-    speedModifier: {
-      boatMovement: {
-        right: 7,
-        left: 4,
-      },
-    },
+    // speedModifier: {
+    //   playerObjectMovement: {
+    //     right: 7,
+    //     left: 4,
+    //   },
+    // },
   },
   // difficulty rise
   difficulty: {
