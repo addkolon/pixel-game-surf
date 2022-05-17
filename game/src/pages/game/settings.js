@@ -102,7 +102,7 @@ export const settings = {
     height: 264,
     mainSpeed: 8,
     fg: {
-      speed: 10,
+      speed: 8,
     },
     speedModifier: {
       boatMovement: {
