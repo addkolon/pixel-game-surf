@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import pickUpPic from "../../../../sprite/pick-up1.png";
+import pickUpPic from "../../../../sprite/pick-up.png";
 
 // import { speed } from "../../../../store/gameplaySlice";
 import { settings } from "../../settings";
