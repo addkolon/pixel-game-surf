@@ -9,7 +9,6 @@ export const failSpawnPosition = (arr, x, y) => {
       y < s.y + s.size &&
       y + s.size > s.y
     ) {
-      console.log("fail");
       return true;
     }
     return false;

@@ -18,8 +18,7 @@ import { useHandlePickup } from "../utils/events/useHandlePickup";
 
 // - rest
 import { useHandleFoam } from "../utils/useHandleFoam";
-import { useHandleBackground } from "../utils/useHandleBackground";
-import { useHandleForeground } from "../utils/useHandleForeground";
+import { useHandleBNFground } from "../utils/useHandleBNFground";
 
 // store
 import {
@@ -53,8 +52,7 @@ export const Canvas = () => {
   const { updatePickups } = useHandlePickups();
   const { handleCrash } = useHandleCrash();
   const { handlePickup } = useHandlePickup();
-  const { updateBackground } = useHandleBackground();
-  const { updateForeground } = useHandleForeground();
+  const { updateBackground, updateForeground } = useHandleBNFground();
 
   useLayoutEffect(() => {
     let timerId;
@@ -71,10 +69,10 @@ export const Canvas = () => {
     const context = canvas.getContext("2d");
     context.clearRect(0, 0, settings.canvasWidth, settings.canvasHeight);
 
-    updateBackground(context, board);
+    updateBackground(context);
 
     updatePickups(context, frame, board);
-    updateObstacles(context, frame, board);
+    updateObstacles(context, frame);
 
     drawPlayerObject(context);
     playerObjectAnimations(frame);
@@ -83,7 +81,7 @@ export const Canvas = () => {
     drawFoam(context);
     foamAnimation(frame);
 
-    updateForeground(context, board);
+    updateForeground(context);
 
     // ODÖDLIG START
     // if (handleCrash(hitbox)) {
