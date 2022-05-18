@@ -97,6 +97,9 @@ export const settings = {
     fg: {
       speed: 10,
     },
+    fg1: {
+      speed: 8.2,
+    },
     // speedModifier: {
     //   playerObjectMovement: {
     //     right: 7,
