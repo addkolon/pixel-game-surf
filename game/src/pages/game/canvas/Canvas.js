@@ -40,13 +40,8 @@ export const Canvas = () => {
   const [frame, setFrame] = useState(0);
   const [keysArray, setKeysArray] = useState([]);
 
-  const {
-    movePlayerObject,
-    drawPlayerObject,
-    board,
-    playerObjectAnimations,
-    hitbox,
-  } = useHandlePlayerObject();
+  const { movePlayerObject, drawPlayerObject, playerObjectAnimations, hitbox } =
+    useHandlePlayerObject();
   const { drawFoam, foamAnimation } = useHandleFoam();
   const { updateObstacles } = useHandleObstacles();
   const { updatePickups } = useHandlePickups();
@@ -71,7 +66,7 @@ export const Canvas = () => {
 
     updateBackground(context);
 
-    updatePickups(context, frame, board);
+    updatePickups(context, frame);
     updateObstacles(context, frame);
 
     drawPlayerObject(context);

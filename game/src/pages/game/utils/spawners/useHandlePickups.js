@@ -1,107 +1,53 @@
 /** @format */
 
-import { useState } from "react";
+// CV:
+// app: new profile pic .com
 
-import pickUpPic from "../../../../sprite/pick-up1.png";
+/** @format */
 
-// import { speed } from "../../../../store/gameplaySlice";
+import pickupPic from "../../../../sprite/pick-up1.png";
 import { settings } from "../../settings";
 
-import { gameSpeed } from "../../../../store/gameplaySlice";
-import { useSelector } from "react-redux";
-import { randomMinMax } from "../../../../utils/randomMinMax";
-import { obstaclesArray } from "./useHandleObstacles";
-import { failSpawnPosition } from "./utils/failSpawnPosition";
-import { playerObject } from "../../../../store/playerObjectSlice";
-
-export const pickupsArray = [];
+import { useDispatch, useSelector } from "react-redux";
+import {
+  movePickups,
+  spawners,
+  spawnPickup,
+} from "../../../../store/spawnersSlice";
 
 export const useHandlePickups = () => {
-  const { board } = useSelector(playerObject);
+  const dispatch = useDispatch();
+  const { pickups } = useSelector(spawners);
+
   const pickupImage = new Image();
-  pickupImage.src = pickUpPic;
+  pickupImage.src = pickupPic;
 
-  const speed = useSelector(gameSpeed);
+  // not sure if this actually will be modified, so state seems unnecessary
+  const pickupsSpawnRate = settings.pickups.spawnRate;
 
-  const [pickupsSpeed, setPickupsSpeed] = useState(
-    settings.pickups.speed * speed
-  );
-  const [pickupsSpawnRate, setPickupsSpawnRate] = useState(
-    settings.pickups.spawnRate
-  );
-
-  const speedModifier = 0.35;
-
-  const drawPickup = (context, x, y, s) => {
-    context.drawImage(pickupImage, x, y, s, s);
+  const drawPickup = (context, o) => {
+    context.drawImage(
+      pickupImage,
+      0,
+      o.frame * 24,
+      24,
+      24,
+      o.x,
+      o.y,
+      o.size,
+      o.size
+    );
   };
 
-  const updatePickup = (context, o, playerObject) => {
-    if (board.moving) {
-      if (board.moving === "down" || board.moving === "up") {
-        setPickupsSpeed(settings.pickups.speed * speed * speedModifier);
-      } else {
-        if (
-          board.moving === "right" &&
-          board.x < settings.canvasWidth - board.width
-        ) {
-          setPickupsSpeed(
-            settings.pickups.speedModifier.playerObjectMovement.right *
-              speed *
-              speedModifier
-          );
-        }
-        if (board.moving === "left") {
-          setPickupsSpeed(
-            settings.pickups.speedModifier.playerObjectMovement.left *
-              speed *
-              speedModifier
-          );
-        }
-      }
-    } else {
-      setPickupsSpeed(settings.pickups.speed * speed * speedModifier);
-    }
-    o.x = o.x - pickupsSpeed;
-    drawPickup(context, o.x, o.y, o.size);
-  };
-
-  const updatePickups = (context, frame, playerObject) => {
+  const updatePickups = (context, frame) => {
     const timeToSpawn = frame % pickupsSpawnRate === 0;
     if (timeToSpawn) {
-      const size = randomMinMax(
-        settings.pickups.minimumSize,
-        settings.pickups.maximumSize
-      );
-      const x = settings.canvasWidth;
-      let y = randomMinMax(
-        settings.background.height,
-        settings.canvasHeight - size
-      );
-
-      while (
-        failSpawnPosition(pickupsArray, x, y) ||
-        failSpawnPosition(obstaclesArray, x, y)
-      ) {
-        y = randomMinMax(
-          settings.background.height,
-          settings.canvasHeight - size
-        );
-      }
-
-      if (pickupsArray.length > 30) {
-        pickupsArray.pop();
-      }
-
-      pickupsArray.unshift({
-        x: x,
-        y: y,
-        size: size,
-      });
+      dispatch(spawnPickup());
     }
+    dispatch(movePickups());
 
-    for (let i = 0; i < pickupsArray.length; i++) {
-      updatePickup(context, pickupsArray[i], playerObject);
+    for (let i = 0; i < pickups.length; i++) {
+      drawPickup(context, pickups[i]);
     }
   };
 
