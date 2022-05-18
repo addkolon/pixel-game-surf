@@ -72,7 +72,7 @@ export const Canvas = () => {
     updateBackground(context);
 
     updatePickups(context, frame, board);
-    updateObstacles(context, frame, board);
+    updateObstacles(context, frame);
 
     drawPlayerObject(context);
     playerObjectAnimations(frame);
