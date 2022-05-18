@@ -1,5 +1,7 @@
 /** @format */
 
+import { useSelector } from "react-redux";
+import { playerObject } from "../../../../store/playerObjectSlice";
 import { checkIfHit } from "../../../../utils/checkIfHit";
 import { obstaclesArray } from "../spawners/useHandleObstacles";
 
@@ -30,10 +32,13 @@ import { obstaclesArray } from "../spawners/useHandleObstacles";
 
 // NEW
 export const useHandleCrash = () => {
+  const { hitbox } = useSelector(playerObject);
+  // console.log(hitbox);
+
   const handleCrash = (edges) => {
     let collision = false;
     obstaclesArray.forEach((o) => {
-      const hit = checkIfHit(edges, o.x, o.y, o.size, o.size);
+      const hit = checkIfHit(hitbox, o.x, o.y, o.size, o.size);
       if (hit) {
         o.y = 1000;
         collision = true;

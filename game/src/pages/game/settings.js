@@ -14,8 +14,8 @@ export const settings = {
   gameSpeedUpdate: 0.3, // hur mycket speeden ökar när difficulty ökar
 
   // boat
-  playerObject: {
-    speed: 7,
+  board: {
+    speed: 5,
     animationSpeed: 5,
     startPositionX: 0,
     startPositionY: 150,
@@ -24,6 +24,8 @@ export const settings = {
   // boardFoam
   boardFoam: {
     animationSpeed: 5,
+    alignmentX: 40,
+    alignmentY: 17,
   },
 
   // surfer
@@ -73,43 +75,37 @@ export const settings = {
   },
   // background
   background: {
-    // height: 125,
     height: 60,
-    mainSpeed: 1,
+    mainSpeed: 0.1,
     bg1: {
-      speed: 10,
+      speed: 3,
     },
     bg2: {
-      speed: 40,
+      speed: 15,
     },
-    bg3: {
-      speed: 6,
-    },
-    bg4: {
-      speed: 0,
-    },
-    speedModifier: {
-      boatMovement: {
-        right: 7,
-        left: 4,
-      },
-    },
+    // speedModifier: {
+    //   playerObjectMovement: {
+    //     right: 7,
+    //     left: 4,
+    //   },
+    // },
   },
-
   // foreground
   foreground: {
-    // height: 125,
     height: 264,
-    mainSpeed: 8,
+    mainSpeed: 0.1,
     fg: {
       speed: 8,
     },
-    speedModifier: {
-      boatMovement: {
-        right: 7,
-        left: 4,
-      },
+    fg1: {
+      speed: 8.2,
     },
+    // speedModifier: {
+    //   playerObjectMovement: {
+    //     right: 7,
+    //     left: 4,
+    //   },
+    // },
   },
   // difficulty rise
   difficulty: {

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import pickUpPic from "../../../../sprite/pick-up1.png";
+import pickUpPic from "../../../../sprite/pick-up.png";
 
 // import { speed } from "../../../../store/gameplaySlice";
 import { settings } from "../../settings";
@@ -12,10 +12,12 @@ import { useSelector } from "react-redux";
 import { randomMinMax } from "../../../../utils/randomMinMax";
 import { obstaclesArray } from "./useHandleObstacles";
 import { failSpawnPosition } from "./utils/failSpawnPosition";
+import { playerObject } from "../../../../store/playerObjectSlice";
 
 export const pickupsArray = [];
 
 export const useHandlePickups = () => {
+  const { board } = useSelector(playerObject);
   const pickupImage = new Image();
   pickupImage.src = pickUpPic;
 
@@ -35,13 +37,13 @@ export const useHandlePickups = () => {
   };
 
   const updatePickup = (context, o, playerObject) => {
-    if (playerObject.moving) {
-      if (playerObject.moving === "down" || playerObject.moving === "up") {
+    if (board.moving) {
+      if (board.moving === "down" || board.moving === "up") {
         setPickupsSpeed(settings.pickups.speed * speed * speedModifier);
       } else {
         if (
-          playerObject.moving === "right" &&
-          playerObject.x < settings.canvasWidth - playerObject.width
+          board.moving === "right" &&
+          board.x < settings.canvasWidth - board.width
         ) {
           setPickupsSpeed(
             settings.pickups.speedModifier.playerObjectMovement.right *
@@ -49,7 +51,7 @@ export const useHandlePickups = () => {
               speedModifier
           );
         }
-        if (playerObject.moving === "left") {
+        if (board.moving === "left") {
           setPickupsSpeed(
             settings.pickups.speedModifier.playerObjectMovement.left *
               speed *

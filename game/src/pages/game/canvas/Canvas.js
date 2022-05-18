@@ -1,58 +1,58 @@
 /** @format */
 
+// generals
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-// playerObject
+// handlers
+// - playerObject
 import { useHandlePlayerObject } from "../utils/playerObject/useHandlePlayerObject";
-import { useHandleSurfer } from "../utils/playerObject/useHandleSurfer";
 
-// spawners
+// - spawners
 import { useHandleObstacles } from "../utils/spawners/useHandleObstacles";
 import { useHandlePickups } from "../utils/spawners/useHandlePickups";
 
-// events
+// - events
 import { useHandleCrash } from "../utils/events/useHandleCrash";
 import { useHandlePickup } from "../utils/events/useHandlePickup";
 
+// - rest
+import { useHandleFoam } from "../utils/useHandleFoam";
+import { useHandleBNFground } from "../utils/useHandleBNFground";
+
+// store
 import {
   lostLives,
   updateScore,
   gameScore,
   updateSpeed,
 } from "../../../store/gameplaySlice";
-import { settings } from "../settings";
-import { useHandleFoam } from "../utils/useHandleFoam";
-import { useHandleBackground } from "../utils/useHandleBackground";
-import { useHandleForeground } from "../utils/useHandleForeground";
-import { useHandleBoardFoam } from "../utils/playerObject/useHandleBoardFoam";
 
-export const Canvas = ({ canvasWidth, canvasHeight }) => {
-  const canvasRef = useRef();
+// constants
+import { settings } from "../settings";
+
+export const Canvas = () => {
   const dispatch = useDispatch();
+  const canvasRef = useRef();
+
   const score = useSelector(gameScore);
+
   const [frame, setFrame] = useState(0);
   const [keysArray, setKeysArray] = useState([]);
-
-  const { drawSurfer, surferAnimation, surfer } = useHandleSurfer();
-  const { drawFoam, foamAnimation } = useHandleFoam();
-
-  const { drawBoardFoam } = useHandleBoardFoam();
-  const { updateForeground } = useHandleForeground();
 
   const {
     movePlayerObject,
     drawPlayerObject,
-    playerObject,
-    playerObjectAnimation,
-    playerObjectEdges,
+    board,
+    playerObjectAnimations,
+    hitbox,
   } = useHandlePlayerObject();
+  const { drawFoam, foamAnimation } = useHandleFoam();
   const { updateObstacles } = useHandleObstacles();
   const { updatePickups } = useHandlePickups();
   const { handleCrash } = useHandleCrash();
   const { handlePickup } = useHandlePickup();
-  const { updateBackground } = useHandleBackground();
-
+  const { updateBackground, updateForeground } = useHandleBNFground();
 
   useLayoutEffect(() => {
     let timerId;
@@ -67,46 +67,43 @@ export const Canvas = ({ canvasWidth, canvasHeight }) => {
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
-    // canvas.focus();
     context.clearRect(0, 0, settings.canvasWidth, settings.canvasHeight);
 
-    updateBackground(context, playerObject);
+    updateBackground(context);
 
-    updatePickups(context, frame, playerObject);
-    updateObstacles(context, frame, playerObject);
+    updatePickups(context, frame, board);
+    updateObstacles(context, frame);
+
     drawPlayerObject(context);
-    playerObjectAnimation(frame);
-    drawBoardFoam(context, playerObject);
-    drawSurfer(context, playerObject);
-    surferAnimation(frame);
+    playerObjectAnimations(frame);
+    movePlayerObject(keysArray);
+
     drawFoam(context);
     foamAnimation(frame);
-    
 
-    movePlayerObject(keysArray, frame);
-    updateForeground(context, playerObject);
+    updateForeground(context);
 
     // ODÖDLIG START
-    if (handleCrash(playerObjectEdges)) {
-      dispatch(lostLives());
-    }
-    if (handlePickup(playerObjectEdges)) {
-      dispatch(updateScore());
-      if (
-        (score % settings.difficulty.savings.saves) * settings.scorePerSave ===
-          0 &&
-        settings.difficulty.savings.saves !== 0 &&
-        score !== 0
-      ) {
-        dispatch(updateSpeed(1));
-      }
-    }
+    // if (handleCrash(hitbox)) {
+    //   dispatch(lostLives());
+    // }
+    // if (handlePickup(hitbox)) {
+    //   dispatch(updateScore());
+    //   if (
+    //     (score % settings.difficulty.savings.saves) * settings.scorePerSave ===
+    //       0 &&
+    //     settings.difficulty.savings.saves !== 0 &&
+    //     score !== 0
+    //   ) {
+    //     dispatch(updateSpeed(1));
+    //   }
+    // }
     // ODÖDLIG SLUT
 
     // SVÅRIGHET ÖKAR START
-    if (frame % (settings.difficulty.timer.seconds * 65) === 0) {
-      dispatch(updateSpeed(1));
-    }
+    // if (frame % (settings.difficulty.timer.seconds * 65) === 0) {
+    //   dispatch(updateSpeed(1));
+    // }
     // SVÅRIGHET ÖKAR SLUT
   }, [frame]);
 
