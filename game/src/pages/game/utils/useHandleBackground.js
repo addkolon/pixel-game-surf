@@ -3,10 +3,9 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import bg1Pic from "../../../sprite/clouds.png";
-import bg2Pic from "../../../sprite/ocean-floor.png";
+import bg2Pic from "../../../sprite/blank.png";
 import bg3Pic from "../../../sprite/blank.png";
 import bg4Pic from "../../../sprite/blank.png";
-import { speed } from "../../../store/gameplaySlice";
 
 import { settings } from "../settings";
 
@@ -152,7 +151,7 @@ export const useHandleBackground = () => {
     //     setMainSpeed(settings.background.mainSpeed * speed * speedModifier);
     //   }
     // } else {
-    //   
+    //
     // }
     setMainSpeed(settings.background.mainSpeed * speed * speedModifier);
 
