@@ -45,12 +45,12 @@ function App() {
   const [gameAuth, setGameAuth] = useState(false);
   const scoresStatus = useSelector(status);
 
-  useEffect(() => {
-    if (scoresStatus === "idle") {
-      // dispatch(getAllScores());
-      // dispatch(getTopScores("page=1&limit=10"));
-    }
-  }, [scoresStatus, dispatch]);
+  // useEffect(() => {
+  //   if (scoresStatus === "idle") {
+  //     dispatch(getAllScores());
+  //     dispatch(getTopScores("page=1&limit=10"));
+  //   }
+  // }, [scoresStatus, dispatch]);
 
   return (
     <div className="App">
