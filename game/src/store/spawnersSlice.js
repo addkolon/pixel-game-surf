@@ -142,6 +142,10 @@ export const spawnersSlice = createSlice({
         };
       });
     },
+
+    updateSpawnersSpeed: (state, action) => {
+      state.speed += settings.gameSpeedUpdate;
+    },
   },
 });
 
@@ -153,6 +157,7 @@ export const {
   animatePickups,
   handleHit,
   animateBoom,
+  updateSpawnersSpeed,
 } = spawnersSlice.actions;
 
 // export data

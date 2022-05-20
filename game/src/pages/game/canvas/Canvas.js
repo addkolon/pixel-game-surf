@@ -30,7 +30,11 @@ import {
 
 // constants
 import { settings } from "../settings";
-import { animateBoom, spawners } from "../../../store/spawnersSlice";
+import {
+  animateBoom,
+  spawners,
+  updateSpawnersSpeed,
+} from "../../../store/spawnersSlice";
 
 export const Canvas = () => {
   const dispatch = useDispatch();
@@ -89,25 +93,28 @@ export const Canvas = () => {
 
     // ODÖDLIG START
     if (handleCrash()) {
-      console.log(handleCrash());
       dispatch(lostLives());
     }
+    // ODÖDLIG SLUT
+
     if (handlePickup()) {
       dispatch(updateScore());
+
+      // SVÅRIGHET ÖKAR PÅ SAVES START
       if (
-        (score % settings.difficulty.savings.saves) * settings.scorePerSave ===
+        score % (settings.difficulty.savings.saves * settings.scorePerSave) ===
           0 &&
         settings.difficulty.savings.saves !== 0 &&
         score !== 0
       ) {
-        dispatch(updateSpeed(1));
+        dispatch(updateSpawnersSpeed());
       }
     }
-    // ODÖDLIG SLUT
+    // SVÅRIGHET ÖKAR SLUT
 
-    // SVÅRIGHET ÖKAR START
+    // SVÅRIGHET ÖKAR PÅ TID START
     // if (frame % (settings.difficulty.timer.seconds * 65) === 0) {
-    //   dispatch(updateSpeed(1));
+    //   dispatch(updateSpawnersSpeed());
     // }
     // SVÅRIGHET ÖKAR SLUT
   }, [frame]);

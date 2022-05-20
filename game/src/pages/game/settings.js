@@ -118,7 +118,7 @@ export const settings = {
     },
     // on saves
     savings: {
-      saves: 300,
+      saves: 5,
     },
   },
 };

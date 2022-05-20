@@ -1,10 +1,5 @@
 /** @format */
 
-// CV:
-// app: new profile pic .com
-
-/** @format */
-
 import pickupPic from "../../../../sprite/pick-up.png";
 import { settings } from "../../settings";
 
