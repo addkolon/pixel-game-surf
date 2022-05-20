@@ -5,11 +5,12 @@
 
 /** @format */
 
-import pickupPic from "../../../../sprite/pick-up1.png";
+import pickupPic from "../../../../sprite/pick-up.png";
 import { settings } from "../../settings";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
+  animatePickups,
   movePickups,
   spawners,
   spawnPickup,
@@ -28,8 +29,8 @@ export const useHandlePickups = () => {
   const drawPickup = (context, o) => {
     context.drawImage(
       pickupImage,
-      0,
-      o.frame * 24,
+      o.frameX * 24,
+      o.frameY * 24,
       24,
       24,
       o.x,
@@ -51,7 +52,14 @@ export const useHandlePickups = () => {
     }
   };
 
+  const pickupAnimations = (frame) => {
+    if (frame % settings.pickups.animationSpeed === 0) {
+      dispatch(animatePickups());
+    }
+  };
+
   return {
     updatePickups,
+    pickupAnimations,
   };
 };

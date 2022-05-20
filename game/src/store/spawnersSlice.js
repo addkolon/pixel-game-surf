@@ -23,6 +23,7 @@ const initialState = {
   obstacles: [],
   pickups: [],
   speed: 1,
+  boom: [],
 };
 
 export const spawnersSlice = createSlice({
@@ -87,6 +88,8 @@ export const spawnersSlice = createSlice({
       state.pickups.unshift({
         x: x,
         y: y,
+        frameX: 0,
+        frameY: Math.floor(Math.random() * 2),
         size: size,
         frame: 0,
       });
@@ -99,17 +102,65 @@ export const spawnersSlice = createSlice({
         o.x = o.x - state.speed;
       });
     },
+
+    handleHit: (state, action) => {
+      if (action.payload.arr === "obstacles") {
+        state.obstacles = state.obstacles.filter(
+          (o, i) => i !== action.payload.data.index
+        );
+        const newBoom = {
+          x: action.payload.data.obj.x,
+          y: action.payload.data.obj.y,
+          width: 39,
+          height: 41,
+          frameX: 0,
+          frameY: 0,
+        };
+        state.boom.push(newBoom);
+      } else {
+        state.pickups = state.pickups.filter(
+          (o, i) => i !== action.payload.index
+        );
+      }
+    },
+
+    animateBoom: (state, action) => {
+      state.boom = state.boom.filter((o, i) => o.frameX < 9);
+      state.boom = state.boom.map((o, i) => {
+        return {
+          ...o,
+          frameX: o.frameX + 1,
+        };
+      });
+    },
+
+    animatePickups: (state, action) => {
+      state.pickups = state.pickups.map((o, i) => {
+        return {
+          ...o,
+          frameX: o.frameX < 3 ? o.frameX + 1 : 0,
+        };
+      });
+    },
   },
 });
 
-export const { spawnObstacle, moveObstacles, spawnPickup, movePickups } =
-  spawnersSlice.actions;
+export const {
+  spawnObstacle,
+  moveObstacles,
+  spawnPickup,
+  movePickups,
+  animatePickups,
+  handleHit,
+  animateBoom,
+} = spawnersSlice.actions;
 
 // export data
 export const spawners = (state) => {
   return {
     obstacles: state.spawners.obstacles,
     pickups: state.spawners.pickups,
+    boom: state.spawners.boom,
   };
 };
 

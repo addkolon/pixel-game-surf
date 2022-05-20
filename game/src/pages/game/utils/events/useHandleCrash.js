@@ -1,47 +1,53 @@
 /** @format */
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { playerObject } from "../../../../store/playerObjectSlice";
-import { spawners } from "../../../../store/spawnersSlice";
+import {
+  animateBoom,
+  handleHit,
+  spawners,
+} from "../../../../store/spawnersSlice";
 import { checkIfHit } from "../../../../utils/checkIfHit";
-import { obstaclesArray } from "../spawners/useHandleObstacles";
 
-// OLD
-// export const useHandleCrashes = () => {
-//   const handleCrashes = (boat) => {
-//     let hit = false;
-//     obstacleArray.forEach((o) => {
-//       let boatWidth = boat.frameY === 0 || boat.frameY === 2 ? boat.width : 125;
-//       if (
-//         boat.x < o.x + o.size &&
-//         boat.x + boatWidth > o.x &&
-//         boat.y < o.y + o.size &&
-//         boat.y + boat.height > o.y
-//       ) {
-//         o.y = 1000;
-//         console.log("hit");
-//         hit = true;
-//       }
-//     });
-//     return hit;
-//   };
+import boomSprite from "../../../../sprite/Boom.png";
+import { settings } from "../../settings";
 
-//   return {
-//     handleCrashes,
-//   };
-// };
-
-// NEW
 export const useHandleCrash = () => {
-  const { obstacles } = useSelector(spawners);
+  const dispatch = useDispatch();
+  const { obstacles, boom } = useSelector(spawners);
   const { hitbox } = useSelector(playerObject);
 
-  const handleCrash = (edges) => {
+  const boomImage = new Image();
+  boomImage.src = boomSprite;
+
+  const drawBoom = (context) => {
+    for (let i = 0; i < boom.length; i++) {
+      context.drawImage(
+        boomImage,
+        boom[i].frameX * boom[i].width,
+        boom[i].frameY * boom[i].height,
+        boom[i].width,
+        boom[i].height,
+        boom[i].x,
+        boom[i].y,
+        boom[i].width,
+        boom[i].height
+      );
+    }
+  };
+
+  const boomAnimation = (frame) => {
+    if (frame % settings.obstacles.boomAnimationSpeed === 0) {
+      dispatch(animateBoom());
+    }
+  };
+
+  const handleCrash = () => {
     let collision = false;
-    obstacles.forEach((o) => {
+    obstacles.forEach((o, i) => {
       const hit = checkIfHit(hitbox, o.x, o.y, o.size, o.size);
       if (hit) {
-        o.y = 1000;
+        dispatch(handleHit({ arr: "obstacles", data: { obj: o, index: i } }));
         collision = true;
         return;
       }
@@ -51,5 +57,7 @@ export const useHandleCrash = () => {
 
   return {
     handleCrash,
+    drawBoom,
+    boomAnimation,
   };
 };

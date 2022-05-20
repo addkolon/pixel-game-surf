@@ -54,10 +54,55 @@ export const playerObjectSlice = createSlice({
       switch (direction) {
         case "up":
           state.board.y = state.board.y - state.board.speed;
+
+          state.hitbox =
+            state.board.frameY === 0
+              ? [
+                  {
+                    x: state.board.x + 5,
+                    y: state.board.y,
+                  },
+                  {
+                    x: state.board.x + state.board.width - 5,
+                    y: state.board.y + state.board.height - 5,
+                  },
+                ]
+              : [
+                  {
+                    x: state.board.x + 5,
+                    y: state.board.y + state.board.height - 5,
+                  },
+                  {
+                    x: state.board.x + state.board.width - 5,
+                    y: state.board.y + 5,
+                  },
+                ];
           break;
 
         case "down":
           state.board.y = state.board.y + state.board.speed;
+          state.hitbox =
+            state.board.frameY === 0
+              ? [
+                  {
+                    x: state.board.x + 5,
+                    y: state.board.y,
+                  },
+                  {
+                    x: state.board.x + state.board.width - 5,
+                    y: state.board.y + state.board.height - 5,
+                  },
+                ]
+              : [
+                  {
+                    x: state.board.x + 5,
+                    y: state.board.y + state.board.height - 5,
+                  },
+                  {
+                    x: state.board.x + state.board.width - 5,
+                    y: state.board.y + 5,
+                  },
+                ];
           break;
 
         case "right":
