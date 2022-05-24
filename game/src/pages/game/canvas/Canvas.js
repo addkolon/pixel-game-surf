@@ -97,19 +97,19 @@ export const Canvas = () => {
     }
     // ODÖDLIG SLUT
 
-    if (handlePickup()) {
-      dispatch(updateScore());
+    // if (handlePickup()) {
+    //   dispatch(updateScore());
 
-      // SVÅRIGHET ÖKAR PÅ SAVES START
-      if (
-        score % (settings.difficulty.savings.saves * settings.scorePerSave) ===
-          0 &&
-        settings.difficulty.savings.saves !== 0 &&
-        score !== 0
-      ) {
-        dispatch(updateSpawnersSpeed());
-      }
-    }
+    //   // SVÅRIGHET ÖKAR PÅ SAVES START
+    //   if (
+    //     score % (settings.difficulty.savings.saves * settings.scorePerSave) ===
+    //       0 &&
+    //     settings.difficulty.savings.saves !== 0 &&
+    //     score !== 0
+    //   ) {
+    //     dispatch(updateSpawnersSpeed());
+    //   }
+    // }
     // SVÅRIGHET ÖKAR SLUT
 
     // SVÅRIGHET ÖKAR PÅ TID START

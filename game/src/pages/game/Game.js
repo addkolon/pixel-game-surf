@@ -18,6 +18,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { settings } from "./settings";
 import { Scoreboard } from "../../components/Scoreboard";
+import { useHandleGameMusic } from "./utils/sounds/useHandleGameMusic";
 
 export const Game = ({}) => {
   const navigate = useNavigate();
@@ -27,6 +28,8 @@ export const Game = ({}) => {
   const lives = useSelector((state) => state.gameplay.lives);
   const score = useSelector((state) => state.gameplay.score);
 
+  const { play, stop, song, setSong } = useHandleGameMusic();
+
   useEffect(() => {
     if (lives.length < 1) {
       navigate("/");
@@ -35,11 +38,25 @@ export const Game = ({}) => {
   }, [lives]);
 
   useEffect(() => {
+    console.log("game.js");
     dispatch(getTopScores("page=1&limit=10"));
   }, []);
 
+  useEffect(() => {
+    song ? play() : stop();
+    return () => stop();
+  }, [song, play, stop]);
+
   return (
-    <div className="main">
+    <div
+      className="main"
+      onKeyDown={(e) => {
+        console.log(e.code);
+        if (e.code === "KeyM") {
+          setSong(!song);
+        }
+      }}
+    >
       <main className="game-container">
         <div className="screen"></div>
         <div className="top">
@@ -63,11 +80,9 @@ export const Game = ({}) => {
             </h2>
           </div>
         </div>
-        <Canvas
-        // canvasWidth={settings.canvasWidth}
-        // canvasHeight={settings.canvasHeight}
-        />
+        <Canvas />
         <div className="bottom">
+          <div>Key M: {song ? "mute" : "unmute"}</div>
           <h2 className="music">&#9835; EVIG FERIE - ENESTE</h2>
         </div>
       </main>
