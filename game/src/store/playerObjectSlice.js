@@ -203,7 +203,7 @@ export const playerObjectSlice = createSlice({
     },
     animateBoardFoam: (state, action) => {
       const newFrame =
-        state.boardFoam.frameX < 5 ? state.boardFoam.frameX + 1 : 0;
+        state.boardFoam.frameX < 2 ? state.boardFoam.frameX + 1 : 0;
       state.boardFoam.frameX = newFrame;
     },
     animateSurfer: (state, action) => {
