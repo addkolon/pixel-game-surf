@@ -58,3 +58,6 @@ export const useHandlePickups = () => {
     pickupAnimations,
   };
 };
+
+// dont spawn in same place as u died
+// sound: music, wave
