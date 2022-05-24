@@ -38,7 +38,7 @@ export const spawnersSlice = createSlice({
       const x = settings.canvasWidth;
       let y = randomMinMax(
         settings.background.height,
-        settings.canvasHeight - size
+        settings.canvasHeight - size - 30
       );
       while (
         failSpawnPosition(state.pickups, x, y) ||
@@ -73,7 +73,7 @@ export const spawnersSlice = createSlice({
       const x = settings.canvasWidth;
       let y = randomMinMax(
         settings.background.height,
-        settings.canvasHeight - size
+        settings.canvasHeight - size - 30
       );
 
       while (

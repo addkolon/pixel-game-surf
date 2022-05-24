@@ -40,7 +40,7 @@ export const useHandleMovement = () => {
       }
 
       if (keysArray.includes("ArrowDown")) {
-        if (board.y < settings.canvasHeight - board.height) {
+        if (board.y < settings.canvasHeight - board.height - 30) {
           dispatch(move("down"));
         }
       }

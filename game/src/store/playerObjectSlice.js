@@ -154,6 +154,7 @@ export const playerObjectSlice = createSlice({
           state.board.frameY = 0;
 
           state.boardFoam.x = state.board.x + -settings.boardFoam.alignmentX;
+          state.boardFoam.frameY = 0;
 
           state.surfer.frameY = 0;
           state.surfer.x = state.board.x + 134 / 2 - 75 / 2;
