@@ -19,6 +19,7 @@ import { useNavigate } from "react-router-dom";
 import { settings } from "./settings";
 import { Scoreboard } from "../../components/Scoreboard";
 import { useHandleGameMusic } from "./utils/sounds/useHandleGameMusic";
+import { reset } from "../../store/playerObjectSlice";
 
 export const Game = ({}) => {
   const navigate = useNavigate();
@@ -34,13 +35,13 @@ export const Game = ({}) => {
     if (lives.length < 1) {
       navigate("/");
       dispatch(setGameOver(true));
+      dispatch(reset());
     }
   }, [lives]);
 
-  useEffect(() => {
-    console.log("game.js");
-    dispatch(getTopScores("page=1&limit=10"));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getTopScores("page=1&limit=10"));
+  // }, []);
 
   useEffect(() => {
     song ? play() : stop();
@@ -51,7 +52,6 @@ export const Game = ({}) => {
     <div
       className="main"
       onKeyDown={(e) => {
-        console.log(e.code);
         if (e.code === "KeyM") {
           setSong(!song);
         }

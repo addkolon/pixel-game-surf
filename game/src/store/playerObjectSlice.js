@@ -211,10 +211,16 @@ export const playerObjectSlice = createSlice({
       const newFrame = state.surfer.frameX < 5 ? state.surfer.frameX + 1 : 0;
       state.surfer.frameX = newFrame;
     },
+    reset: (state, action) => {
+      state.board = initialState.board;
+      state.boardFoam = initialState.boardFoam;
+      state.surfer = initialState.surfer;
+      state.hitbox = initialState.hitbox;
+    },
   },
 });
 
-export const { move, animateBoard, animateBoardFoam, animateSurfer } =
+export const { move, animateBoard, animateBoardFoam, animateSurfer, reset } =
   playerObjectSlice.actions;
 
 // export states
