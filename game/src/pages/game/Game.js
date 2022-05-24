@@ -34,8 +34,8 @@ export const Game = ({}) => {
   useEffect(() => {
     if (lives.length < 1) {
       navigate("/");
-      dispatch(setGameOver(true));
       dispatch(reset());
+      dispatch(setGameOver(true));
     }
   }, [lives]);
 
