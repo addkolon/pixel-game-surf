@@ -23,7 +23,7 @@ export const settings = {
 
   // boardFoam
   boardFoam: {
-    animationSpeed: 5,
+    animationSpeed: 8,
     alignmentX: 40,
     alignmentY: 17,
   },
@@ -74,7 +74,7 @@ export const settings = {
   },
   // foam
   foam: {
-    animationSpeed: 5,
+    animationSpeed: 10,
   },
   // background
   background: {
