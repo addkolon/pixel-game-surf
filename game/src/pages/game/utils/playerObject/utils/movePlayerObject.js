@@ -23,7 +23,7 @@ export const useHandleMovement = () => {
         };
         const check2 = () => {
           return board.x + settings.surfer.alignmentOnBoardX >
-            foam.width - 30 &&
+            foam.width - 33 &&
             board.x < foam.width - 1 &&
             board.y < settings.background.height + 80
             ? true
@@ -40,7 +40,7 @@ export const useHandleMovement = () => {
       }
 
       if (keysArray.includes("ArrowDown")) {
-        if (board.y < settings.canvasHeight - board.height) {
+        if (board.y < settings.canvasHeight - board.height - 30) {
           dispatch(move("down"));
         }
       }

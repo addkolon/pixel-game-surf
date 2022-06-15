@@ -12,8 +12,6 @@ const initialState = {
       height: settings.background.height,
       speed: settings.background.bg1.speed * settings.background.mainSpeed,
     },
-  ],
-  foregrounds: [
     {
       x: 0,
       x2: 1200,
@@ -22,6 +20,8 @@ const initialState = {
       height: 160,
       speed: settings.foreground.fg1.speed * settings.foreground.mainSpeed,
     },
+  ],
+  foregrounds: [
     {
       x: 0,
       x2: 1600,

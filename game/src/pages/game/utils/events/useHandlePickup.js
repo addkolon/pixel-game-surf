@@ -1,16 +1,20 @@
 /** @format */
 
+import { useDispatch, useSelector } from "react-redux";
+import { playerObject } from "../../../../store/playerObjectSlice";
+import { handleHit, spawners } from "../../../../store/spawnersSlice";
 import { checkIfHit } from "../../../../utils/checkIfHit";
-// import { pickUpsArray } from "../spawners/useHandleSpawners";
-import { pickupsArray } from "../spawners/useHandlePickups";
 
 export const useHandlePickup = () => {
-  const handlePickup = (boatEdges) => {
+  const dispatch = useDispatch();
+  const { hitbox } = useSelector(playerObject);
+  const { pickups } = useSelector(spawners);
+  const handlePickup = () => {
     let collision = false;
-    pickupsArray.forEach((o) => {
-      const hit = checkIfHit(boatEdges, o.x, o.y, o.size, o.size);
+    pickups.forEach((o, i) => {
+      const hit = checkIfHit(hitbox, o.x, o.y, o.size, o.size);
       if (hit) {
-        o.y = 1000;
+        dispatch(handleHit({ index: i, arr: "pickups" }));
         collision = true;
         return;
       }

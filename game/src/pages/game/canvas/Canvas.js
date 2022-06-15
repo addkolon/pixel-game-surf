@@ -30,27 +30,28 @@ import {
 
 // constants
 import { settings } from "../settings";
+import {
+  animateBoom,
+  spawners,
+  updateSpawnersSpeed,
+} from "../../../store/spawnersSlice";
 
 export const Canvas = () => {
   const dispatch = useDispatch();
   const canvasRef = useRef();
 
   const score = useSelector(gameScore);
+  const { boom } = useSelector(spawners);
 
   const [frame, setFrame] = useState(0);
   const [keysArray, setKeysArray] = useState([]);
 
-  const {
-    movePlayerObject,
-    drawPlayerObject,
-    board,
-    playerObjectAnimations,
-    hitbox,
-  } = useHandlePlayerObject();
+  const { movePlayerObject, drawPlayerObject, playerObjectAnimations, hitbox } =
+    useHandlePlayerObject();
   const { drawFoam, foamAnimation } = useHandleFoam();
   const { updateObstacles } = useHandleObstacles();
-  const { updatePickups } = useHandlePickups();
-  const { handleCrash } = useHandleCrash();
+  const { updatePickups, pickupAnimations } = useHandlePickups();
+  const { handleCrash, drawBoom, boomAnimation } = useHandleCrash();
   const { handlePickup } = useHandlePickup();
   const { updateBackground, updateForeground } = useHandleBNFground();
 
@@ -71,12 +72,19 @@ export const Canvas = () => {
 
     updateBackground(context);
 
-    updatePickups(context, frame, board);
+    updatePickups(context, frame);
+    pickupAnimations(frame);
+
     updateObstacles(context, frame);
 
     drawPlayerObject(context);
     playerObjectAnimations(frame);
     movePlayerObject(keysArray);
+
+    if (boom.length > 0) {
+      drawBoom(context);
+      boomAnimation(frame);
+    }
 
     drawFoam(context);
     foamAnimation(frame);
@@ -84,25 +92,29 @@ export const Canvas = () => {
     updateForeground(context);
 
     // ODÖDLIG START
-    // if (handleCrash(hitbox)) {
-    //   dispatch(lostLives());
-    // }
-    // if (handlePickup(hitbox)) {
-    //   dispatch(updateScore());
-    //   if (
-    //     (score % settings.difficulty.savings.saves) * settings.scorePerSave ===
-    //       0 &&
-    //     settings.difficulty.savings.saves !== 0 &&
-    //     score !== 0
-    //   ) {
-    //     dispatch(updateSpeed(1));
-    //   }
-    // }
+    if (handleCrash()) {
+      dispatch(lostLives());
+    }
     // ODÖDLIG SLUT
 
-    // SVÅRIGHET ÖKAR START
+    if (handlePickup()) {
+      dispatch(updateScore());
+
+      // SVÅRIGHET ÖKAR PÅ SAVES START
+      if (
+        score % (settings.difficulty.savings.saves * settings.scorePerSave) ===
+          0 &&
+        settings.difficulty.savings.saves !== 0 &&
+        score !== 0
+      ) {
+        dispatch(updateSpawnersSpeed());
+      }
+    }
+    // SVÅRIGHET ÖKAR SLUT
+
+    // SVÅRIGHET ÖKAR PÅ TID START
     // if (frame % (settings.difficulty.timer.seconds * 65) === 0) {
-    //   dispatch(updateSpeed(1));
+    //   dispatch(updateSpawnersSpeed());
     // }
     // SVÅRIGHET ÖKAR SLUT
   }, [frame]);

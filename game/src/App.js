@@ -37,32 +37,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { status, getTopScores } from "./store/scoresSlice.js";
 
 import "./style/main.scss";
-import { NoAuthMessage } from "./pages/home/components/NoAuthMessage";
-import { NoPage } from "./pages/NoPage";
 
 function App() {
   const dispatch = useDispatch();
   const [gameAuth, setGameAuth] = useState(false);
   const scoresStatus = useSelector(status);
 
-  useEffect(() => {
-    if (scoresStatus === "idle") {
-      // dispatch(getAllScores());
-      // dispatch(getTopScores("page=1&limit=10"));
-    }
-  }, [scoresStatus, dispatch]);
+  // useEffect(() => {
+  //   if (scoresStatus === "idle") {
+  //     dispatch(getAllScores());
+  //     dispatch(getTopScores("page=1&limit=10"));
+  //   }
+  // }, [scoresStatus, dispatch]);
 
   return (
     <div className="App">
       <Router>
         <Routes>
           <Route
-            element={gameAuth ? <Game /> : <NoAuthMessage />}
+            element={gameAuth ? <Game /> : <Home setGameAuth={setGameAuth} />}
             path="/game"
             exact
           />
           <Route element={<Home setGameAuth={setGameAuth} />} path="/" exact />
-          <Route element={<NoPage />} path="*" exact />
+          <Route element={<Home setGameAuth={setGameAuth} />} path="*" exact />
         </Routes>
       </Router>
     </div>

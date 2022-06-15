@@ -44,7 +44,7 @@ export const gameplaySlice = createSlice({
       state.playerEmail = action.payload.email;
     },
     updateSpeed: (state, action) => {
-      state.speed += settings.gameSpeedUpdate;
+      state.gameSpeed += settings.gameSpeedUpdate;
     },
     updateFrame: (state, action) => {
       state.frame++;

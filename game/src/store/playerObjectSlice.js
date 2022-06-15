@@ -23,7 +23,8 @@ const initialState = {
     moving: false,
   },
   surfer: {
-    x: settings.board.startPositionX + settings.surfer.alignmentOnBoardX,
+    // x: settings.board.startPositionX + settings.surfer.alignmentOnBoardX,
+    x: settings.board.startPositionX + 134 / 2 - 75 / 2,
     y: settings.board.startPositionY - settings.surfer.alignmentOnBoardY,
     width: 65,
     height: 75,
@@ -53,17 +54,66 @@ export const playerObjectSlice = createSlice({
       switch (direction) {
         case "up":
           state.board.y = state.board.y - state.board.speed;
+
+          state.hitbox =
+            state.board.frameY === 0
+              ? [
+                  {
+                    x: state.board.x + 5,
+                    y: state.board.y,
+                  },
+                  {
+                    x: state.board.x + state.board.width - 5,
+                    y: state.board.y + state.board.height - 5,
+                  },
+                ]
+              : [
+                  {
+                    x: state.board.x + 5,
+                    y: state.board.y + state.board.height - 5,
+                  },
+                  {
+                    x: state.board.x + state.board.width - 5,
+                    y: state.board.y + 5,
+                  },
+                ];
           break;
 
         case "down":
           state.board.y = state.board.y + state.board.speed;
+          state.hitbox =
+            state.board.frameY === 0
+              ? [
+                  {
+                    x: state.board.x + 5,
+                    y: state.board.y,
+                  },
+                  {
+                    x: state.board.x + state.board.width - 5,
+                    y: state.board.y + state.board.height - 5,
+                  },
+                ]
+              : [
+                  {
+                    x: state.board.x + 5,
+                    y: state.board.y + state.board.height - 5,
+                  },
+                  {
+                    x: state.board.x + state.board.width - 5,
+                    y: state.board.y + 5,
+                  },
+                ];
           break;
 
         case "right":
           state.board.x = state.board.x + state.board.speed;
           state.board.frameY = 0;
-          //   state.boardFoam.frameY = 0;
+          state.boardFoam.frameY = 0;
+
+          state.boardFoam.x = state.board.x + -settings.boardFoam.alignmentX;
+
           state.surfer.frameY = 0;
+          state.surfer.x = state.board.x + 134 / 2 - 75 / 2;
           state.hitbox = [
             {
               x: state.board.x + 5,
@@ -79,8 +129,12 @@ export const playerObjectSlice = createSlice({
         case "left":
           state.board.x = state.board.x - state.board.speed;
           state.board.frameY = 1;
-          //   state.boardFoam.frameY = 1;
+          state.boardFoam.frameY = 1;
+          state.boardFoam.x =
+            state.board.x + state.board.width + -settings.boardFoam.alignmentX;
+
           state.surfer.frameY = 1;
+          state.surfer.x = state.board.x + 134 / 2 - 75 / 2 + 10;
 
           state.hitbox = [
             {
@@ -98,6 +152,12 @@ export const playerObjectSlice = createSlice({
           state.board.y = state.board.y - state.board.speed;
           state.board.x = state.board.x + state.board.speed;
           state.board.frameY = 0;
+
+          state.boardFoam.x = state.board.x + -settings.boardFoam.alignmentX;
+          state.boardFoam.frameY = 0;
+
+          state.surfer.frameY = 0;
+          state.surfer.x = state.board.x + 134 / 2 - 75 / 2;
           state.hitbox = [
             {
               x: state.board.x + 5,
@@ -114,6 +174,12 @@ export const playerObjectSlice = createSlice({
           state.board.y = state.board.y + state.board.speed;
           state.board.x = state.board.x - state.board.speed;
           state.board.frameY = 1;
+
+          state.boardFoam.x =
+            state.board.x + state.board.width + -settings.boardFoam.alignmentX;
+
+          state.surfer.frameY = 1;
+          state.surfer.x = state.board.x + 134 / 2 - 75 / 2 + 10;
           state.hitbox = [
             {
               x: state.board.x + 5,
@@ -138,22 +204,24 @@ export const playerObjectSlice = createSlice({
     },
     animateBoardFoam: (state, action) => {
       const newFrame =
-        state.boardFoam.frameX < 5 ? state.boardFoam.frameX + 1 : 0;
+        state.boardFoam.frameX < 2 ? state.boardFoam.frameX + 1 : 0;
       state.boardFoam.frameX = newFrame;
     },
     animateSurfer: (state, action) => {
       const newFrame = state.surfer.frameX < 5 ? state.surfer.frameX + 1 : 0;
       state.surfer.frameX = newFrame;
     },
+    reset: (state, action) => {
+      state.board = initialState.board;
+      state.boardFoam = initialState.boardFoam;
+      state.surfer = initialState.surfer;
+      state.hitbox = initialState.hitbox;
+    },
   },
 });
 
-export const {
-  move,
-  animateBoard,
-  // animateBoardFoam,
-  animateSurfer,
-} = playerObjectSlice.actions;
+export const { move, animateBoard, animateBoardFoam, animateSurfer, reset } =
+  playerObjectSlice.actions;
 
 // export states
 export const status = (state) => state.playerObject.status;

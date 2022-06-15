@@ -23,7 +23,7 @@ export const settings = {
 
   // boardFoam
   boardFoam: {
-    animationSpeed: 5,
+    animationSpeed: 8,
     alignmentX: 40,
     alignmentY: 17,
   },
@@ -52,6 +52,8 @@ export const settings = {
         left: 2.5,
       },
     },
+    // boom
+    boomAnimationSpeed: 5,
   },
   // drowning people
   pickups: {
@@ -62,6 +64,7 @@ export const settings = {
     // maximumSize: 50,
     minimumSize: 35,
     maximumSize: 35,
+    animationSpeed: 10,
     speedModifier: {
       playerObjectMovement: {
         right: 4,
@@ -71,7 +74,7 @@ export const settings = {
   },
   // foam
   foam: {
-    animationSpeed: 5,
+    animationSpeed: 10,
   },
   // background
   background: {
@@ -115,7 +118,7 @@ export const settings = {
     },
     // on saves
     savings: {
-      saves: 300,
+      saves: 5,
     },
   },
 };

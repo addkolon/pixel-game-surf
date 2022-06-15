@@ -8,6 +8,7 @@ import { settings } from "../../settings";
 
 import {
   animateBoard,
+  animateBoardFoam,
   animateSurfer,
   playerObject,
 } from "../../../../store/playerObjectSlice";
@@ -49,7 +50,7 @@ export const useHandlePlayerObject = () => {
       boardFoam.frameY * boardFoam.height,
       boardFoam.width,
       boardFoam.height,
-      board.x - settings.boardFoam.alignmentX,
+      boardFoam.x,
       board.y - settings.boardFoam.alignmentY,
       boardFoam.width,
       boardFoam.height
@@ -63,7 +64,7 @@ export const useHandlePlayerObject = () => {
       surfer.frameY * surfer.height,
       surfer.width,
       surfer.height,
-      board.x + settings.surfer.alignmentOnBoardX,
+      surfer.x,
       board.y - settings.surfer.alignmentOnBoardY,
       surfer.width,
       surfer.height
@@ -80,9 +81,9 @@ export const useHandlePlayerObject = () => {
     if (frame % settings.board.animationSpeed === 0) {
       dispatch(animateBoard());
     }
-    // if (frame % settings.boardFoam.animationSpeed === 0) {
-    //   dispatch(animateBoardFoam());
-    // }
+    if (frame % settings.boardFoam.animationSpeed === 0) {
+      dispatch(animateBoardFoam());
+    }
     if (frame % settings.surfer.animationSpeed === 0) {
       dispatch(animateSurfer());
     }

@@ -23,11 +23,12 @@ export const useHandleBNFground = () => {
 
   const fgImage = new Image();
   fgImage.src = fgPic;
+  
   const fg1Image = new Image();
   fg1Image.src = fg1Pic;
 
-  const backgroundImages = [bg1Image];
-  const foregroundImages = [fg1Image, fgImage];
+  const backgroundImages = [bg1Image, fg1Image];
+  const foregroundImages = [fgImage];
   // ---
 
   const draw = (context, o) => {
