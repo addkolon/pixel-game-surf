@@ -23,6 +23,7 @@ export const useHandleBNFground = () => {
 
   const fgImage = new Image();
   fgImage.src = fgPic;
+  
   const fg1Image = new Image();
   fg1Image.src = fg1Pic;
 
