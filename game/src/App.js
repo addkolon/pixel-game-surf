@@ -37,22 +37,41 @@ import { useDispatch, useSelector } from "react-redux";
 import { status, getTopScores } from "./store/scoresSlice.js";
 
 import "./style/main.scss";
+import { If } from "./components/utils/If.js";
+import { GameOver } from "./pages/home/GameOver.js";
 
 function App() {
-  const dispatch = useDispatch();
-  const [gameAuth, setGameAuth] = useState(false);
-  const scoresStatus = useSelector(status);
+ const dispatch = useDispatch();
+ const scoresStatus = useSelector(status);
 
-  // useEffect(() => {
-  //   if (scoresStatus === "idle") {
-  //     dispatch(getAllScores());
-  //     dispatch(getTopScores("page=1&limit=10"));
-  //   }
-  // }, [scoresStatus, dispatch]);
+ const [view, setView] = useState("home");
 
-  return (
-    <div className="App">
-      <Router>
+ useEffect(() => {
+  if (scoresStatus === "idle") {
+   //  dispatch(getAllScores());
+   dispatch(getTopScores("page=1&limit=10"));
+  }
+ }, [scoresStatus, dispatch]);
+ console.log("fafa");
+ if (scoresStatus !== "succeeded") {
+  return <div> loading</div>;
+ }
+
+ return (
+  <div className="App">
+   <If condition={view === "home"}>
+    <Home setView={setView} />
+   </If>
+
+   <If condition={view === "game"}>
+    <Game setView={setView} />
+   </If>
+
+   <If condition={view === "gameOver"}>
+    <GameOver setView={setView} />
+   </If>
+
+   {/* <Router>
         <Routes>
           <Route
             element={gameAuth ? <Game /> : <Home setGameAuth={setGameAuth} />}
@@ -62,9 +81,9 @@ function App() {
           <Route element={<Home setGameAuth={setGameAuth} />} path="/" exact />
           <Route element={<Home setGameAuth={setGameAuth} />} path="*" exact />
         </Routes>
-      </Router>
-    </div>
-  );
+      </Router> */}
+  </div>
+ );
 }
 
 export default App;
