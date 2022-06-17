@@ -98,7 +98,7 @@ export const settings = {
     height: 264,
     mainSpeed: 0.1,
     fg: {
-      speed: 8,
+      speed: 50,
     },
     fg1: {
       speed: 8.2,
