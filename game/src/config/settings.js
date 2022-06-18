@@ -6,12 +6,13 @@
 
 export const settings = {
  // general
- lives: 5,
+ lives: 3,
  scorePerSave: 50,
  canvasWidth: 800,
  canvasHeight: 400,
  gameSpeed: 1,
  gameSpeedUpdate: 0.3, // hur mycket speeden ökar när difficulty ökar
+ startGameSpawnDelay: 5, // ~ seconds
 
  // boat
  board: {
@@ -47,6 +48,7 @@ export const settings = {
   minimumSize: 24,
   maximumSize: 48,
   speedModifier: {
+   enabled: false,
    playerObjectMovement: {
     right: 4,
     left: 2.5,
@@ -66,6 +68,7 @@ export const settings = {
   maximumSize: 35,
   animationSpeed: 10,
   speedModifier: {
+   enabled: false,
    playerObjectMovement: {
     right: 4,
     left: 2.5,
@@ -114,10 +117,12 @@ export const settings = {
  difficulty: {
   // on timer
   timer: {
+   enabled: false,
    seconds: 5,
   },
   // on saves
   savings: {
+   enabled: true,
    saves: 1,
   },
  },

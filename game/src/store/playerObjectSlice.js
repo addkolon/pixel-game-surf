@@ -1,6 +1,6 @@
 /** @format */
 import { createSlice } from "@reduxjs/toolkit";
-import { settings } from "../pages/game/settings";
+import { settings } from "../config/settings";
 
 const initialState = {
  board: {

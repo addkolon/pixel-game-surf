@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { data, getTopScores, yourRank } from "../store/scoresSlice";
-import { If } from "./utils/If";
+import { data, getTopScores, yourRank } from "../../../store/scoresSlice";
+import { If } from "../../components/helpers";
 
 export const Scoreboard = ({ home }) => {
  const dispatch = useDispatch();

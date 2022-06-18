@@ -1,36 +1,27 @@
 /** @format */
 
-import {
- lives,
- getLives,
- gameOver,
- setGameOver,
- startGame,
- resetGameplay,
-} from "../../store/gameplaySlice";
+import { gameOver } from "../../store/gameplaySlice";
 
-import { data, getTopScores } from "../../store/scoresSlice";
+import { data } from "../../store/scoresSlice";
 
 import lifeRing from "../../sprite/heart.png";
-import logotype from "../../sprite/logotype.png";
 import { useDispatch, useSelector } from "react-redux";
-import { Canvas } from "./canvas/Canvas.js";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { settings } from "./settings";
-import { Scoreboard } from "../../components/Scoreboard";
 import { useHandleGameMusic } from "./utils/sounds/useHandleGameMusic";
-import { resetPlayer } from "../../store/playerObjectSlice";
-import { resetSpawners } from "../../store/spawnersSlice";
+import { Canvas } from "./components";
+import { useGameoverSound } from "./utils/sounds/useGameoverSound";
+import { useWaveSound } from "./utils/sounds/useWaveSound";
 
 export const Game = ({ setView }) => {
  const dispatch = useDispatch();
- const gameOverState = useSelector(gameOver);
- const scores = useSelector(data);
+
  const lives = useSelector((state) => state.gameplay.lives);
  const score = useSelector((state) => state.gameplay.score);
 
  const { play, stop, song, setSong } = useHandleGameMusic();
+
+ const { playGameoverSound } = useGameoverSound();
+ const { playWaveSound, stopWaveSound } = useWaveSound();
 
  useEffect(() => {
   if (lives.length < 1) {
@@ -38,20 +29,22 @@ export const Game = ({ setView }) => {
    //    dispatch(resetSpawners());
    //    dispatch(resetPlayer());
    //    dispatch(resetGameplay(true));
+   playGameoverSound();
    setView("gameOver");
 
    // dispatch(setGameOver(true));
   }
  }, [lives]);
 
- // useEffect(() => {
- //   dispatch(getTopScores("page=1&limit=10"));
- // }, []);
-
  useEffect(() => {
   song ? play() : stop();
   return () => stop();
  }, [song, play, stop]);
+
+ useEffect(() => {
+  playWaveSound();
+  //   return () => stopWaveSound();
+ }, [playWaveSound]);
 
  return (
   <div

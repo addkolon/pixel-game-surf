@@ -402,13 +402,19 @@ h3 {
 .game-over-top {
  display: flex;
  justify-content: space-between;
+
+ .game-over-topleft,
+ .game-over-topright {
+  width: 50%;
+  padding: 1rem;
+ }
 }
 .game-over-btns {
  display: flex;
  justify-content: center;
  gap: 1rem;
- padding-top: 1rem;
 }
+// ---
 
 .screen {
  width: 100%;

@@ -29,16 +29,15 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import { Home } from "./pages/home/Home.js";
-import { Game } from "./pages/game/Game.js";
-
 import { useDispatch, useSelector } from "react-redux";
 
 import { status, getTopScores } from "./store/scoresSlice.js";
 
 import "./style/main.scss";
-import { If } from "./components/utils/If.js";
-import { GameOver } from "./pages/home/GameOver.js";
+import { If } from "./views/components/helpers";
+import { Home } from "./views/home/Home.js";
+import { Game } from "./views/game/Game.js";
+import { GameOver } from "./views/gameOver/GameOver.js";
 
 function App() {
  const dispatch = useDispatch();
@@ -70,18 +69,6 @@ function App() {
    <If condition={view === "gameOver"}>
     <GameOver setView={setView} />
    </If>
-
-   {/* <Router>
-        <Routes>
-          <Route
-            element={gameAuth ? <Game /> : <Home setGameAuth={setGameAuth} />}
-            path="/game"
-            exact
-          />
-          <Route element={<Home setGameAuth={setGameAuth} />} path="/" exact />
-          <Route element={<Home setGameAuth={setGameAuth} />} path="*" exact />
-        </Routes>
-      </Router> */}
   </div>
  );
 }

@@ -24,7 +24,6 @@ export const Home = ({ setView }) => {
      >
       Start Game
      </button>
-     {/* <Rules /> */}
     </div>
    </div>
   </main>
