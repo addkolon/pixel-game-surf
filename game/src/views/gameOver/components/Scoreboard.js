@@ -1,15 +1,13 @@
 /** @format */
 
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { data, getTopScores, yourRank } from "../../../store/scoresSlice";
-import { If } from "../../components/helpers";
+import { useSelector } from "react-redux";
+import { data } from "../../../store/scoresSlice";
 
-export const Scoreboard = ({ home }) => {
- const dispatch = useDispatch();
+export const Scoreboard = () => {
  const scores = useSelector(data);
- const rank = useSelector(yourRank);
  const [fillOut, setFillOut] = useState([]);
+
  useEffect(() => {
   const arr = [];
   const amount = 10 - scores.scores.length;
@@ -20,7 +18,7 @@ export const Scoreboard = ({ home }) => {
  }, [scores]);
 
  return (
-  <div class="scoreboard">
+  <div className="scoreboard">
    <h3>Scoreboard</h3>
    <ul id="scoreB">
     {scores.scores.map((d, i) => {
@@ -34,32 +32,30 @@ export const Scoreboard = ({ home }) => {
      return d;
     })}
    </ul>
-   <If condition={home}>
-    <If condition={scores.page > 1}>
-     <span
-      onClick={() => {
-       dispatch(getTopScores(`page=${scores.page - 1}&limit=10`));
-      }}
-     >
-      prev
-     </span>
-    </If>{" "}
-    <If condition={scores.page < scores.totalPages}>
-     <span
-      onClick={() => {
-       dispatch(getTopScores(`page=${scores.page + 1}&limit=10`));
-      }}
-     >
-      next
-     </span>
-    </If>
-    <If condition={rank.rank}>
-     <div className="your-rank">
-      {rank.rank}. {rank.data.name}
-      <span> {rank.data.score}</span>
-     </div>
-    </If>
-   </If>
+   {/* <If condition={scores.page > 1}>
+    <span
+     onClick={() => {
+      dispatch(getTopScores(`page=${scores.page - 1}&limit=10`));
+     }}
+    >
+     prev
+    </span>
+   </If>{" "}
+   <If condition={scores.page < scores.totalPages}>
+    <span
+     onClick={() => {
+      dispatch(getTopScores(`page=${scores.page + 1}&limit=10`));
+     }}
+    >
+     next
+    </span>
+   </If> */}
+   {/* <If condition={rank.rank}>
+    <div className="your-rank">
+     {rank.rank}. {rank.data.name}
+     <span> {rank.data.score}</span>
+    </div>
+   </If> */}
   </div>
  );
 };

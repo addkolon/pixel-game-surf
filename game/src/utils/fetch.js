@@ -1,5 +1,7 @@
 /** @format */
 
+import { headers } from "../constants";
+
 export const api_address = "http://localhost:5500";
 
 // const authLevels = {
@@ -30,42 +32,46 @@ export const api_address = "http://localhost:5500";
 
 // get
 export const GET = async (endpoint) => {
-  return await fetch(api_address + endpoint, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then((res) => res.json());
+ return await fetch(api_address + endpoint, {
+  method: "GET",
+  // headers: {
+  //  "Content-Type": "application/json",
+  // },
+  headers: headers.GET,
+ }).then((res) => res.json());
 };
 
 export const PROTECTED_GET = async (endpoint, authLevel) => {
-  return await fetch(api_address + endpoint, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      //   authorization: getAuthLevel(authLevel),
-    },
-  }).then((res) => res.json());
+ return await fetch(api_address + endpoint, {
+  method: "GET",
+  // headers: {
+  //   "Content-Type": "application/json",
+  //   //   authorization: getAuthLevel(authLevel),
+  // },
+  headers: headers.PROTECTED.GET,
+ }).then((res) => res.json());
 };
 
 // post
 export const POST = async (endpoint, data) => {
-  return await fetch(api_address + endpoint, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  }).then((res) => res.json());
+ return await fetch(api_address + endpoint, {
+  method: "POST",
+  // headers: {
+  //  "Content-Type": "application/json",
+  // },
+  headers: headers.POST,
+  body: JSON.stringify(data),
+ }).then((res) => res.json());
 };
 
 export const PROTECTED_POST = async (endpoint, data, authLevel) => {
-  return await fetch(api_address + endpoint, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      //   authorization: getAuthLevel(authLevel),
-    },
-    body: JSON.stringify(data),
-  }).then((res) => res.json());
+ return await fetch(api_address + endpoint, {
+  method: "POST",
+  // headers: {
+  //  "Content-Type": "application/json",
+  //  //   authorization: getAuthLevel(authLevel),
+  // },
+  headers: headers.PROTECTED.POST,
+  body: JSON.stringify(data),
+ }).then((res) => res.json());
 };

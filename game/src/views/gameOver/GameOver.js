@@ -4,14 +4,21 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { gameScore, resetGameplay } from "../../store/gameplaySlice";
 import { resetPlayer } from "../../store/playerObjectSlice";
-import { createScore, resetYourRank } from "../../store/scoresSlice";
+import {
+ createScore,
+ getRank,
+ status,
+ yourRank,
+} from "../../store/scoresSlice";
 import { resetSpawners } from "../../store/spawnersSlice";
-import { useGameoverSound } from "../game/utils/sounds/useGameoverSound";
+import { If } from "../components/helpers";
 import { Scoreboard } from "./components/Scoreboard";
 
 export const GameOver = ({ setView }) => {
  const dispatch = useDispatch();
  const score = useSelector(gameScore);
+ const scoresStatus = useSelector(status);
+ const rank = useSelector(yourRank);
 
  const [inputsState, setInputsState] = useState({
   exists: {
@@ -34,6 +41,9 @@ export const GameOver = ({ setView }) => {
 
  const handleSubmit = (bool) => {
   if (bool) {
+   if (!checkAuth()) {
+    return;
+   }
    dispatch(createScore(inputsState.content));
   }
   dispatch(resetSpawners());
@@ -42,9 +52,13 @@ export const GameOver = ({ setView }) => {
   setView("home");
  };
 
- //  useEffect(() => {
- //      dispatch(resetYourRank());
- //  }, []);
+ useEffect(() => {
+  dispatch(getRank(score));
+ }, []);
+
+ if (scoresStatus !== "succeeded") {
+  return <div> loading</div>;
+ }
 
  return (
   <main className="game-container">
@@ -53,6 +67,9 @@ export const GameOver = ({ setView }) => {
      <h2>GAME OVER</h2>
      <h5>Thanks for playing!</h5>
      <h3>Score: {score}</h3>
+     <If condition={rank}>
+      <div>ur rank: {rank}</div>
+     </If>
      <Form setInputsState={setInputsState} />
     </section>
     <section className="game-over-topright">

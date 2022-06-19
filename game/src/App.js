@@ -26,36 +26,17 @@
 
 // skräp går ej att ta under foam atm.
 
-import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 
-import { useDispatch, useSelector } from "react-redux";
-
-import { status, getTopScores } from "./store/scoresSlice.js";
-
-import "./style/main.scss";
 import { If } from "./views/components/helpers";
 import { Home } from "./views/home/Home.js";
 import { Game } from "./views/game/Game.js";
 import { GameOver } from "./views/gameOver/GameOver.js";
 
+import "./style/main.scss";
+
 function App() {
- const dispatch = useDispatch();
- const scoresStatus = useSelector(status);
-
  const [view, setView] = useState("home");
-
- useEffect(() => {
-  if (scoresStatus === "idle") {
-   //  dispatch(getAllScores());
-   dispatch(getTopScores("page=1&limit=10"));
-  }
- }, [scoresStatus, dispatch]);
- console.log("fafa");
- if (scoresStatus !== "succeeded") {
-  return <div> loading</div>;
- }
-
  return (
   <div className="App">
    <If condition={view === "home"}>

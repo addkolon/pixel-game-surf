@@ -6,7 +6,7 @@
 
 export const settings = {
  // general
- lives: 3,
+ lives: 1,
  scorePerSave: 50,
  canvasWidth: 800,
  canvasHeight: 400,
@@ -123,7 +123,25 @@ export const settings = {
   // on saves
   savings: {
    enabled: true,
-   saves: 1,
+   saves: 3,
+  },
+ },
+
+ sound: {
+  music: {
+   volume: 0.1,
+  },
+  wave: {
+   volume: 0.7,
+  },
+  crash: {
+   volume: 0.7,
+  },
+  pickup: {
+   volume: 0.2,
+  },
+  gameover: {
+   volume: 0.7,
   },
  },
 };

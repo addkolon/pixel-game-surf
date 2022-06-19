@@ -7,7 +7,7 @@ import { data } from "../../store/scoresSlice";
 import lifeRing from "../../sprite/heart.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { useHandleGameMusic } from "./utils/sounds/useHandleGameMusic";
+import { useGameMusic } from "./utils/sounds/useGameMusic";
 import { Canvas } from "./components";
 import { useGameoverSound } from "./utils/sounds/useGameoverSound";
 import { useWaveSound } from "./utils/sounds/useWaveSound";
@@ -17,8 +17,10 @@ export const Game = ({ setView }) => {
 
  const lives = useSelector((state) => state.gameplay.lives);
  const score = useSelector((state) => state.gameplay.score);
+ const scoreToBeat = useSelector(data).scores[0];
 
- const { play, stop, song, setSong } = useHandleGameMusic();
+ const { playGameMusic, stopGameMusic, gameMusicPlaying, setGameMusicPlaying } =
+  useGameMusic();
 
  const { playGameoverSound } = useGameoverSound();
  const { playWaveSound, stopWaveSound } = useWaveSound();
@@ -37,13 +39,19 @@ export const Game = ({ setView }) => {
  }, [lives]);
 
  useEffect(() => {
-  song ? play() : stop();
-  return () => stop();
- }, [song, play, stop]);
+  gameMusicPlaying ? playGameMusic() : stopGameMusic();
+  return () => stopGameMusic();
+ }, [gameMusicPlaying, playGameMusic, stopGameMusic]);
 
  useEffect(() => {
   playWaveSound();
-  //   return () => stopWaveSound();
+  const int = setInterval(() => {
+   playWaveSound();
+  }, 10000);
+  return () => {
+   clearInterval(int);
+   stopWaveSound();
+  };
  }, [playWaveSound]);
 
  return (
@@ -51,7 +59,7 @@ export const Game = ({ setView }) => {
    className="main"
    onKeyDown={(e) => {
     if (e.code === "KeyM") {
-     setSong(!song);
+     setGameMusicPlaying(!gameMusicPlaying);
     }
    }}
   >
@@ -60,9 +68,9 @@ export const Game = ({ setView }) => {
     <div className="top">
      <div id="lives">
       <ul id="livesUl">
-       {lives.map((l) => {
+       {lives.map((l, i) => {
         return (
-         <li>
+         <li key={i}>
           <img src={lifeRing} width="35px" />
          </li>
         );
@@ -71,7 +79,7 @@ export const Game = ({ setView }) => {
      </div>
      <div className="in-game-score">
       <h2>
-       HIGH SCORE: <span id="high-scoure">12500</span>
+       HIGH SCORE: <span id="high-scoure">{scoreToBeat.score}</span>
       </h2>
       <h2>
        YOUR SCORE: <span id="saves">{score}</span>
@@ -80,14 +88,10 @@ export const Game = ({ setView }) => {
     </div>
     <Canvas />
     <div className="bottom">
-     <div>Key M: {song ? "mute" : "unmute"}</div>
+     <div>Key M: {gameMusicPlaying ? "mute" : "unmute"}</div>
      <h2 className="music">&#9835; EVIG FERIE - ENESTE</h2>
     </div>
    </main>
-   {/* <aside>
-    <img class="logo" src={logotype} />
-    <Scoreboard scores={scores.scores} />
-   </aside> */}
   </div>
  );
 };

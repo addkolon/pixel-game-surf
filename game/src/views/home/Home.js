@@ -1,10 +1,20 @@
 /** @format */
 
-import { useSelector } from "react-redux";
-import { data } from "../../store/scoresSlice";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { data, getTopScores, status } from "../../store/scoresSlice";
 
 export const Home = ({ setView }) => {
+ const dispatch = useDispatch();
+ const scoresStatus = useSelector(status);
  const scoreToBeat = useSelector(data).scores[0];
+
+ useEffect(() => {
+  dispatch(getTopScores("page=1&limit=10"));
+ }, []);
+ if (scoresStatus !== "succeeded") {
+  return <div> loading</div>;
+ }
 
  return (
   <main>
