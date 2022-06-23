@@ -88,7 +88,7 @@ export const Game = ({ setView }) => {
     </div>
     <Canvas />
     <div className="bottom">
-     <div>Key M: {gameMusicPlaying ? "mute" : "unmute"}</div>
+     <h2 className="music-mute">PRESS KEY M TO: {gameMusicPlaying ? "MUTE MUSIC" : "UNMUTE MUSIC"}</h2>
      <h2 className="music">&#9835; EVIG FERIE - ENESTE</h2>
     </div>
    </main>
