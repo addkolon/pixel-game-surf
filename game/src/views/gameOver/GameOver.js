@@ -44,7 +44,7 @@ export const GameOver = ({ setView }) => {
    if (!checkAuth()) {
     return;
    }
-   dispatch(createScore(inputsState.content));
+   //    dispatch(createScore(inputsState.content));
   }
   dispatch(resetSpawners());
   dispatch(resetPlayer());
@@ -52,40 +52,37 @@ export const GameOver = ({ setView }) => {
   setView("home");
  };
 
-//  useEffect(() => {
-//   dispatch(getRank(score));
-//  }, []);
+ //  useEffect(() => {
+ //   dispatch(getRank(score));
+ //  }, []);
 
- if (scoresStatus !== "succeeded") {
-  return <div> loading</div>;
- }
+ //  if (scoresStatus !== "succeeded") {
+ //   return <div> loading</div>;
+ //  }
 
  return (
   <main className="game-container">
    <section className="game-over-top">
-   <h1>GAME OVER</h1>
-   <h3>Your Score: {score}</h3>
-   <div className="game-over-cols">
-    <section className="game-over-topleft">
-     
-     {/* <h5>Thanks for playing!</h5> */}
-     
-     <If condition={rank}>
-      <div>ur rank: {rank}</div>
-     </If>
-     <Form setInputsState={setInputsState} />
-     <div className="game-over-btns">
-    <button onClick={() => handleSubmit(true)}>Submit score</button>
-    <button onClick={() => handleSubmit(false)}>Skip</button>
-   </div>
-    </section>
-    <section className="game-over-topright">
-     <Scoreboard />
-    </section>
+    <h1>GAME OVER</h1>
+    <h3>Your Score: {score}</h3>
+    <div className="game-over-cols">
+     <section className="game-over-topleft">
+      {/* <h5>Thanks for playing!</h5> */}
+
+      <If condition={rank}>
+       <div>ur rank: {rank}</div>
+      </If>
+      <Form setInputsState={setInputsState} />
+      <div className="game-over-btns">
+       <button onClick={() => handleSubmit(true)}>Submit score</button>
+       <button onClick={() => handleSubmit(false)}>Skip</button>
+      </div>
+     </section>
+     <section className="game-over-topright">
+      <Scoreboard />
+     </section>
     </div>
    </section>
-
-   
   </main>
  );
 };
