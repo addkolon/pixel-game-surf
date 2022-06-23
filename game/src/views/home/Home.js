@@ -47,6 +47,7 @@ export const Home = ({ setView }) => {
        setView("game");
       }}
       id="startBtn"
+      className="start-button"
      >
       Start Game
      </button>
