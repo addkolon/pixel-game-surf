@@ -1,40 +1,30 @@
 /** @format */
 
-import { gameOver } from "../../store/gameplaySlice";
-
 import { data } from "../../store/scoresSlice";
 
 import lifeRing from "../../sprite/heart.png";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useGameMusic } from "./utils/sounds/useGameMusic";
 import { Canvas } from "./components";
 import { useGameoverSound } from "./utils/sounds/useGameoverSound";
 import { useWaveSound } from "./utils/sounds/useWaveSound";
+import { gameScore, lives as sliceLives } from "../../store/gameplaySlice";
 
 export const Game = ({ setView }) => {
- const dispatch = useDispatch();
-
- const lives = useSelector((state) => state.gameplay.lives);
- const score = useSelector((state) => state.gameplay.score);
+ const lives = useSelector(sliceLives);
+ const score = useSelector(gameScore);
  const scoreToBeat = useSelector(data).scores[0];
 
  const { playGameMusic, stopGameMusic, gameMusicPlaying, setGameMusicPlaying } =
   useGameMusic();
-
  const { playGameoverSound } = useGameoverSound();
  const { playWaveSound, stopWaveSound } = useWaveSound();
 
  useEffect(() => {
   if (lives.length < 1) {
-   //    navigate("/");
-   //    dispatch(resetSpawners());
-   //    dispatch(resetPlayer());
-   //    dispatch(resetGameplay(true));
    playGameoverSound();
    setView("gameOver");
-
-   // dispatch(setGameOver(true));
   }
  }, [lives]);
 

@@ -3,6 +3,7 @@
 import { headers } from "../constants";
 
 export const api_address = "http://localhost:5500";
+// export const api_address = "https://game.nordicsurfersmag.se";
 
 // const authLevels = {
 //   pleb: 1,
