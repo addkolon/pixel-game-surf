@@ -52,9 +52,9 @@ export const GameOver = ({ setView }) => {
   setView("home");
  };
 
- useEffect(() => {
-  dispatch(getRank(score));
- }, []);
+//  useEffect(() => {
+//   dispatch(getRank(score));
+//  }, []);
 
  if (scoresStatus !== "succeeded") {
   return <div> loading</div>;

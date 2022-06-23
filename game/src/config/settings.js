@@ -6,7 +6,7 @@
 
 export const settings = {
  // general
- lives: 1,
+ lives: 5,
  scorePerSave: 50,
  canvasWidth: 800,
  canvasHeight: 400,
@@ -101,7 +101,7 @@ export const settings = {
   height: 264,
   mainSpeed: 0.1,
   fg: {
-   speed: 10,
+   speed: 50,
   },
   fg1: {
    speed: 8.2,
