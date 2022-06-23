@@ -44,7 +44,7 @@ export const GameOver = ({ setView }) => {
    if (!checkAuth()) {
     return;
    }
-   dispatch(createScore(inputsState.content));
+   //    dispatch(createScore(inputsState.content));
   }
   dispatch(resetSpawners());
   dispatch(resetPlayer());
@@ -52,13 +52,13 @@ export const GameOver = ({ setView }) => {
   setView("home");
  };
 
-//  useEffect(() => {
-//   dispatch(getRank(score));
-//  }, []);
+ //  useEffect(() => {
+ //   dispatch(getRank(score));
+ //  }, []);
 
- if (scoresStatus !== "succeeded") {
-  return <div> loading</div>;
- }
+ //  if (scoresStatus !== "succeeded") {
+ //   return <div> loading</div>;
+ //  }
 
  return (
   <main className="game-container">
