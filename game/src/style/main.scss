@@ -289,10 +289,17 @@ input:visited {
   color: #fff;
   padding: 0.5rem;
   border: none;
+  font-size: 0.75rem;
   background-color: white;
   box-shadow: -5px 0 0 0 #acacac, 5px 0 0 0 #acacac, 0 -5px 0 0 #acacac,
     0 5px 0 0 #acacac;
 }
+
+input[type=text] {
+  width: 100%;
+}
+
+
 
 .petter {
   position: absolute;
@@ -304,14 +311,20 @@ input:visited {
 
 button {
   color: white;
-  padding: 0.5rem;
+  padding: 0.2rem;
   background-color: #222;
   border: none;
   box-shadow: -5px 0 0 0 #222, 5px 0 0 0 #222, 0 -5px 0 0 #222, 0 5px 0 0 #222;
   cursor: pointer;
 
+  &.start-button {
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+  }
+
   //  olof
   margin-top: 30px;
+
 }
 
 #rules {
@@ -382,11 +395,12 @@ aside {
 }
 
 .scoreboard {
+  margin-left: 2rem;
   text-align: left;
   width: 100%;
-  padding: 1rem;
-  box-shadow: -15px 0 0 0 white, 15px 0 0 0 white, 0 -15px 0 0 white,
-    0 15px 0 0 white;
+  // padding: 0.5rem;
+  // box-shadow: -15px 0 0 0 white, 15px 0 0 0 white, 0 -15px 0 0 white,
+  //   0 15px 0 0 white;
   //  display: none;
 }
 
@@ -399,6 +413,15 @@ aside {
 // }
 #scoreB {
   list-style: none;
+  
+  li {
+    font-size: 0.75rem;
+    padding-bottom: .2rem;
+
+    span {
+      font-size: 0.75rem;
+    }
+  }
 }
 
 .logo {
@@ -454,19 +477,34 @@ h3 {
 // olof
 .game-over-top {
   display: flex;
+  text-align: center;
+  flex-direction: column;
   justify-content: space-between;
+
+  h1 {
+    margin: 1rem 0 .5rem;
+  }
+
+  .game-over-cols {
+    display: flex;
+  }
 
   .game-over-topleft,
   .game-over-topright {
     width: 50%;
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
   }
 }
 
 .game-over-btns {
   display: flex;
-  justify-content: center;
-  gap: 1rem;
+  flex-direction: column;
+  button {
+    display: inline-block;
+  }
 }
 
 // ---
