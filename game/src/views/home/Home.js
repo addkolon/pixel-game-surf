@@ -21,7 +21,7 @@ export const Home = ({ setView }) => {
  const dispatch = useDispatch();
  const scoresStatus = useSelector(status);
  //  const scoreToBeat = useSelector(data).scores[0];
- const [active, setActive] = useState(false);
+ const [howToPlayState, setHowToPlayState] = useState(false);
 
  //  useEffect(() => {
  //   dispatch(getTopScores("page=1&limit=10"));
@@ -52,21 +52,22 @@ export const Home = ({ setView }) => {
       Start Game
      </button>
      <div className="how-to-play">
-      <span className="modal-link" onClick={() => setActive(!active)}>
+      <span className="modal-link" onClick={() => setHowToPlayState(true)}>
        HOW TO PLAY
       </span>
      </div>
      <div className="game-dev">Created by: Olof Aksberg & Mattias Lager</div>
-     <div id="modal-how-to-play" className={`${active ? "active" : ""}`}>
+
+     <div id="modal-how-to-play" className={howToPlayState ? "active" : ""}>
       <h2>HOW TO PLAY</h2>
       <p>
        The aim of the game is to surf your way to clean the ocean from all the
        trash all the brash people been throwing into it. But beware of the
        stones, they will brake your board.
       </p>
-      <img src={arrowKeys} alt="" />
+      <img src={arrowKeys} alt="arrow keys" />
       <p>Use arrow keys to stear the surfer</p>
-      <span className="modal-close" onClick={() => setActive(false)}>
+      <span className="modal-close" onClick={() => setHowToPlayState(false)}>
        CLOSE
       </span>
      </div>
