@@ -26,45 +26,32 @@
 
 // skräp går ej att ta under foam atm.
 
-import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 
-import { Home } from "./pages/home/Home.js";
-import { Game } from "./pages/game/Game.js";
-
-import { useDispatch, useSelector } from "react-redux";
-
-import { status, getTopScores } from "./store/scoresSlice.js";
+import { If } from "./views/components/helpers";
+import { Home } from "./views/home/Home.js";
+import { Game } from "./views/game/Game.js";
+import { GameOver } from "./views/gameOver/GameOver.js";
 
 import "./style/main.scss";
 
 function App() {
-  const dispatch = useDispatch();
-  const [gameAuth, setGameAuth] = useState(false);
-  const scoresStatus = useSelector(status);
+ const [view, setView] = useState("home");
+ return (
+  <div className="App">
+   <If condition={view === "home"}>
+    <Home setView={setView} />
+   </If>
 
-  // useEffect(() => {
-  //   if (scoresStatus === "idle") {
-  //     dispatch(getAllScores());
-  //     dispatch(getTopScores("page=1&limit=10"));
-  //   }
-  // }, [scoresStatus, dispatch]);
+   <If condition={view === "game"}>
+    <Game setView={setView} />
+   </If>
 
-  return (
-    <div className="App">
-      <Router>
-        <Routes>
-          <Route
-            element={gameAuth ? <Game /> : <Home setGameAuth={setGameAuth} />}
-            path="/game"
-            exact
-          />
-          <Route element={<Home setGameAuth={setGameAuth} />} path="/" exact />
-          <Route element={<Home setGameAuth={setGameAuth} />} path="*" exact />
-        </Routes>
-      </Router>
-    </div>
-  );
+   <If condition={view === "gameOver"}>
+    <GameOver setView={setView} />
+   </If>
+  </div>
+ );
 }
 
 export default App;
