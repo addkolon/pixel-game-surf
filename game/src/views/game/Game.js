@@ -3,7 +3,7 @@
 import { data } from "../../store/scoresSlice";
 
 import lifeRing from "../../sprite/heart.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useGameMusic } from "./utils/sounds/useGameMusic";
 import { Canvas } from "./components";
@@ -11,7 +11,11 @@ import { useGameoverSound } from "./utils/sounds/useGameoverSound";
 import { useWaveSound } from "./utils/sounds/useWaveSound";
 import { gameScore, lives as sliceLives } from "../../store/gameplaySlice";
 
+import { setMusicVolume, setMuteAll, muteAll } from "../../store/soundSlice";
+
 export const Game = ({ setView }) => {
+ const dispatch = useDispatch();
+ const muteSound = useSelector(muteAll);
  const lives = useSelector(sliceLives);
  const score = useSelector(gameScore);
  const scoreToBeat = useSelector(data)[0];
@@ -28,10 +32,10 @@ export const Game = ({ setView }) => {
   }
  }, [lives]);
 
- useEffect(() => {
-  gameMusicPlaying ? playGameMusic() : stopGameMusic();
-  return () => stopGameMusic();
- }, [gameMusicPlaying, playGameMusic, stopGameMusic]);
+ //  useEffect(() => {
+ //   gameMusicPlaying ? playGameMusic() : stopGameMusic();
+ //   return () => stopGameMusic();
+ //  }, [gameMusicPlaying, playGameMusic, stopGameMusic]);
 
  useEffect(() => {
   playWaveSound();
@@ -49,7 +53,8 @@ export const Game = ({ setView }) => {
    className="main"
    onKeyDown={(e) => {
     if (e.code === "KeyM") {
-     setGameMusicPlaying(!gameMusicPlaying);
+     //  setGameMusicPlaying(!gameMusicPlaying);
+     dispatch(setMusicVolume(0.1));
     }
    }}
   >

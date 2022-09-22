@@ -6,11 +6,12 @@ import useSound from "use-sound";
 import { settings } from "../../../../config/settings";
 
 export const usePickupSound = () => {
- const [playPickupSound] = useSound(pickupSoundFile, {
+ const [playPickupSound, { stop }] = useSound(pickupSoundFile, {
   volume: settings.sound.pickup.volume,
  });
 
  return {
   playPickupSound,
+  stopPickupSound: stop,
  };
 };
