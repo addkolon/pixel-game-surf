@@ -14,7 +14,7 @@ import { gameScore, lives as sliceLives } from "../../store/gameplaySlice";
 export const Game = ({ setView }) => {
  const lives = useSelector(sliceLives);
  const score = useSelector(gameScore);
- //  const scoreToBeat = useSelector(data).scores[0];
+ const scoreToBeat = useSelector(data)[0];
 
  const { playGameMusic, stopGameMusic, gameMusicPlaying, setGameMusicPlaying } =
   useGameMusic();
@@ -69,8 +69,7 @@ export const Game = ({ setView }) => {
      </div>
      <div className="in-game-score">
       <h2>
-       {/* HIGH SCORE: <span id="high-scoure">{scoreToBeat.score}</span> */}
-       HIGH SCORE: <span id="high-scoure">69</span>
+       HIGH SCORE: <span id="high-scoure">{scoreToBeat.score}</span>
       </h2>
       <h2>
        YOUR SCORE: <span id="saves">{score}</span>
@@ -79,7 +78,9 @@ export const Game = ({ setView }) => {
     </div>
     <Canvas />
     <div className="bottom">
-     <h2 className="music-mute">PRESS KEY M TO: {gameMusicPlaying ? "MUTE MUSIC" : "UNMUTE MUSIC"}</h2>
+     <h2 className="music-mute">
+      PRESS KEY M TO: {gameMusicPlaying ? "MUTE MUSIC" : "UNMUTE MUSIC"}
+     </h2>
      <h2 className="music">&#9835; EVIG FERIE - ENESTE</h2>
     </div>
    </main>

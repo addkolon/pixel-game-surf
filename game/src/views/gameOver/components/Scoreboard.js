@@ -10,7 +10,7 @@ export const Scoreboard = () => {
 
  useEffect(() => {
   const arr = [];
-  const amount = 10 - scores.scores.length;
+  const amount = 10 - scores.length;
   for (let i = 0; i < amount; i++) {
    arr.push(<li>...</li>);
   }
@@ -21,10 +21,10 @@ export const Scoreboard = () => {
   <div className="scoreboard">
    <h3>Scoreboard</h3>
    <ul id="scoreB">
-    {scores.scores.map((d, i) => {
+    {scores.map((d, i) => {
      return (
       <li>
-       {i + 1 + (scores.page - 1) * 10}. {d.name} <span>{d.score}</span>
+       {i + 1}. {d.name} <span>{d.score}</span>
       </li>
      );
     })}
@@ -32,30 +32,6 @@ export const Scoreboard = () => {
      return d;
     })}
    </ul>
-   {/* <If condition={scores.page > 1}>
-    <span
-     onClick={() => {
-      dispatch(getTopScores(`page=${scores.page - 1}&limit=10`));
-     }}
-    >
-     prev
-    </span>
-   </If>{" "}
-   <If condition={scores.page < scores.totalPages}>
-    <span
-     onClick={() => {
-      dispatch(getTopScores(`page=${scores.page + 1}&limit=10`));
-     }}
-    >
-     next
-    </span>
-   </If> */}
-   {/* <If condition={rank.rank}>
-    <div className="your-rank">
-     {rank.rank}. {rank.data.name}
-     <span> {rank.data.score}</span>
-    </div>
-   </If> */}
   </div>
  );
 };

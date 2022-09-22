@@ -72,7 +72,11 @@ export const PROTECTED_POST = async (endpoint, data, authLevel) => {
   //  "Content-Type": "application/json",
   //  //   authorization: getAuthLevel(authLevel),
   // },
-  headers: headers.PROTECTED.POST,
-  body: JSON.stringify(data),
+  //   headers: headers.PROTECTED.POST,
+  headers: {
+   auth: "jafan",
+  },
+  //   body: JSON.stringify(data),
+  body: data,
  }).then((res) => res.json());
 };
