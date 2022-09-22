@@ -88,473 +88,566 @@
 @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
 
 * {
- margin: 0;
- padding: 0;
- box-sizing: border-box;
- font-family: "VT323", monospace;
- color: white;
- font-size: 32px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "VT323", monospace;
+  color: white;
+  font-size: 32px;
 
- text-shadow: 0.06rem 0 0.06rem #ea36af, -0.125rem 0 0.06rem #75fa69;
- letter-spacing: 0.125em;
- animation-duration: 0.01s;
- animation-name: textflicker;
- animation-iteration-count: infinite;
- animation-direction: alternate;
+  text-shadow: 0.06rem 0 0.06rem #ea36af, -0.125rem 0 0.06rem #75fa69;
+  letter-spacing: 0.125em;
+  animation-duration: 0.01s;
+  animation-name: textflicker;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 @keyframes textflicker {
- from {
-  text-shadow: 1px 0 0 #ea36af, -2px 0 0 #75fa69;
- }
- to {
-  text-shadow: 2px 0.5px 2px #ea36af, -1px -0.5px 2px #75fa69;
- }
+  from {
+    text-shadow: 1px 0 0 #ea36af, -2px 0 0 #75fa69;
+  }
+
+  to {
+    text-shadow: 2px 0.5px 2px #ea36af, -1px -0.5px 2px #75fa69;
+  }
 }
 
 body {
- background: url("../sprite/bg-machine.png"),
-  linear-gradient(
-   90deg,
-   rgba(187, 78, 153, 1) 0%,
-   rgba(215, 123, 186, 1) 10%,
-   rgba(215, 123, 186, 1) 90%,
-   rgba(187, 78, 153, 1) 100%
-  );
+  background: url("../sprite/bg-machine.png"),
+    linear-gradient(90deg,
+      rgba(187, 78, 153, 1) 0%,
+      rgba(215, 123, 186, 1) 10%,
+      rgba(215, 123, 186, 1) 90%,
+      rgba(187, 78, 153, 1) 100%);
 
- background-position: top center;
- background-repeat: no-repeat;
- overflow: hidden;
- height: 100vh;
+  background-position: top center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  height: 100vh;
 }
 
-h2 {
-}
+h2 {}
 
 // olof
 .game-container {
- position: relative;
- width: 808px;
- height: 600px;
- margin: 200px auto 0;
- border: 4px solid rgba(73, 78, 99, 0.663);
- border-radius: 1rem;
- overflow: hidden;
- .top {
-  position: absolute;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background-color: #222;
-  display: flex;
-  height: 100px;
-  // border: 2px solid white;
+  position: relative;
+  width: 808px;
+  height: 600px;
+  margin: 200px auto 0;
+  border: 4px solid rgba(73, 78, 99, 0.663);
+  border-radius: 1rem;
+  overflow: hidden;
 
-  #lives {
-   position: absolute;
-   top: 30px;
-   right: 20px;
-   ul {
+  .top {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: #222;
     display: flex;
-    list-style: none;
-   }
+    height: 100px;
+    // border: 2px solid white;
+
+    #lives {
+      position: absolute;
+      top: 30px;
+      right: 20px;
+
+      ul {
+        display: flex;
+        list-style: none;
+      }
+    }
+
+    #lives ul li {
+      margin-right: 0.3rem;
+    }
+
+    .in-game-score {
+      position: absolute;
+      top: 15px;
+      left: 40px;
+    }
+
+    #saves {}
   }
 
-  #lives ul li {
-   margin-right: 0.3rem;
+  .music {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    font-size: 0.5rem !important;
   }
 
-  .in-game-score {
-   position: absolute;
-   top: 15px;
-   left: 40px;
+  .music-mute {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    font-size: 0.5rem !important;
   }
 
-  #saves {
+  canvas {
+    height: 400px;
+    position: absolute;
+    top: 100px;
+    left: 0;
   }
- }
 
- .music {
-  position: absolute;
-  top: 40px;
-  right: 40px;
-  font-size: 0.5rem !important;
- }
+  .bottom {
+    position: absolute;
+    background-color: #222;
+    height: 100px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 
- canvas {
-  height: 400px;
-  position: absolute;
-  top: 100px;
-  left: 0;
- }
-
- .bottom {
-  position: absolute;
-  background-color: #222;
-  height: 100px;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-
-  // border: 2px solid white;
- }
+    // border: 2px solid white;
+  }
 }
 
 .hidden {
- visibility: hidden;
+  visibility: hidden;
 }
 
 h1 {
- font-size: 1.5rem;
- margin-bottom: 1rem;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 #content {
- display: flex;
+  display: flex;
 
- width: 75%;
- align-items: center;
- //  justify-content: center;
- flex-direction: column;
- color: white;
- padding: 1rem 2rem;
+  width: 75%;
+  align-items: center;
+  //  justify-content: center;
+  flex-direction: column;
+  color: white;
+  padding: 1rem 2rem;
 
- //   olof
+  span {
+    cursor: pointer;
+  }
+
+  //   olof
+
+  .how-to-play {
+    margin-top: 4rem;
+  }
+  .game-dev {
+    position: absolute;
+    bottom: 25px;
+    width: 100%;
+    left: 0;
+    font-size: 0.5rem;
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+  }
+
+  #modal-how-to-play {
+    text-align: center;
+    position: absolute;
+    background-color: #444341;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 3rem;
+    display: none;
+
+    h2 {
+      margin-bottom: 2rem;
+    }
+
+    img {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      width: 20%;
+    }
+
+    span {
+      margin-top: 1.5rem;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    &.active {
+      display: block;
+    }
+  }
 }
 
 #content form {
- display: flex;
- flex-direction: column;
- width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 input,
 input:active,
 input:focus,
 input:visited {
- margin-bottom: 1rem;
- color: #fff;
- padding: 0.5rem;
- border: none;
- background-color: white;
- box-shadow: -5px 0 0 0 #acacac, 5px 0 0 0 #acacac, 0 -5px 0 0 #acacac,
-  0 5px 0 0 #acacac;
+  margin-bottom: 1rem;
+  color: #fff;
+  padding: 0.5rem;
+  border: none;
+  font-size: 0.75rem;
+  background-color: white;
+  box-shadow: -5px 0 0 0 #acacac, 5px 0 0 0 #acacac, 0 -5px 0 0 #acacac,
+    0 5px 0 0 #acacac;
 }
 
+input[type=text] {
+  width: 100%;
+}
+
+
+
 .petter {
- position: absolute;
- bottom: 0rem;
- right: -1rem;
- z-index: 999;
- width: 60%;
+  position: absolute;
+  bottom: 0rem;
+  right: -1rem;
+  z-index: 999;
+  width: 60%;
 }
 
 button {
- color: white;
- padding: 0.5rem;
- background-color: #222;
- border: none;
- box-shadow: -5px 0 0 0 #222, 5px 0 0 0 #222, 0 -5px 0 0 #222, 0 5px 0 0 #222;
- cursor: pointer;
+  color: white;
+  padding: 0.2rem;
+  background-color: #222;
+  border: none;
+  box-shadow: -5px 0 0 0 #222, 5px 0 0 0 #222, 0 -5px 0 0 #222, 0 5px 0 0 #222;
+  cursor: pointer;
 
- //  olof
- margin-top: 30px;
+  &.start-button {
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+  }
+
+  //  olof
+  margin-top: 30px;
+
 }
 
 #rules {
- border-top: 4px solid #444341;
- margin-top: 1rem;
- padding-top: 1rem;
- color: #444341;
- width: 100%;
- text-align: center;
+  border-top: 4px solid #444341;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  color: #444341;
+  width: 100%;
+  text-align: center;
 }
 
 #rules h2 {
- font-size: 46px;
- margin-bottom: 1rem;
+  font-size: 46px;
+  margin-bottom: 1rem;
 }
 
 #rules #instructions {
- display: flex;
- justify-content: center;
- font-size: 32px;
- color: #ddca91;
- text-align: center;
+  display: flex;
+  justify-content: center;
+  font-size: 32px;
+  color: #ddca91;
+  text-align: center;
 }
 
 p {
- font-size: 32px;
- color: #ddca91;
- line-height: 0.8;
- display: flex;
- align-items: center;
- justify-content: center;
- width: 100%;
+  font-size: 24px;
+  color: #ddca91;
+  line-height: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 h4 {
- color: #444341;
- font-size: 22px;
- margin-bottom: 0.7rem;
+  color: #444341;
+  font-size: 22px;
+  margin-bottom: 0.7rem;
 }
 
 #rules div {
- width: 100%;
+  width: 100%;
 }
 
 #rules img {
- height: 1.5rem;
+  height: 1.5rem;
 }
 
 .main {
- // position: relative;
- // display: flex;
- // align-items: center;
- // height: 100vh;
- // padding: 0 4rem;
+  // position: relative;
+  // display: flex;
+  // align-items: center;
+  // height: 100vh;
+  // padding: 0 4rem;
 }
 
 main {
- position: relative;
+  position: relative;
 }
 
 aside {
- width: 100%;
- height: 100%;
- display: flex;
- padding: 4rem 2rem;
- text-align: center;
- flex-direction: column;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 4rem 2rem;
+  text-align: center;
+  flex-direction: column;
 }
 
 .scoreboard {
- text-align: left;
- width: 100%;
- padding: 1rem;
- box-shadow: -15px 0 0 0 white, 15px 0 0 0 white, 0 -15px 0 0 white,
-  0 15px 0 0 white;
- //  display: none;
+  margin-left: 2rem;
+  text-align: left;
+  width: 100%;
+  // padding: 0.5rem;
+  // box-shadow: -15px 0 0 0 white, 15px 0 0 0 white, 0 -15px 0 0 white,
+  //   0 15px 0 0 white;
+  //  display: none;
 }
 
 .your-rank {
- padding-top: 1rem;
+  padding-top: 1rem;
 }
 
 // ol {
 //     margin-left: 1.5rem;
 // }
 #scoreB {
- list-style: none;
+  list-style: none;
+  
+  li {
+    font-size: 0.75rem;
+    padding-bottom: .2rem;
+
+    span {
+      font-size: 0.75rem;
+    }
+  }
 }
 
 .logo {
- width: 320px;
- margin-bottom: 2rem;
- display: none;
+  width: 320px;
+  margin-bottom: 2rem;
+  display: none;
 }
 
 h3 {
- text-transform: uppercase;
- font-size: 1.2rem;
- letter-spacing: 5px;
- margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  letter-spacing: 5px;
+  margin-bottom: 0.5rem;
 }
 
 .canvas1 {
- /* olof tillfällig */
- /* margin-left: 5rem; */
+  /* olof tillfällig */
+  /* margin-left: 5rem; */
 
- position: relative;
- // width: 800px;
- // height: 600px;
- // border: 1px solid black;
- background: url(../sprite/wave-bg.png);
- // box-shadow: -15px 0 0 0 white, 15px 0 0 0 white, 0 -15px 0 0 white,
- //   0 15px 0 0 white;
+  position: relative;
+  // width: 800px;
+  // height: 600px;
+  // border: 1px solid black;
+  background: url(../sprite/wave-bg.png);
+  // box-shadow: -15px 0 0 0 white, 15px 0 0 0 white, 0 -15px 0 0 white,
+  //   0 15px 0 0 white;
 
- &:focus {
-  outline: none;
- }
+  &:focus {
+    outline: none;
+  }
 }
 
 #fake-canvas {
- /* olof */
- display: flex;
- align-items: center;
- justify-content: center;
- // -------------------
- // border: 1px solid black;
- background: url(../sprite/home_bg.jpg);
- background-size: cover;
- // box-shadow: -15px 0 0 0 white, 15px 0 0 0 white, 0 -15px 0 0 white,
- //   0 15px 0 0 white;
+  /* olof */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // -------------------
+  // border: 1px solid black;
+  background: url(../sprite/home_bg.jpg);
+  background-size: cover;
+  // box-shadow: -15px 0 0 0 white, 15px 0 0 0 white, 0 -15px 0 0 white,
+  //   0 15px 0 0 white;
 }
 
 .canvas1 .info {
- position: absolute;
- top: 1rem;
- left: 1rem;
- z-index: 999;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 999;
 }
 
 // olof
 .game-over-top {
- display: flex;
- justify-content: space-between;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: space-between;
 
- .game-over-topleft,
- .game-over-topright {
-  width: 50%;
-  padding: 1rem;
- }
+  h1 {
+    margin: 1rem 0 .5rem;
+  }
+
+  .game-over-cols {
+    display: flex;
+  }
+
+  .game-over-topleft,
+  .game-over-topright {
+    width: 50%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
 }
+
 .game-over-btns {
- display: flex;
- justify-content: center;
- gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  button {
+    display: inline-block;
+  }
 }
+
 // ---
 
 .screen {
- width: 100%;
- height: 100%;
- position: absolute;
- z-index: 999;
- top: 0px;
- bottom: 0px;
- left: 0px;
- right: 0px;
- pointer-events: none;
- background: repeating-linear-gradient(
-  0deg,
-  rgba(255, 0, 0, 0.2),
-  transparent 2px,
-  rgba(255, 0, 0, 0.5) 10px,
-  transparent 10px
- );
- opacity: 0.15;
- filter: blur(1px) contrast(110%) brighness(5);
- animation: jitter 5s ease-in-out infinite;
- animation-delay: 2s;
- transform-origin: center center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 999;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg,
+      rgba(255, 0, 0, 0.2),
+      transparent 2px,
+      rgba(255, 0, 0, 0.5) 10px,
+      transparent 10px);
+  opacity: 0.15;
+  filter: blur(1px) contrast(110%) brighness(5);
+  animation: jitter 5s ease-in-out infinite;
+  animation-delay: 2s;
+  transform-origin: center center;
 }
 
 .screen:before {
- content: "";
- width: 100%;
- height: 100%;
- top: -5px;
- left: -5px;
- position: absolute;
- background: repeating-linear-gradient(
-  0deg,
-  rgba(0, 0, 255, 0.2),
-  transparent 2px,
-  rgba(0, 255, 0, 0.5) 10px,
-  transparent 10px
- );
- filter: brighness(10);
- animation: jitter 3s ease-in-out infinite;
- animation-delay: 1s;
- transform-origin: center center;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: -5px;
+  left: -5px;
+  position: absolute;
+  background: repeating-linear-gradient(0deg,
+      rgba(0, 0, 255, 0.2),
+      transparent 2px,
+      rgba(0, 255, 0, 0.5) 10px,
+      transparent 10px);
+  filter: brighness(10);
+  animation: jitter 3s ease-in-out infinite;
+  animation-delay: 1s;
+  transform-origin: center center;
 }
 
 .screen:after {
- content: "";
- width: 100%;
- height: 100%;
- top: -2px;
- left: -2px;
- position: absolute;
- animation: jitter 2s ease-in-out infinite;
- background: repeating-linear-gradient(
-  0deg,
-  rgba(255, 255, 255, 0.2),
-  transparent 2px,
-  rgba(255, 255, 255, 0.5) 10px,
-  transparent 10px
- );
- transform-origin: center center;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: -2px;
+  left: -2px;
+  position: absolute;
+  animation: jitter 2s ease-in-out infinite;
+  background: repeating-linear-gradient(0deg,
+      rgba(255, 255, 255, 0.2),
+      transparent 2px,
+      rgba(255, 255, 255, 0.5) 10px,
+      transparent 10px);
+  transform-origin: center center;
 }
 
 @keyframes jitter {
- 0% {
-  margin-top: 10px;
-  margin-left: 5px;
- }
+  0% {
+    margin-top: 10px;
+    margin-left: 5px;
+  }
 
- 20% {
-  margin-top: -10px;
-  margin-left: -5px;
- }
+  20% {
+    margin-top: -10px;
+    margin-left: -5px;
+  }
 
- 25% {
-  margin-top: 2px;
-  margin-left: 3px;
- }
+  25% {
+    margin-top: 2px;
+    margin-left: 3px;
+  }
 
- 26% {
-  margin-top: 4px;
-  margin-left: -1px;
- }
+  26% {
+    margin-top: 4px;
+    margin-left: -1px;
+  }
 
- 27% {
-  margin-top: 0px;
-  margin-left: 0px;
- }
+  27% {
+    margin-top: 0px;
+    margin-left: 0px;
+  }
 
- 30% {
-  margin-top: 10px;
-  margin-left: 5px;
- }
+  30% {
+    margin-top: 10px;
+    margin-left: 5px;
+  }
 
- 50% {
-  margin-top: -1px;
-  margin-left: 1px;
- }
+  50% {
+    margin-top: -1px;
+    margin-left: 1px;
+  }
 
- 61% {
-  margin-top: 1px;
-  margin-left: -1px;
- }
+  61% {
+    margin-top: 1px;
+    margin-left: -1px;
+  }
 
- 63% {
-  margin-top: -30px;
-  left: -70%;
-  transform: skewX(-10deg);
-  width: 250%;
-  height: 250%;
- }
+  63% {
+    margin-top: -30px;
+    left: -70%;
+    transform: skewX(-10deg);
+    width: 250%;
+    height: 250%;
+  }
 
- 67% {
-  margin-top: -10px;
-  margin-left: -15px;
- }
+  67% {
+    margin-top: -10px;
+    margin-left: -15px;
+  }
 
- 69% {
-  margin-top: 5px;
-  margin-left: 5px;
- }
+  69% {
+    margin-top: 5px;
+    margin-left: 5px;
+  }
 
- 70% {
-  top: -100px;
-  margin-left: 5px;
-  transform: skewY(10deg);
-  width: 250%;
-  height: 250%;
- }
+  70% {
+    top: -100px;
+    margin-left: 5px;
+    transform: skewY(10deg);
+    width: 250%;
+    height: 250%;
+  }
 
- 80% {
- }
+  80% {}
 
- 81% {
-  margin-top: 0px;
-  margin-left: 0px;
- }
+  81% {
+    margin-top: 0px;
+    margin-left: 0px;
+  }
 
- 100% {
-  margin-top: 10px;
-  margin-left: 5px;
- }
+  100% {
+    margin-top: 10px;
+    margin-left: 5px;
+  }
 }

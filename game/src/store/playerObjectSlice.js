@@ -33,12 +33,12 @@ const initialState = {
  },
  hitbox: [
   {
-   x: settings.board.startPositionX,
+   x: settings.board.startPositionX + 5,
    y: settings.board.startPositionY,
   },
   {
    x: settings.board.startPositionX + 134 - 5,
-   y: settings.board.startPositionX + 46 - 5,
+   y: settings.board.startPositionY + 46 - 5,
   },
  ],
  status: "idle",

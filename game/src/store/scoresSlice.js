@@ -8,8 +8,14 @@ export const getAllScores = createAsyncThunk("getAllScores", async () => {
  return res;
 });
 
+export const getRank = createAsyncThunk("getRank", async (score) => {
+ const res = await PROTECTED_GET(`/auth/get_rank?score=${score}`);
+ return res;
+});
+
 export const getTopScores = createAsyncThunk("getTopScores", async (query) => {
  const res = await GET(`/get_top_scores?${query}`);
+ console.log(res);
  return res;
 });
 
@@ -26,10 +32,26 @@ export const deleteAllScores = createAsyncThunk(
  }
 );
 
-export const getRank = createAsyncThunk("getRank", async (score) => {
- const res = await PROTECTED_GET(`/auth/get_rank?score=${score}`);
- return res;
-});
+// export const getTopScores = createAsyncThunk("getTopScores", async (query) => {
+//  const res = await GET(`/get_top_scores.php`);
+//  return res;
+// });
+
+// export const createScore = createAsyncThunk("createScore", async (newScore) => {
+//  const formData = new FormData();
+//  formData.append("name", JSON.stringify(newScore.name));
+//  formData.append("email", JSON.stringify(newScore.email));
+//  formData.append("score", JSON.stringify(newScore.score));
+
+//  const res = await PROTECTED_POST(`/create_score.php`, formData);
+//  console.log(res);
+//  return res;
+// });
+
+// export const getRank = createAsyncThunk("getRank", async (score) => {
+//  const res = await PROTECTED_GET(`/get_rank.php`);
+//  return res;
+// });
 
 const initialState = {
  data: { scores: [] },
@@ -76,7 +98,8 @@ export const scoresSlice = createSlice({
     const { success, message, data } = action.payload;
     if (success) {
      state.status = "succeeded";
-     state.data = data;
+     //  state.data = data;
+     state.data = data.scores;
     } else {
      state.status = "failed";
      state.error = message;

@@ -26,7 +26,7 @@
 
 // skräp går ej att ta under foam atm.
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { If } from "./views/components/helpers";
 import { Home } from "./views/home/Home.js";
@@ -34,9 +34,16 @@ import { Game } from "./views/game/Game.js";
 import { GameOver } from "./views/gameOver/GameOver.js";
 
 import "./style/main.scss";
+import { GET } from "./utils/fetch";
 
 function App() {
  const [view, setView] = useState("home");
+
+ //  useEffect(async () => {
+ //   let res = await GET("/index1.php");
+ //   console.log(res);
+ //  }, []);
+
  return (
   <div className="App">
    <If condition={view === "home"}>

@@ -7,6 +7,7 @@ import { resetPlayer } from "../../store/playerObjectSlice";
 import {
  createScore,
  getRank,
+ getTopScores,
  status,
  yourRank,
 } from "../../store/scoresSlice";
@@ -18,15 +19,17 @@ export const GameOver = ({ setView }) => {
  const dispatch = useDispatch();
  const score = useSelector(gameScore);
  const scoresStatus = useSelector(status);
- const rank = useSelector(yourRank);
+ //  const rank = useSelector(yourRank);
 
  const [inputsState, setInputsState] = useState({
   exists: {
    name: false,
+   email: false,
    checkbox: false,
   },
   content: {
    name: "",
+   email: "",
    score: score,
   },
  });
@@ -52,9 +55,13 @@ export const GameOver = ({ setView }) => {
   setView("home");
  };
 
- useEffect(() => {
-  dispatch(getRank(score));
- }, []);
+ //  useEffect(() => {
+ //   dispatch(getRank(score));
+ //  }, []);
+
+ //  useEffect(() => {
+ //   dispatch(getTopScores());
+ //  }, []);
 
  if (scoresStatus !== "succeeded") {
   return <div> loading</div>;
@@ -63,23 +70,21 @@ export const GameOver = ({ setView }) => {
  return (
   <main className="game-container">
    <section className="game-over-top">
-    <section className="game-over-topleft">
-     <h2>GAME OVER</h2>
-     <h5>Thanks for playing!</h5>
-     <h3>Score: {score}</h3>
-     <If condition={rank}>
-      <div>ur rank: {rank}</div>
-     </If>
-     <Form setInputsState={setInputsState} />
-    </section>
-    <section className="game-over-topright">
-     <Scoreboard />
-    </section>
+    <h1>GAME OVER</h1>
+    <h3>Your Score: {score}</h3>
+    <div className="game-over-cols">
+     <section className="game-over-topleft">
+      <Form setInputsState={setInputsState} />
+      <div className="game-over-btns">
+       <button onClick={() => handleSubmit(true)}>Submit score</button>
+       <button onClick={() => handleSubmit(false)}>Skip</button>
+      </div>
+     </section>
+     <section className="game-over-topright">
+      <Scoreboard />
+     </section>
+    </div>
    </section>
-   <div className="game-over-btns">
-    <button onClick={() => handleSubmit(true)}>Submit score</button>
-    <button onClick={() => handleSubmit(false)}>Skip</button>
-   </div>
   </main>
  );
 };
@@ -113,7 +118,32 @@ const Form = ({ setInputsState }) => {
    </div>
 
    <div>
-    <label htmlFor="">I agree:</label>
+    <input
+     type="text"
+     name="email"
+     id="email"
+     placeholder="Fill in your email..."
+     required
+     onChange={(e) =>
+      setInputsState((prev) => {
+       return {
+        ...prev,
+        exists: {
+         ...prev.exists,
+         email: e.target.value ? true : false,
+        },
+        content: {
+         ...prev.content,
+         email: e.target.value,
+        },
+       };
+      })
+     }
+    />
+   </div>
+
+   <div>
+    <label htmlFor="">I agree to privacy-policy: </label>
     <input
      type="checkbox"
      name=""
