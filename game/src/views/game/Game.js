@@ -11,19 +11,33 @@ import { useGameoverSound } from "./utils/sounds/useGameoverSound";
 import { useWaveSound } from "./utils/sounds/useWaveSound";
 import { gameScore, lives as sliceLives } from "../../store/gameplaySlice";
 
-import { setMusicVolume, setMuteAll, muteAll } from "../../store/soundSlice";
+import { useSounds } from "./utils/sounds/useSounds";
+
+import {
+ setMusicVolume,
+ setMuteAll,
+ muteAll,
+ music,
+ waves,
+} from "../../store/soundSlice";
 
 export const Game = ({ setView }) => {
  const dispatch = useDispatch();
- const muteSound = useSelector(muteAll);
  const lives = useSelector(sliceLives);
  const score = useSelector(gameScore);
  const scoreToBeat = useSelector(data)[0];
 
- const { playGameMusic, stopGameMusic, gameMusicPlaying, setGameMusicPlaying } =
-  useGameMusic();
+ const theWaves = useSelector(waves);
+ const theMusic = useSelector(music);
+
+ //  const { playGameMusic, stopGameMusic, gameMusicPlaying, setGameMusicPlaying } =
+ //   useGameMusic();
+
+ const { playGameMusic, stopGameMusic, playWaveSound, stopWaveSound } =
+  useSounds();
+
  const { playGameoverSound } = useGameoverSound();
- const { playWaveSound, stopWaveSound } = useWaveSound();
+ //  const { playWaveSound, stopWaveSound } = useWaveSound();
 
  useEffect(() => {
   if (lives.length < 1) {
@@ -37,16 +51,29 @@ export const Game = ({ setView }) => {
  //   return () => stopGameMusic();
  //  }, [gameMusicPlaying, playGameMusic, stopGameMusic]);
 
- useEffect(() => {
-  playWaveSound();
-  const int = setInterval(() => {
-   playWaveSound();
-  }, 10000);
-  return () => {
-   clearInterval(int);
-   stopWaveSound();
-  };
- }, [playWaveSound]);
+ //  useEffect(() => {
+ //   console.log(theMusic.enabled);
+ //   theMusic.enabled ? playGameMusic() : stopGameMusic();
+ //  }, [theMusic.enabled]);
+
+ //  useEffect(() => {
+ //   theWaves.enabled ? playWaveSound() : stopWaveSound();
+ //  }, [theWaves.enabled]);
+
+ //  useEffect(() => {
+ //   theWaves.enabled ? playWaveSound() : stopWaveSound();
+ //  }, [theWaves.enabled]);
+
+ //  useEffect(() => {
+ //   playWaveSound();
+ //   const int = setInterval(() => {
+ //    playWaveSound();
+ //   }, 10000);
+ //   return () => {
+ //    clearInterval(int);
+ //    stopWaveSound();
+ //   };
+ //  }, [playWaveSound]);
 
  return (
   <div
@@ -54,7 +81,8 @@ export const Game = ({ setView }) => {
    onKeyDown={(e) => {
     if (e.code === "KeyM") {
      //  setGameMusicPlaying(!gameMusicPlaying);
-     dispatch(setMusicVolume(0.1));
+     //  dispatch(setMusicVolume(0.1));
+     dispatch(setMuteAll());
     }
    }}
   >
@@ -84,7 +112,7 @@ export const Game = ({ setView }) => {
     <Canvas />
     <div className="bottom">
      <h2 className="music-mute">
-      PRESS KEY M TO: {gameMusicPlaying ? "MUTE MUSIC" : "UNMUTE MUSIC"}
+      PRESS KEY M TO: {true ? "MUTE MUSIC" : "UNMUTE MUSIC"}
      </h2>
      <h2 className="music">&#9835; EVIG FERIE - ENESTE</h2>
     </div>

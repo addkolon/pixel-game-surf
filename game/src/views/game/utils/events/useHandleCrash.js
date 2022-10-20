@@ -12,13 +12,14 @@ import { checkIfHit } from "../../../../utils/checkIfHit";
 import boomSprite from "../../../../sprite/Boom.png";
 import { settings } from "../../../../config/settings";
 import { useCrashSound } from "../sounds/useCrashSound";
+import { useSounds } from "../sounds/useSounds";
 
 export const useHandleCrash = () => {
  const dispatch = useDispatch();
  const { obstacles, boom } = useSelector(spawners);
  const { hitbox } = useSelector(playerObject);
 
- const { playCrashSound } = useCrashSound();
+ const { playCrashSound } = useSounds();
 
  const boomImage = new Image();
  boomImage.src = boomSprite;

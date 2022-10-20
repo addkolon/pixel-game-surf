@@ -6,7 +6,7 @@ const initialState = {
  muteAll: false,
  music: {
   enabled: true,
-  volume: 0.1,
+  volume: 0.4,
  },
  waves: {
   enabled: true,
@@ -31,19 +31,58 @@ export const soundSlice = createSlice({
  initialState,
  reducers: {
   setMuteAll: (state, action) => {
-   state.music.enabled = false;
-   state.waves.enabled = false;
-   state.pickup.enabled = false;
-   state.crash.enabled = false;
-   state.gameover.enabled = false;
+   state.music.enabled = !state.music.enabled;
+   state.waves.enabled = !state.waves.enabled;
+   state.pickup.enabled = !state.pickup.enabled;
+   state.crash.enabled = !state.crash.enabled;
+   state.gameover.enabled = !state.gameover.enabled;
   },
   setMusicVolume: (state, action) => {
-   state.music.volume += action.payload;
+   if (typeof action.payload === "boolean") {
+    state.music.enabled = action.payload;
+   } else {
+    state.music.volume += action.payload;
+   }
+  },
+  setWavesVolume: (state, action) => {
+   if (typeof action.payload === "boolean") {
+    state.waves.enabled = action.payload;
+   } else {
+    state.waves.volume += action.payload;
+   }
+  },
+  setPickupVolume: (state, action) => {
+   if (typeof action.payload === "boolean") {
+    state.pickup.enabled = action.payload;
+   } else {
+    state.pickup.volume += action.payload;
+   }
+  },
+  setCrashVolume: (state, action) => {
+   if (typeof action.payload === "boolean") {
+    state.crash.enabled = action.payload;
+   } else {
+    state.crash.volume += action.payload;
+   }
+  },
+  setGameoverVolume: (state, action) => {
+   if (typeof action.payload === "boolean") {
+    state.gameover.enabled = action.payload;
+   } else {
+    state.gameover.volume += action.payload;
+   }
   },
  },
 });
 
-export const { setMuteAll, setMusicVolume } = soundSlice.actions;
+export const {
+ setMuteAll,
+ setMusicVolume,
+ setWavesVolume,
+ setPickupVolume,
+ setCrashVolume,
+ setGameoverVolume,
+} = soundSlice.actions;
 
 // export data
 export const muteAll = (state) => state.sound.muteAll;
