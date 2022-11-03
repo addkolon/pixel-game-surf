@@ -5,23 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { data, getTopScores, status } from "../../store/scoresSlice";
 import arrowKeys from "../../sprite/arrow-keys.png";
 
-// let modal = document.querySelector('.modal-rules');
-// let modalLink = document.querySelector('.modal-link');
-// let modalClose = document.querySelector('.modal-close');
-
-// modalLink.onclick = function(){
-//   modal.classList.toggle('active');
-// }
-
-// modalClose.onclick = function(){
-//   modal.classList.toggle('active');
-// }
-
 export const Home = ({ setView }) => {
  const dispatch = useDispatch();
  const scoresStatus = useSelector(status);
- //   const scoreToBeat = useSelector(data).scores[0];
-//  const scoreToBeat = useSelector(data)[0];
+
  const [howToPlayState, setHowToPlayState] = useState(false);
 
 //  useEffect(() => {

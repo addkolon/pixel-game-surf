@@ -14,7 +14,6 @@ export const settings = {
  gameSpeedUpdate: 0.3, // hur mycket speeden ökar när difficulty ökar
  startGameSpawnDelay: 5, // ~ seconds
 
- // boat
  board: {
   speed: 5,
   animationSpeed: 5,
@@ -22,29 +21,22 @@ export const settings = {
   startPositionY: 150,
  },
 
- // boardFoam
  boardFoam: {
   animationSpeed: 8,
   alignmentX: 40,
   alignmentY: 17,
  },
 
- // surfer
  surfer: {
-  // height ej dynamisk atm
   height: 75,
-  // ---
   alignmentOnBoardX: 30,
   alignmentOnBoardY: 53,
   animationSpeed: 5,
  },
 
- // stones
  obstacles: {
   spawnRate: 100,
   speed: 5,
-  // minimumSize: 30,
-  // maximumSize: 90,
   minimumSize: 24,
   maximumSize: 48,
   speedModifier: {
@@ -54,16 +46,12 @@ export const settings = {
     left: 2.5,
    },
   },
-  // boom
   boomAnimationSpeed: 5,
  },
- // drowning people
+
  pickups: {
-  // spawnRate: 90,
   spawnRate: 100,
   speed: 5,
-  // minimumSize: 50,
-  // maximumSize: 50,
   minimumSize: 35,
   maximumSize: 35,
   animationSpeed: 10,
@@ -75,11 +63,11 @@ export const settings = {
    },
   },
  },
- // foam
+
  foam: {
   animationSpeed: 10,
  },
- // background
+
  background: {
   height: 60,
   mainSpeed: 0.1,
@@ -96,7 +84,6 @@ export const settings = {
   //   },
   // },
  },
- // foreground
  foreground: {
   height: 264,
   mainSpeed: 0.1,
@@ -113,20 +100,16 @@ export const settings = {
   //   },
   // },
  },
- // difficulty rise
  difficulty: {
-  // on timer
   timer: {
    enabled: false,
    seconds: 5,
   },
-  // on saves
   savings: {
    enabled: true,
    saves: 3,
   },
  },
-
  sound: {
   music: {
    volume: 0.1,
