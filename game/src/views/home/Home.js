@@ -21,18 +21,18 @@ export const Home = ({ setView }) => {
  const dispatch = useDispatch();
  const scoresStatus = useSelector(status);
  //   const scoreToBeat = useSelector(data).scores[0];
- const scoreToBeat = useSelector(data)[0];
+//  const scoreToBeat = useSelector(data)[0];
  const [howToPlayState, setHowToPlayState] = useState(false);
 
- useEffect(() => {
-  dispatch(getTopScores());
- }, []);
+//  useEffect(() => {
+//   dispatch(getTopScores());
+//  }, []);
 
- if (scoresStatus !== "succeeded") {
-  return <div> loading</div>;
- }
+//  if (scoresStatus !== "succeeded") {
+//   return <div> loading</div>;
+//  }
 
- console.log(scoreToBeat);
+//  console.log(scoreToBeat);
 
  return (
   <main>
@@ -42,7 +42,10 @@ export const Home = ({ setView }) => {
     <div id="content">
      <div className="score-to-beat">
       {/* <h1>SCORE TO BEAT: 69</h1> */}
-      <h1>SCORE TO BEAT: {scoreToBeat.score}</h1>
+      <h1>SCORE TO BEAT: { }
+        {/* {scoreToBeat.score} */}
+        1337
+        </h1>
       {/* av {scoreToBeat.name} */}
      </div>
 

@@ -63,9 +63,9 @@ export const GameOver = ({ setView }) => {
  //   dispatch(getTopScores());
  //  }, []);
 
- if (scoresStatus !== "succeeded") {
-  return <div> loading</div>;
- }
+//  if (scoresStatus !== "succeeded") {
+//   return <div> loading</div>;
+//  }
 
  return (
   <main className="game-container">

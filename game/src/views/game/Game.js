@@ -14,7 +14,7 @@ import { gameScore, lives as sliceLives } from "../../store/gameplaySlice";
 import { setMusicVolume, setMuteAll, muteAll } from "../../store/soundSlice";
 
 export const Game = ({ setView }) => {
- const dispatch = useDispatch();
+ const dispatch = useDispatch(); 
  const muteSound = useSelector(muteAll);
  const lives = useSelector(sliceLives);
  const score = useSelector(gameScore);
@@ -74,7 +74,10 @@ export const Game = ({ setView }) => {
      </div>
      <div className="in-game-score">
       <h2>
-       HIGH SCORE: <span id="high-scoure">{scoreToBeat.score}</span>
+       HIGH SCORE: <span id="high-scoure">
+        {/* {scoreToBeat.score} */}
+        1337
+        </span>
       </h2>
       <h2>
        YOUR SCORE: <span id="saves">{score}</span>

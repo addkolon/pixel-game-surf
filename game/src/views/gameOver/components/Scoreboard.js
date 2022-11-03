@@ -21,13 +21,13 @@ export const Scoreboard = () => {
   <div className="scoreboard">
    <h3>Scoreboard</h3>
    <ul id="scoreB">
-    {scores.map((d, i) => {
+    {/* {scores.map((d, i) => {
      return (
       <li>
        {i + 1}. {d.name} <span>{d.score}</span>
       </li>
      );
-    })}
+    })} */}
     {fillOut.map((d, i) => {
      return d;
     })}

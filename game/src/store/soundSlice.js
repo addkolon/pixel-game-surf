@@ -1,16 +1,15 @@
 /** @format */
 import { createSlice } from "@reduxjs/toolkit";
-import { settings } from "../config/settings";
 
 const initialState = {
  muteAll: false,
  music: {
   enabled: true,
-  volume: 0.1,
+  volume: 0.3,
  },
  waves: {
   enabled: true,
-  volume: 0.7,
+  volume: 0,
  },
  pickup: {
   enabled: true,
