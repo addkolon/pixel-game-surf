@@ -22,12 +22,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 (async () => {
+  console.log('gege');
  try {
   await mongoose.connect(process.env.DB_URI);
 
   console.log("mongo connected");
  } catch (err) {
-  process.exit();
+  process.exit(); 
  }
 })();
 
@@ -52,11 +53,15 @@ app.use(
 app.use("/", index);
 app.use("/auth", auth, protectedRouter);
 
+
 app.get("*", (req, res) =>
  res.sendFile("index.html", {
   root: process.env.MODE === "dev" ? "./game/public" : "./game/build",
  })
 );
+
+
+
 
 app.listen(PORT, () => {
  console.log("lyssnar port " + PORT);

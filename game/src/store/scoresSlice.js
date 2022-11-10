@@ -19,6 +19,12 @@ export const getTopScores = createAsyncThunk("getTopScores", async (query) => {
  return res;
 });
 
+// export const getTopScores = createAsyncThunk("getTopScores", async (query) => {
+//   const res = await GET(`/get_top_scores.php`);
+//   return res;
+//  });
+ 
+
 export const createScore = createAsyncThunk("createScore", async (newScore) => {
  const res = await PROTECTED_POST(`/auth/create_score`, newScore);
  return res;
