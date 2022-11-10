@@ -4,6 +4,18 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { data, getTopScores, status } from "../../store/scoresSlice";
 import arrowKeys from "../../sprite/arrow-keys.png";
+import {
+ setCrashVolume,
+ setGameoverVolume,
+ setMusicVolume,
+ setPickupVolume,
+ setWavesVolume,
+ music,
+ waves,
+ pickup,
+ crash,
+ gameover,
+} from "../../store/soundSlice";
 
 // let modal = document.querySelector('.modal-rules');
 // let modalLink = document.querySelector('.modal-link');
@@ -20,6 +32,12 @@ import arrowKeys from "../../sprite/arrow-keys.png";
 export const Home = ({ setView }) => {
  const dispatch = useDispatch();
  const scoresStatus = useSelector(status);
+
+ const musicYe = useSelector(music);
+ const wavesYe = useSelector(waves);
+ const pickupYe = useSelector(pickup);
+ const crashYe = useSelector(crash);
+ const gameoverYe = useSelector(gameover);
  //   const scoreToBeat = useSelector(data).scores[0];
  const scoreToBeat = useSelector(data)[0];
  const [howToPlayState, setHowToPlayState] = useState(false);
@@ -32,7 +50,7 @@ export const Home = ({ setView }) => {
   return <div> loading</div>;
  }
 
- console.log(scoreToBeat);
+ console.log(musicYe);
 
  return (
   <main>
@@ -40,6 +58,36 @@ export const Home = ({ setView }) => {
     <div className="screen"></div>
 
     <div id="content">
+     {/* <div>settings</div> */}
+     <div>
+      <div>sound:</div>
+      <input
+       value={musicYe.volume * 100}
+       type="range"
+       onChange={(e) => dispatch(setMusicVolume(e.target.value / 100))}
+      ></input>
+      <input
+       value={wavesYe.volume * 100}
+       type="range"
+       onChange={(e) => dispatch(setWavesVolume(e.target.value / 100))}
+      ></input>
+      <input
+       value={crashYe.volume * 100}
+       type="range"
+       onChange={(e) => dispatch(setCrashVolume(e.target.value / 100))}
+      ></input>
+      <input
+       value={pickupYe.volume * 100}
+       type="range"
+       onChange={(e) => dispatch(setPickupVolume(e.target.value / 100))}
+      ></input>
+      <input
+       value={gameoverYe.volume * 100}
+       type="range"
+       onChange={(e) => dispatch(setGameoverVolume(e.target.value / 100))}
+      ></input>
+     </div>
+
      <div className="score-to-beat">
       {/* <h1>SCORE TO BEAT: 69</h1> */}
       <h1>SCORE TO BEAT: {scoreToBeat.score}</h1>
