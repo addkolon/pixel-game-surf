@@ -38,7 +38,12 @@ export const get_rank = async (req, res) => {
 
 export const create_score = async (req, res) => {
  try {
+    console.log(req.body);
   scoreModel.create(req.body);
+
+  
+
+
   //  .then(async (c) => {
   //   const i = await scoreModel
   //    .find()

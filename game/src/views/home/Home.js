@@ -3,99 +3,50 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { data, getTopScores, status } from "../../store/scoresSlice";
-import arrowKeys from "../../sprite/arrow-keys.png";
+
 import {
- setCrashVolume,
- setGameoverVolume,
- setMusicVolume,
- setPickupVolume,
- setWavesVolume,
- music,
- waves,
- pickup,
- crash,
- gameover,
+  setCrashVolume,
+  setGameoverVolume,
+  setMusicVolume,
+  setPickupVolume,
+  setWavesVolume,
+  music,
+  waves,
+  pickup,
+  crash,
+  gameover,
 } from "../../store/soundSlice";
+import { Settings } from "../settings/Settings";
+import { If } from "../../utils/If";
 
 export const Home = ({ setView }) => {
-<<<<<<< HEAD
   const dispatch = useDispatch();
   const scoresStatus = useSelector(status);
+
+  const musicYe = useSelector(music);
+  const wavesYe = useSelector(waves);
+  const pickupYe = useSelector(pickup);
+  const crashYe = useSelector(crash);
+  const gameoverYe = useSelector(gameover);
+  //   const scoreToBeat = useSelector(data).scores[0];
   const scoreToBeat = useSelector(data)[0];
-=======
- const dispatch = useDispatch();
- const scoresStatus = useSelector(status);
-
- const musicYe = useSelector(music);
- const wavesYe = useSelector(waves);
- const pickupYe = useSelector(pickup);
- const crashYe = useSelector(crash);
- const gameoverYe = useSelector(gameover);
- //   const scoreToBeat = useSelector(data).scores[0];
- const scoreToBeat = useSelector(data)[0];
- const [howToPlayState, setHowToPlayState] = useState(false);
->>>>>>> f7b9aa0822cd243b749a62e18368db19c1c49087
-
   const [howToPlayState, setHowToPlayState] = useState(false);
+  const [settingsState, setSettingsState] = useState(false);
 
   useEffect(() => {
     dispatch(getTopScores());
   }, []);
 
-<<<<<<< HEAD
   if (scoresStatus !== "succeeded") {
     return <div> loading</div>;
   }
-=======
- console.log(musicYe);
->>>>>>> f7b9aa0822cd243b749a62e18368db19c1c49087
 
-   console.log(scoreToBeat);
+  console.log(scoreToBeat);
 
-<<<<<<< HEAD
   return (
     <main>
       <div id="fake-canvas" className="game-container">
         <div className="screen"></div>
-=======
-    <div id="content">
-     {/* <div>settings</div> */}
-     <div>
-      <div>sound:</div>
-      <input
-       value={musicYe.volume * 100}
-       type="range"
-       onChange={(e) => dispatch(setMusicVolume(e.target.value / 100))}
-      ></input>
-      <input
-       value={wavesYe.volume * 100}
-       type="range"
-       onChange={(e) => dispatch(setWavesVolume(e.target.value / 100))}
-      ></input>
-      <input
-       value={crashYe.volume * 100}
-       type="range"
-       onChange={(e) => dispatch(setCrashVolume(e.target.value / 100))}
-      ></input>
-      <input
-       value={pickupYe.volume * 100}
-       type="range"
-       onChange={(e) => dispatch(setPickupVolume(e.target.value / 100))}
-      ></input>
-      <input
-       value={gameoverYe.volume * 100}
-       type="range"
-       onChange={(e) => dispatch(setGameoverVolume(e.target.value / 100))}
-      ></input>
-     </div>
-
-     <div className="score-to-beat">
-      {/* <h1>SCORE TO BEAT: 69</h1> */}
-      <h1>SCORE TO BEAT: {scoreToBeat.score}</h1>
-      {/* av {scoreToBeat.name} */}
-     </div>
->>>>>>> f7b9aa0822cd243b749a62e18368db19c1c49087
-
         <div id="content">
           <div className="score-to-beat">
             {/* <h1>SCORE TO BEAT: 69</h1> */}
@@ -119,33 +70,20 @@ export const Home = ({ setView }) => {
           <div className="how-to-play">
             <span
               className="modal-link"
-              onClick={() => setHowToPlayState(true)}
+              onClick={() => setView("how_to_play")}
             >
               HOW TO PLAY
             </span>
           </div>
-          <div className="game-dev">
-            Created by: Olof Aksberg & Mattias Lager
+
+          <div className="how-to-play">
+            <span className="modal-link" onClick={() => setView("settings")}>
+              Settings
+            </span>
           </div>
 
-          <div
-            id="modal-how-to-play"
-            className={howToPlayState ? "active" : ""}
-          >
-            <h2>HOW TO PLAY</h2>
-            <p>
-              The aim of the game is to surf your way to clean the ocean from
-              all the trash all the brash people been throwing into it. But
-              beware of the stones, they will brake your board.
-            </p>
-            <img src={arrowKeys} alt="arrow keys" />
-            <p>Use arrow keys to stear the surfer</p>
-            <span
-              className="modal-close"
-              onClick={() => setHowToPlayState(false)}
-            >
-              CLOSE
-            </span>
+          <div className="game-dev">
+            Created by: Olof Aksberg & Mattias Lager
           </div>
         </div>
       </div>

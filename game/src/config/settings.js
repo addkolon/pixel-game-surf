@@ -15,7 +15,8 @@ export const settings = {
  startGameSpawnDelay: 5, // ~ seconds
 
  board: {
-  speed: 5,
+//   speed: 5,
+speed: 0,
   animationSpeed: 5,
   startPositionX: 0,
   startPositionY: 150,

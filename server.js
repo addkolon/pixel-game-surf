@@ -53,15 +53,11 @@ app.use(
 app.use("/", index);
 app.use("/auth", auth, protectedRouter);
 
-
 app.get("*", (req, res) =>
  res.sendFile("index.html", {
   root: process.env.MODE === "dev" ? "./game/public" : "./game/build",
  })
 );
-
-
-
 
 app.listen(PORT, () => {
  console.log("lyssnar port " + PORT);

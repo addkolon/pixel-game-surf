@@ -8,17 +8,16 @@ import {
  spawners,
 } from "../../../../store/spawnersSlice";
 import { checkIfHit } from "../../../../utils/checkIfHit";
-
+import { crash } from "../../../../store/soundSlice";
 import boomSprite from "../../../../sprite/Boom.png";
 import { settings } from "../../../../config/settings";
-import { useCrashSound } from "../sounds/useCrashSound";
 import { useSounds } from "../sounds/useSounds";
 
 export const useHandleCrash = () => {
  const dispatch = useDispatch();
  const { obstacles, boom } = useSelector(spawners);
  const { hitbox } = useSelector(playerObject);
-
+ const  crashSound  = useSelector(crash);
  const { playCrashSound } = useSounds();
 
  const boomImage = new Image();
@@ -48,17 +47,33 @@ export const useHandleCrash = () => {
 
  const handleCrash = () => {
   let collision = false;
-  obstacles.forEach((o, i) => {
-   const hit = checkIfHit(hitbox, o.x, o.y, o.size, o.size);
-   if (hit) {
-    playCrashSound();
-    dispatch(handleHit({ arr: "obstacles", data: { obj: o, index: i } }));
-    collision = true;
-    return;
-   }
-  });
-  return collision;
- };
+
+  for (let i = 0; i < obstacles.length; i++) {
+    const o = obstacles[i];
+    const hit = checkIfHit(hitbox, o.x, o.y, o.size, o.size);
+    if (hit) {
+     if (crashSound.enabled) {
+         playCrashSound();
+     }
+     dispatch(handleHit({ arr: "obstacles", data: { obj: o, index: i } }));
+     collision = true;
+    }
+   };
+   return collision;
+  }
+//   obstacles.forEach((o, i) => {
+//    const hit = checkIfHit(hitbox, o.x, o.y, o.size, o.size);
+//    if (hit) {
+//     if (crashSound.enabled) {
+//         playCrashSound();
+//     }
+//     dispatch(handleHit({ arr: "obstacles", data: { obj: o, index: i } }));
+//     collision = true;
+//     return;
+//    }
+//   });
+//   return collision;
+//  };
 
  return {
   handleCrash,

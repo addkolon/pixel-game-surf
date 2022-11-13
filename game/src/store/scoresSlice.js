@@ -125,15 +125,15 @@ export const scoresSlice = createSlice({
     console.log(data);
     if (success) {
      state.status = "succeeded";
-     // state.data = {
-     //   ...state.data,
-     //   scores: data.scores,
-     // };
-     // if (data.yourRank) {
-     //   state.yourRank = data.yourRank;
-     // } else {
-     //   state.yourRank = yourRankModel;
-     // }
+     state.data = {
+       ...state.data,
+       scores: data.scores,
+     };
+    //  if (data.yourRank) {
+    //    state.yourRank = data.yourRank;
+    //  } else {
+    //    state.yourRank = yourRankModel;
+    //  }
     } else {
      state.status = "failed";
      state.error = message;

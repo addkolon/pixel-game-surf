@@ -5,10 +5,7 @@ import { data } from "../../store/scoresSlice";
 import lifeRing from "../../sprite/heart.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { useGameMusic } from "./utils/sounds/useGameMusic";
 import { Canvas } from "./components";
-import { useGameoverSound } from "./utils/sounds/useGameoverSound";
-import { useWaveSound } from "./utils/sounds/useWaveSound";
 import { gameScore, lives as sliceLives } from "../../store/gameplaySlice";
 
 import { useSounds } from "./utils/sounds/useSounds";
@@ -22,12 +19,8 @@ import {
 } from "../../store/soundSlice";
 
 export const Game = ({ setView }) => {
-<<<<<<< HEAD
  const dispatch = useDispatch(); 
  const muteSound = useSelector(muteAll);
-=======
- const dispatch = useDispatch();
->>>>>>> f7b9aa0822cd243b749a62e18368db19c1c49087
  const lives = useSelector(sliceLives);
  const score = useSelector(gameScore);
  const scoreToBeat = useSelector(data)[0];
@@ -38,13 +31,14 @@ export const Game = ({ setView }) => {
  //  const { playGameMusic, stopGameMusic, gameMusicPlaying, setGameMusicPlaying } =
  //   useGameMusic();
 
- const { playGameMusic, stopGameMusic, playWaveSound, stopWaveSound } =
+ const { playGameMusic, stopGameMusic, playWaveSound, stopWaveSound, playGameoverSound } =
   useSounds();
 
- const { playGameoverSound } = useGameoverSound();
+//  const { playGameoverSound } = useGameoverSound();
  //  const { playWaveSound, stopWaveSound } = useWaveSound();
 
  useEffect(() => {
+  console.log(lives);
   if (lives.length < 1) {
    playGameoverSound();
    setView("gameOver");

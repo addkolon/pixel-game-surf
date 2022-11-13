@@ -35,6 +35,8 @@ import { GameOver } from "./views/gameOver/GameOver.js";
 
 import "./style/main.scss";
 import { GET } from "./utils/fetch";
+import { Settings } from "./views/settings/Settings";
+import { HowToPlay } from "./views/howToPlay/HowToPlay";
 
 function App() {
  const [view, setView] = useState("home");
@@ -48,6 +50,14 @@ function App() {
   <div className="App">
    <If condition={view === "home"}>
     <Home setView={setView} />
+   </If>
+
+   <If condition={view === "how_to_play"}>
+    <HowToPlay setView={setView} />
+   </If>
+
+   <If condition={view === "settings"}>
+    <Settings setView={setView} />
    </If>
 
    <If condition={view === "game"}>
