@@ -58,9 +58,35 @@ export const playerObjectSlice = createSlice({
  initialState,
  reducers: {
   move: (state, action) => {
-   const direction = action.payload;
+   const direction = action.payload.direction;
+   const reset = action.payload.reset
+   switch (reset) {
+    case true:
+      switch (direction) {
+        case "up":
+          state.board.speedUp = 0;
+          break;
+          case "down":
+            state.board.speedDown = 0;
+          break;
+          case "right":
+            state.board.speedRight = 0;
+          break;
+          case "left":
+            state.board.speedLeft = 0;
+          break;
+       }
+      break;
+   
+    default:
+
+      
+   
    switch (direction) {
     case "up":
+      if (action.payload.reset) {
+        return state.board.speedUp = 0;
+      }
       if (state.board.speedUp < 5) {
          state.board.speedUp = roundIt(state.board.speedUp + 0.1);
        }
@@ -101,6 +127,9 @@ export const playerObjectSlice = createSlice({
      break;
 
      case "slowup":
+      if (action.payload.reset) {
+        return state.board.speedUp = 0;
+      }
       if (state.board.speedUp > 0) {
          state.board.speedUp = roundIt(state.board.speedUp - 0.1);
        }
@@ -141,6 +170,9 @@ export const playerObjectSlice = createSlice({
      break;
 
     case "down":
+      if (action.payload.reset) {
+        return state.board.speedDown = 0;
+      }
       if (state.board.speedDown < 5) {
          state.board.speedDown = roundIt(state.board.speedDown + 0.1);
        }
@@ -181,6 +213,9 @@ export const playerObjectSlice = createSlice({
      break;
 
      case "slowdown":
+      if (action.payload.reset) {
+        return state.board.speedDown = 0;
+      }
       if (state.board.speedDown > 0) {
          state.board.speedDown = roundIt(state.board.speedDown - 0.1);
        }
@@ -221,7 +256,9 @@ export const playerObjectSlice = createSlice({
      break;
 
     case "right":
-
+      if (action.payload.reset) {
+        return state.board.speedRight = 0;
+      }
     if (state.board.speedRight < 5) {
       state.board.speedRight = roundIt(state.board.speedRight + 0.1)
       //  Math.round((state.board.speedRight + 0.1) * 10) / 10;
@@ -262,7 +299,9 @@ export const playerObjectSlice = createSlice({
      break;
 
      case "slowright":
-
+      if (action.payload.reset) {
+        return state.board.speedRight = 0;
+      }
       if (state.board.speedRight > 0) {
         state.board.speedRight = roundIt(state.board.speedRight - 0.1);
       }
@@ -299,7 +338,9 @@ export const playerObjectSlice = createSlice({
        break;
 
     case "left":
-
+      if (action.payload.reset) {
+        return state.board.speedLeft = 0;
+      }
       if (state.board.speedLeft < 5) {
          state.board.speedLeft = roundIt(state.board.speedLeft + 0.1);
        }
@@ -336,7 +377,9 @@ export const playerObjectSlice = createSlice({
      break;
 
      case "slowleft":
-
+      if (action.payload.reset) {
+        return state.board.speedLeft = 0;
+      }
       if (state.board.speedLeft > 0) {
          state.board.speedLeft = roundIt(state.board.speedLeft - 0.1);
        }
@@ -373,17 +416,19 @@ export const playerObjectSlice = createSlice({
      break;
 
     case "rightUp":
-
-      if (state.board.speedRight < 5) {
-         state.board.speedRight = roundIt(state.board.speedRight + 0.1);
-       }
+      if (action.payload.reset) {
+        return state.board.speedUp = 0;
+      }
+      // if (state.board.speedRight < 5) {
+      //    state.board.speedRight = roundIt(state.board.speedRight + 0.1);
+      //  }
 
        if (state.board.speedUp < 5) {
          state.board.speedUp = roundIt(state.board.speedUp + 0.1);
        }
 
-     state.board.y = state.board.y - state.board.speedUp;
-     state.board.x = state.board.x + state.board.speedRight;
+     state.board.y = roundIt(state.board.y - state.board.speedUp);
+     state.board.x = roundIt(state.board.x + state.board.speedUp);
      state.board.frameY = 0;
 
      state.boardFoam.x = state.board.x + -settings.boardFoam.alignmentX;
@@ -403,17 +448,20 @@ export const playerObjectSlice = createSlice({
      ];
      break;
      case "rightUpslow":
+      if (action.payload.reset) {
+        return state.board.speedUp = 0;
+      }
 
-      if (state.board.speedRight < 5) {
-         state.board.speedRight = roundIt(state.board.speedRight + 0.1);
-       }
+      // if (state.board.speedRight > 0) {
+      //    state.board.speedRight = roundIt(state.board.speedRight - 0.1);
+      //  }
 
-       if (state.board.speedUp < 5) {
-         state.board.speedUp = roundIt(state.board.speedUp + 0.1);
+       if (state.board.speedUp > 0) {
+         state.board.speedUp = roundIt(state.board.speedUp - 0.1);
        }
 
      state.board.y = roundIt(state.board.y - state.board.speedUp);
-     state.board.x = roundIt(state.board.x + state.board.speedRight);
+     state.board.x = roundIt(state.board.x + state.board.speedUp);
      state.board.frameY = 0;
 
      state.boardFoam.x = state.board.x + -settings.boardFoam.alignmentX;
@@ -434,16 +482,51 @@ export const playerObjectSlice = createSlice({
      break;
 
     case "leftDown":
-
+      if (action.payload.reset) {
+        return state.board.speedLeft = 0;
+      }
       if (state.board.speedLeft < 5) {
          state.board.speedLeft = roundIt(state.board.speedLeft + 0.1);
        }
 
-       if (state.board.speedDown < 5) {
-         state.board.speedDown = roundIt(state.board.speedDown + 0.1);
+      //  if (state.board.speedDown < 5) {
+      //    state.board.speedDown = roundIt(state.board.speedDown + 0.1);
+      //  }
+
+     state.board.y = roundIt(state.board.y + state.board.speedLeft);
+     state.board.x = roundIt(state.board.x - state.board.speedLeft);
+     state.board.frameY = 1;
+
+     state.boardFoam.x =
+      state.board.x + state.board.width + -settings.boardFoam.alignmentX;
+
+     state.surfer.frameY = 1;
+     state.surfer.x = state.board.x + 134 / 2 - 75 / 2 + 10;
+     state.hitbox = [
+      {
+       x: state.board.x + 5,
+       y: state.board.y + state.board.height - 5,
+      },
+      {
+       x: state.board.x + state.board.width - 5,
+       y: state.board.y + 5,
+      },
+     ];
+     break;
+
+     case "slowleftDown":
+      if (action.payload.reset) {
+        return state.board.speedLeft = 0;
+      }
+      if (state.board.speedLeft < 5) {
+         state.board.speedLeft = roundIt(state.board.speedLeft - 0.1);
        }
 
-     state.board.y = roundIt(state.board.y + state.board.speedDown);
+      //  if (state.board.speedDown < 5) {
+      //    state.board.speedDown = roundIt(state.board.speedDown - 0.1);
+      //  }
+
+     state.board.y = roundIt(state.board.y + state.board.speedLeft);
      state.board.x = roundIt(state.board.x - state.board.speedLeft);
      state.board.frameY = 1;
 
@@ -466,11 +549,13 @@ export const playerObjectSlice = createSlice({
 
     default:
      state.board.moving = false;
-     state.board.speedUp = 0;
-     state.board.speedRight = 0;
-     state.board.speedDown = 0;
-     state.board.speedLeft = 0;
+    //  state.board.speedUp = 0;
+    //  state.board.speedRight = 0;
+    //  state.board.speedDown = 0;
+    //  state.board.speedLeft = 0;
      break;
+   }
+   break;
    }
    state.board.moving = direction;
   },

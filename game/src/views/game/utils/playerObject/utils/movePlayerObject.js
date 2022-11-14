@@ -32,16 +32,18 @@ export const useHandleMovement = () => {
 
     if (onCanvas) {
      if (!check1() && check2()) {
-      dispatch(move("rightUp"));
+      dispatch(move({direction: "rightUp", reset: false}));
      } else if (!check1()) {
-      dispatch(move("up"));
-     }
-    }
+      dispatch(move({direction: "up", reset: false}));
+     } 
+    //  else if (check1()) {
+    //   dispatch(move("na"))
+    //  }
+    } 
    }
 
     //  test
     if (board.speedUp > 0 && !keysArray.includes("ArrowUp")) {
-      console.log(board.speedUp);
       // if (board.y > settings.background.height) dispatch(move("slowup"));
       const onCanvas = board.y > settings.background.height;
 
@@ -60,29 +62,30 @@ export const useHandleMovement = () => {
     };
 
     if (onCanvas) {
-      console.log('on can');
      if (!check1() && check2()) {
-      dispatch(move("rightUpslow"));
+      dispatch(move({direction: "rightUpslow", reset: false}));
      } else if (!check1()) {
-      dispatch(move("slowup"));
+      dispatch(move({direction: "slowup", reset: false}));
+     } else if (check1()) {
+      dispatch(move({direction: "up", reset: true}))
      }
     } else {
-      dispatch(move('na'))
+      dispatch(move({direction: "up", reset: true}))
     }
     }
     if (board.speedDown > 0 && !keysArray.includes("ArrowDown")) {
       if (board.y < settings.canvasHeight - board.height - 30) {
-        dispatch(move("slowdown"));
+        dispatch(move({direction: "slowdown", reset: false}));
        }else {
-        dispatch(move('na'))
+        dispatch(move({direction: 'down', reset: true}))
       }
     }
   if (board.speedRight > 0 && !keysArray.includes("ArrowRight")) {
     console.log('trigger slowright');
     if (board.x < settings.canvasWidth - board.width) {
-      dispatch(move("slowright"));
+      dispatch(move({direction: "slowright", reset: false}));
     } else {
-      dispatch(move('na'))
+      dispatch(move({direction: 'right', reset: true}))
     }
   }
   if (board.speedLeft > 0 && !keysArray.includes("ArrowLeft")) {
@@ -98,12 +101,12 @@ export const useHandleMovement = () => {
 
     if (onCanvas) {
      if (!check1()) {
-      dispatch(move("slowleft"));
+      dispatch(move({direction: "slowleft", reset: false}));
      } else {
-      dispatch(move("leftDown"));
+      dispatch(move({direction: "slowleftDown", reset: false}));
      }
     } else {
-      dispatch(move('na'))
+      dispatch(move({direction: 'left', reset: true}))
     }
   }
 
@@ -112,14 +115,13 @@ export const useHandleMovement = () => {
 
    if (keysArray.includes("ArrowDown")) {
     if (board.y < settings.canvasHeight - board.height - 30) {
-     dispatch(move("down"));
+     dispatch(move({direction: "down", reset: false}));
     }
    }
 
    if (keysArray.includes("ArrowRight")) {
     if (board.x < settings.canvasWidth - board.width) {
-      console.log('triogger right');
-     dispatch(move("right"));
+     dispatch(move({direction: "right", reset: false}));
     }
    }
 
@@ -149,17 +151,13 @@ export const useHandleMovement = () => {
     };
 
     if (onCanvas) {
-      console.log('canvas');
      if (!check1()) {
-      console.log('trigger left');
-      dispatch(move("left"));
+      dispatch(move({direction: "left", reset: false}));
      } else {
-      console.log('trigger left down');
-      dispatch(move("leftDown"));
+      dispatch(move({direction: "leftDown", reset: false}));
      }
     } else {
-      console.log('not on canvas');
-      dispatch(move('na'))
+      dispatch(move({direction: "left", reset: true}))
     }
    }
   // }
