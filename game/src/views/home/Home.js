@@ -29,19 +29,21 @@ export const Home = ({ setView }) => {
   const crashYe = useSelector(crash);
   const gameoverYe = useSelector(gameover);
   //   const scoreToBeat = useSelector(data).scores[0];
-  const scoreToBeat = useSelector(data)[0];
+  // const scoreToBeat = useSelector(data)[0];
   const [howToPlayState, setHowToPlayState] = useState(false);
   const [settingsState, setSettingsState] = useState(false);
 
-  useEffect(() => {
-    dispatch(getTopScores());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getTopScores());
+  // }, []);
 
-  if (scoresStatus !== "succeeded") {
+  // if (scoresStatus !== "succeeded") {
+  //   return <div> loading</div>;
+  // }
+  if (scoresStatus === "loading") {
     return <div> loading</div>;
   }
 
-  console.log(scoreToBeat);
 
   return (
     <main>
@@ -52,8 +54,8 @@ export const Home = ({ setView }) => {
             {/* <h1>SCORE TO BEAT: 69</h1> */}
             <h1>
               SCORE TO BEAT: {}
-              {scoreToBeat.score}
-              {/* 1337 */}
+              {/* {scoreToBeat.score} */}
+              1337
             </h1>
             {/* av {scoreToBeat.name} */}
           </div>
@@ -76,11 +78,11 @@ export const Home = ({ setView }) => {
             </span>
           </div>
 
-          <div className="how-to-play">
+          {/* <div className="how-to-play">
             <span className="modal-link" onClick={() => setView("settings")}>
               Settings
             </span>
-          </div>
+          </div> */}
 
           <div className="game-dev">
             Created by: Olof Aksberg & Mattias Lager

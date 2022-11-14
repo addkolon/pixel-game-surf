@@ -23,19 +23,9 @@ export const Game = ({ setView }) => {
  const muteSound = useSelector(muteAll);
  const lives = useSelector(sliceLives);
  const score = useSelector(gameScore);
- const scoreToBeat = useSelector(data)[0];
 
- const theWaves = useSelector(waves);
- const theMusic = useSelector(music);
-
- //  const { playGameMusic, stopGameMusic, gameMusicPlaying, setGameMusicPlaying } =
- //   useGameMusic();
-
- const { playGameMusic, stopGameMusic, playWaveSound, stopWaveSound, playGameoverSound } =
+ const { playGameoverSound } =
   useSounds();
-
-//  const { playGameoverSound } = useGameoverSound();
- //  const { playWaveSound, stopWaveSound } = useWaveSound();
 
  useEffect(() => {
   console.log(lives);
@@ -45,42 +35,11 @@ export const Game = ({ setView }) => {
   }
  }, [lives]);
 
- //  useEffect(() => {
- //   gameMusicPlaying ? playGameMusic() : stopGameMusic();
- //   return () => stopGameMusic();
- //  }, [gameMusicPlaying, playGameMusic, stopGameMusic]);
-
- //  useEffect(() => {
- //   console.log(theMusic.enabled);
- //   theMusic.enabled ? playGameMusic() : stopGameMusic();
- //  }, [theMusic.enabled]);
-
- //  useEffect(() => {
- //   theWaves.enabled ? playWaveSound() : stopWaveSound();
- //  }, [theWaves.enabled]);
-
- //  useEffect(() => {
- //   theWaves.enabled ? playWaveSound() : stopWaveSound();
- //  }, [theWaves.enabled]);
-
- //  useEffect(() => {
- //   playWaveSound();
- //   const int = setInterval(() => {
- //    playWaveSound();
- //   }, 10000);
- //   return () => {
- //    clearInterval(int);
- //    stopWaveSound();
- //   };
- //  }, [playWaveSound]);
-
  return (
   <div
    className="main"
    onKeyDown={(e) => {
     if (e.code === "KeyM") {
-     //  setGameMusicPlaying(!gameMusicPlaying);
-     //  dispatch(setMusicVolume(0.1));
      dispatch(setMuteAll());
     }
    }}
@@ -102,7 +61,6 @@ export const Game = ({ setView }) => {
      <div className="in-game-score">
       <h2>
        HIGH SCORE: <span id="high-scoure">
-        {/* {scoreToBeat.score} */}
         1337
         </span>
       </h2>

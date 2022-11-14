@@ -1,9 +1,0 @@
-/package-lock.json
-
-.env
-
-/node_modules
-
-/create_score.php
-/get_rank.php
-/get_top_scores.php

@@ -59,11 +59,11 @@ export const GameOver = ({ setView }) => {
 //    dispatch(getRank(score));
 //   }, []);
 
-  useEffect(() => {
-   dispatch(getTopScores());
-  }, []);
+  // useEffect(() => {
+  //  dispatch(getTopScores());
+  // }, []);
 
- if (scoresStatus !== "succeeded") {
+ if (scoresStatus === "loading") {
   return <div> loading</div>;
  }
 
@@ -76,12 +76,12 @@ export const GameOver = ({ setView }) => {
      <section className="game-over-topleft">
       <Form setInputsState={setInputsState} />
       <div className="game-over-btns">
-       <button onClick={() => handleSubmit(true)}>Submit score</button>
+       {/* <button onClick={() => handleSubmit(true)}>Submit score</button> */}
        <button onClick={() => handleSubmit(false)}>Skip</button>
       </div>
      </section>
      <section className="game-over-topright">
-      <Scoreboard />
+      {/* <Scoreboard /> */}
      </section>
     </div>
    </section>

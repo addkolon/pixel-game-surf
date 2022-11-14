@@ -9,7 +9,7 @@ const initialState = {
  },
  waves: {
   enabled: true,
-  volume: 0,
+  volume: 0.3,
  },
  pickup: {
   enabled: true,
