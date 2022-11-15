@@ -58,9 +58,9 @@ export const useFrameUpdates = () => {
     updateForeground(context);
 
     // ODÖDLIG START
-    // if (handleCrash()) {
-    //   dispatch(lostLives());
-    // }
+    if (handleCrash()) {
+      dispatch(lostLives());
+    }
     // ODÖDLIG SLUT
 
     if (handlePickup()) {

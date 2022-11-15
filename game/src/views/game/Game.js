@@ -24,11 +24,10 @@ export const Game = ({ setView }) => {
  const lives = useSelector(sliceLives);
  const score = useSelector(gameScore);
 
- const { playGameoverSound } =
+ const { playGameoverSound, stopGameMusic, stopWaveSound } =
   useSounds();
 
  useEffect(() => {
-  console.log(lives);
   if (lives.length < 1) {
    playGameoverSound();
    setView("gameOver");
