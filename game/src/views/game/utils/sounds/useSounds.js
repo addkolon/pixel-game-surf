@@ -52,13 +52,13 @@ export const useSounds = () => {
  });
 
  useEffect(() => {
-  theMusic.enabled ? playGameMusic() : stopGameMusic();
+  if (theMusic.enabled) playGameMusic();
 
   return () => stopGameMusic();
  }, [theMusic.enabled, playGameMusic]);
 
  useEffect(() => {
-  theWaves.enabled ? playWaveSound() : stopWaveSound();
+  if (theWaves.enabled) playWaveSound();
 
   return () => stopWaveSound();
  }, [theWaves.enabled, playWaveSound]);

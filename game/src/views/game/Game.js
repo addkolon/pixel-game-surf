@@ -24,7 +24,7 @@ export const Game = ({ setView }) => {
  const lives = useSelector(sliceLives);
  const score = useSelector(gameScore);
 
- const { playGameoverSound, stopGameMusic, stopWaveSound } =
+ const { playGameoverSound } =
   useSounds();
 
  useEffect(() => {
