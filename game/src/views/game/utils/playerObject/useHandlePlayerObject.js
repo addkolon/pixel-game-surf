@@ -1,5 +1,7 @@
 /** @format */
 
+import { useDispatch, useSelector } from "react-redux";
+
 import boardSprite from "../../../../sprite/board-sprite.png";
 import boardFoamSprite from "../../../../sprite/board-foam-sprite.png";
 import surferSprite from "../../../../sprite/surfer.png";
@@ -10,15 +12,13 @@ import {
  animateSurfer,
  playerObject,
 } from "../../../../store/playerObjectSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { updateSpeed } from "../../../../store/gameplaySlice";
 import { useHandleMovement } from "./utils/movePlayerObject";
 import { settings } from "../../../../config/settings";
 
 export const useHandlePlayerObject = () => {
  const dispatch = useDispatch();
  const { board, boardFoam, surfer, hitbox } = useSelector(playerObject);
- // images
+
  const boardImage = new Image();
  boardImage.src = boardSprite;
  const boardFoamImage = new Image();

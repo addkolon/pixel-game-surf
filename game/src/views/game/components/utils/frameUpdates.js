@@ -18,10 +18,11 @@ import { useHandleFoam } from "../../utils/wave/useHandleFoam";
 
 export const useFrameUpdates = () => {
   const dispatch = useDispatch();
+
   const score = useSelector(gameScore);
   const { boom } = useSelector(spawners);
 
-  const { movePlayerObject, drawPlayerObject, playerObjectAnimations, hitbox } =
+  const { movePlayerObject, drawPlayerObject, playerObjectAnimations } =
     useHandlePlayerObject();
   const { drawFoam, foamAnimation } = useHandleFoam();
   const { updateObstacles } = useHandleObstacles();
@@ -57,11 +58,9 @@ export const useFrameUpdates = () => {
 
     updateForeground(context);
 
-    // ODÖDLIG START
     if (handleCrash()) {
       dispatch(lostLives());
     }
-    // ODÖDLIG SLUT
 
     if (handlePickup()) {
       dispatch(updateScore());
@@ -78,7 +77,7 @@ export const useFrameUpdates = () => {
     }
   };
 
-    // SVÅRIGHET ÖKAR PÅ TID START
+  // SVÅRIGHET ÖKAR PÅ TID START
   // if (frame % (settings.difficulty.timer.seconds * 65) === 0) {
   //   dispatch(updateSpawnersSpeed());
   // }
@@ -86,6 +85,4 @@ export const useFrameUpdates = () => {
   return {
     frameUpdates,
   };
-
-
 };

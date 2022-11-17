@@ -17,7 +17,9 @@ export const useHandleCrash = () => {
  const dispatch = useDispatch();
  const { obstacles, boom } = useSelector(spawners);
  const { hitbox } = useSelector(playerObject);
+
  const  crashSound  = useSelector(crash);
+
  const { playCrashSound } = useSounds();
 
  const boomImage = new Image();
@@ -61,19 +63,6 @@ export const useHandleCrash = () => {
    };
    return collision;
   }
-//   obstacles.forEach((o, i) => {
-//    const hit = checkIfHit(hitbox, o.x, o.y, o.size, o.size);
-//    if (hit) {
-//     if (crashSound.enabled) {
-//         playCrashSound();
-//     }
-//     dispatch(handleHit({ arr: "obstacles", data: { obj: o, index: i } }));
-//     collision = true;
-//     return;
-//    }
-//   });
-//   return collision;
-//  };
 
  return {
   handleCrash,

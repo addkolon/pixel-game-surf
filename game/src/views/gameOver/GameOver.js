@@ -1,25 +1,20 @@
 /** @format */
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { gameScore, resetGameplay } from "../../store/gameplaySlice";
 import { resetPlayer } from "../../store/playerObjectSlice";
 import {
  createScore,
- getRank,
- getTopScores,
  status,
- yourRank,
 } from "../../store/scoresSlice";
 import { resetSpawners } from "../../store/spawnersSlice";
-import { If } from "../components/helpers";
 import { Scoreboard } from "./components/Scoreboard";
 
 export const GameOver = ({ setView }) => {
  const dispatch = useDispatch();
  const score = useSelector(gameScore);
  const scoresStatus = useSelector(status);
- //  const rank = useSelector(yourRank);
 
  const [inputsState, setInputsState] = useState({
   exists: {
@@ -55,14 +50,6 @@ export const GameOver = ({ setView }) => {
   setView("home");
  };
 
-//   useEffect(() => {
-//    dispatch(getRank(score));
-//   }, []);
-
-  // useEffect(() => {
-  //  dispatch(getTopScores());
-  // }, []);
-
  if (scoresStatus === "loading") {
   return <div> loading</div>;
  }
@@ -81,7 +68,7 @@ export const GameOver = ({ setView }) => {
       </div>
      </section>
      <section className="game-over-topright">
-      {/* <Scoreboard /> */}
+      <Scoreboard />
      </section>
     </div>
    </section>

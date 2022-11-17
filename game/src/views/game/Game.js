@@ -1,7 +1,5 @@
 /** @format */
 
-import { data } from "../../store/scoresSlice";
-
 import lifeRing from "../../sprite/heart.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -11,18 +9,15 @@ import { gameScore, lives as sliceLives } from "../../store/gameplaySlice";
 import { useSounds } from "./utils/sounds/useSounds";
 
 import {
- setMusicVolume,
  setMuteAll,
  muteAll,
- music,
- waves,
 } from "../../store/soundSlice";
 
 export const Game = ({ setView }) => {
  const dispatch = useDispatch(); 
- const muteSound = useSelector(muteAll);
  const lives = useSelector(sliceLives);
  const score = useSelector(gameScore);
+ const muteAllYao = useSelector(muteAll);
 
  const { playGameoverSound } =
   useSounds();
@@ -38,10 +33,9 @@ export const Game = ({ setView }) => {
   <div
    className="main"
    onKeyDown={(e) => {
-    if (e.code === "KeyM") {
-     dispatch(setMuteAll());
-    }
-   }}
+    if (e.code !== "KeyM") return;
+    dispatch(setMuteAll());
+  }}
   >
    <main className="game-container">
     <div className="screen"></div>
@@ -71,7 +65,7 @@ export const Game = ({ setView }) => {
     <Canvas />
     <div className="bottom">
      <h2 className="music-mute">
-      PRESS KEY M TO: {true ? "MUTE MUSIC" : "UNMUTE MUSIC"}
+      PRESS KEY M TO: {muteAllYao ? "UNMUTE SOUND" : "MUTE SOUND"}
      </h2>
      <h2 className="music">&#9835; EVIG FERIE - ENESTE</h2>
     </div>

@@ -113,7 +113,7 @@ speed: 0,
  },
  sound: {
   music: {
-   volume: 0.1,
+   volume: 0.3,
   },
   wave: {
    volume: 0.7,

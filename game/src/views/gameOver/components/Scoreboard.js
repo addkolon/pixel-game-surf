@@ -5,15 +5,16 @@ import { useSelector } from "react-redux";
 import { data } from "../../../store/scoresSlice";
 
 export const Scoreboard = () => {
- const scores = useSelector(data);
+ const scores = useSelector(data).scores;
  const [fillOut, setFillOut] = useState([]);
 
  useEffect(() => {
   const arr = [];
   const amount = 10 - scores.length;
   for (let i = 0; i < amount; i++) {
-   arr.push(<li>...</li>);
+   arr.push(<li key={i}>{i + 1}. ...</li>);
   }
+
   setFillOut(arr);
  }, [scores]);
 

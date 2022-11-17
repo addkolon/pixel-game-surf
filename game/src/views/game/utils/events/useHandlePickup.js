@@ -8,31 +8,32 @@ import { useSounds } from "../sounds/useSounds";
 import { pickup } from "../../../../store/soundSlice";
 
 export const useHandlePickup = () => {
- const dispatch = useDispatch();
- const { hitbox } = useSelector(playerObject);
- const { pickups } = useSelector(spawners);
+  const dispatch = useDispatch();
+  const { pickups } = useSelector(spawners);
+  const { hitbox } = useSelector(playerObject);
 
- const  pickupSound  = useSelector(pickup);
+  const pickupSound = useSelector(pickup);
 
- const { playPickupSound } = useSounds();
+  const { playPickupSound } = useSounds();
 
- const handlePickup = () => {
-  let collision = false;
-  pickups.forEach((o, i) => {
-   const hit = checkIfHit(hitbox, o.x, o.y, o.size, o.size);
-   if (hit) {
-    if (pickupSound.enabled) {
-        playPickupSound();
+  const handlePickup = () => {
+    let collision = false;
+
+    for (let i = 0; i < pickups.length; i++) {
+      const o = pickups[i];
+      const hit = checkIfHit(hitbox, o.x, o.y, o.size, o.size);
+      if (hit) {
+        if (pickupSound.enabled) {
+          playPickupSound();
+        }
+        dispatch(handleHit({ index: i, arr: "pickups" }));
+        collision = true;
+      }
     }
-    dispatch(handleHit({ index: i, arr: "pickups" }));
-    collision = true;
-    return;
-   }
-  });
-  return collision;
- };
+    return collision;
+  };
 
- return {
-  handlePickup,
- };
+  return {
+    handlePickup,
+  };
 };

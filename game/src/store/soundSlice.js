@@ -35,42 +35,50 @@ export const soundSlice = createSlice({
    state.pickup.enabled = !state.pickup.enabled;
    state.crash.enabled = !state.crash.enabled;
    state.gameover.enabled = !state.gameover.enabled;
+   state.muteAll = !state.muteAll;
   },
   setMusicVolume: (state, action) => {
    if (typeof action.payload === "boolean") {
     state.music.enabled = action.payload;
    } else {
-    state.music.volume += action.payload;
+    state.music.volume = action.payload;
    }
   },
   setWavesVolume: (state, action) => {
    if (typeof action.payload === "boolean") {
     state.waves.enabled = action.payload;
    } else {
-    state.waves.volume += action.payload;
+    state.waves.volume = action.payload;
    }
   },
   setPickupVolume: (state, action) => {
    if (typeof action.payload === "boolean") {
     state.pickup.enabled = action.payload;
    } else {
-    state.pickup.volume += action.payload;
+    state.pickup.volume = action.payload;
    }
   },
   setCrashVolume: (state, action) => {
    if (typeof action.payload === "boolean") {
     state.crash.enabled = action.payload;
    } else {
-    state.crash.volume += action.payload;
+    state.crash.volume = action.payload;
    }
   },
   setGameoverVolume: (state, action) => {
    if (typeof action.payload === "boolean") {
     state.gameover.enabled = action.payload;
    } else {
-    state.gameover.volume += action.payload;
+    state.gameover.volume = action.payload;
    }
   },
+  setAllVolumes: (state, action) => {
+    state.music.volume = action.payload.music;
+    state.waves.volume = action.payload.waves;
+    state.pickup.volume = action.payload.pickup;
+    state.crash.volume = action.payload.crash;
+    state.gameover.volume = action.payload.gameover;
+   },
  },
 });
 
@@ -81,6 +89,7 @@ export const {
  setPickupVolume,
  setCrashVolume,
  setGameoverVolume,
+ setAllVolumes
 } = soundSlice.actions;
 
 // export data

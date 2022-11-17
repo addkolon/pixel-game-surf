@@ -1,12 +1,7 @@
 /** @format */
 
-// generals
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-
-// handlers
 import {  useFrameUpdates } from "./utils/frameUpdates";
-
-// constants
 import { settings } from "../../../config/settings";
 
 export const Canvas = () => {
