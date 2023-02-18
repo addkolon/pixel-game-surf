@@ -294,13 +294,13 @@ input:active,
 input:focus,
 input:visited {
   margin-bottom: 1rem;
-  color: #fff;
+  color: #1c1c1c;
   padding: 0.5rem;
   border: none;
   font-size: 0.75rem;
   background-color: white;
-  box-shadow: -5px 0 0 0 #acacac, 5px 0 0 0 #acacac, 0 -5px 0 0 #acacac,
-    0 5px 0 0 #acacac;
+  box-shadow: -2px 0 0 0 #acacac, 2px 0 0 0 #acacac, 0 -2px 0 0 #acacac,
+    0 2px 0 0 #acacac;
 }
 
 input[type=text] {
@@ -453,7 +453,7 @@ h3 {
   // width: 800px;
   // height: 600px;
   // border: 1px solid black;
-  background: url(../sprite/wave-bg.png);
+  background: url(../sprite/new-bg-2.png);
   // box-shadow: -15px 0 0 0 white, 15px 0 0 0 white, 0 -15px 0 0 white,
   //   0 15px 0 0 white;
 
@@ -513,6 +513,10 @@ h3 {
   button {
     display: inline-block;
   }
+}
+
+label {
+  font-size: 0.5rem;
 }
 
 // ---
