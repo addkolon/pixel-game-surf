@@ -14,7 +14,7 @@ import {
 } from "../../store/soundSlice";
 
 export const Game = ({ setView }) => {
- const dispatch = useDispatch(); 
+ const dispatch = useDispatch();
  const lives = useSelector(sliceLives);
  const score = useSelector(gameScore);
  const muteAllYao = useSelector(muteAll);

@@ -273,11 +273,8 @@ export const playerObjectSlice = createSlice({
                 //  Math.round((state.board.speedRight + 0.1) * 10) / 10;
               }
 
-              console.log(state.board.speedRight);
-              console.log(state.board.x);
               state.board.x =
                 Math.round((state.board.x + state.board.speedRight) * 10) / 10;
-              console.log(state.board.x);
               state.board.frameY = 0;
               state.boardFoam.frameY = 0;
 
