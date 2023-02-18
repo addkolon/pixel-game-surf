@@ -131,7 +131,7 @@ export const playerObjectSlice = createSlice({
                 return (state.board.speedUp = 0);
               }
               if (state.board.speedUp > 0) {
-                state.board.speedUp = roundIt(state.board.speedUp - 0.1);
+                state.board.speedUp = roundIt(state.board.speedUp - 0.02);
               }
               state.board.y = roundIt(state.board.y - state.board.speedUp);
 
