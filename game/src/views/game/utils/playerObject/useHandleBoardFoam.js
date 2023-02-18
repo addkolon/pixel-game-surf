@@ -4,7 +4,7 @@ import { useState } from "react";
 import boardFoamSprite from "../../../../sprite/board-foam-sprite.png";
 import { settings } from "../../settings";
 
-export const useHandleBoardFoam = () => {
+ const useHandleBoardFoam = () => {
   const boardFoamImage = new Image();
   boardFoamImage.src = boardFoamSprite;
 
