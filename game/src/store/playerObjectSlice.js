@@ -2,6 +2,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { settings } from "../config/settings";
 
+const accSpeed = settings.board.accSpeed;
+
 const roundIt = (sumToRound) => {
   return Math.round(sumToRound * 10) / 10;
 };
@@ -131,7 +133,7 @@ export const playerObjectSlice = createSlice({
                 return (state.board.speedUp = 0);
               }
               if (state.board.speedUp > 0) {
-                state.board.speedUp = roundIt(state.board.speedUp - 0.1);
+                state.board.speedUp = roundIt(state.board.speedUp - accSpeed);
               }
               state.board.y = roundIt(state.board.y - state.board.speedUp);
 
@@ -223,7 +225,9 @@ export const playerObjectSlice = createSlice({
                 return (state.board.speedDown = 0);
               }
               if (state.board.speedDown > 0) {
-                state.board.speedDown = roundIt(state.board.speedDown - 0.1);
+                state.board.speedDown = roundIt(
+                  state.board.speedDown - accSpeed
+                );
               }
               state.board.y = roundIt(state.board.y + state.board.speedDown);
 
@@ -275,6 +279,7 @@ export const playerObjectSlice = createSlice({
 
               state.board.x =
                 Math.round((state.board.x + state.board.speedRight) * 10) / 10;
+              console.log(state.board.x);
               state.board.frameY = 0;
               state.boardFoam.frameY = 0;
 
@@ -312,7 +317,9 @@ export const playerObjectSlice = createSlice({
                 return (state.board.speedRight = 0);
               }
               if (state.board.speedRight > 0) {
-                state.board.speedRight = roundIt(state.board.speedRight - 0.1);
+                state.board.speedRight = roundIt(
+                  state.board.speedRight - accSpeed
+                );
               }
 
               state.board.x = roundIt(state.board.x + state.board.speedRight);
@@ -395,7 +402,9 @@ export const playerObjectSlice = createSlice({
                 return (state.board.speedLeft = 0);
               }
               if (state.board.speedLeft > 0) {
-                state.board.speedLeft = roundIt(state.board.speedLeft - 0.1);
+                state.board.speedLeft = roundIt(
+                  state.board.speedLeft - accSpeed
+                );
               }
 
               state.board.x = roundIt(state.board.x - state.board.speedLeft);
@@ -475,7 +484,7 @@ export const playerObjectSlice = createSlice({
               //  }
 
               if (state.board.speedUp > 0) {
-                state.board.speedUp = roundIt(state.board.speedUp - 0.1);
+                state.board.speedUp = roundIt(state.board.speedUp - accSpeed);
               }
 
               state.board.y = roundIt(state.board.y - state.board.speedUp);
@@ -540,7 +549,9 @@ export const playerObjectSlice = createSlice({
                 return (state.board.speedLeft = 0);
               }
               if (state.board.speedLeft < 5) {
-                state.board.speedLeft = roundIt(state.board.speedLeft - 0.1);
+                state.board.speedLeft = roundIt(
+                  state.board.speedLeft - accSpeed
+                );
               }
 
               //  if (state.board.speedDown < 5) {
