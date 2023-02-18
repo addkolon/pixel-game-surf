@@ -39,6 +39,7 @@ export const Canvas = () => {
    height={settings.canvasHeight}
    tabIndex="0"
    onKeyDown={(e) => {
+    e.preventDefault();
     if (!keysArray.includes(e.code)) {
      setKeysArray((prev) => {
       return [...prev, e.code];
