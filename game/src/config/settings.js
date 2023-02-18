@@ -104,8 +104,8 @@ export const settings = {
   },
   difficulty: {
     timer: {
-      enabled: false,
-      seconds: 5,
+      enabled: true,
+      seconds: 1,
     },
     savings: {
       enabled: true,
@@ -114,16 +114,16 @@ export const settings = {
   },
   sound: {
     music: {
-      volume: 0.3,
+      volume: 0.9,
     },
     wave: {
-      volume: 0.7,
+      volume: 0.4,
     },
     crash: {
-      volume: 0.7,
+      volume: 0.4,
     },
     pickup: {
-      volume: 0.2,
+      volume: 0.1,
     },
     gameover: {
       volume: 0.7,

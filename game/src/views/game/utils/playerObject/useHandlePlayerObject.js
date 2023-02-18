@@ -2,7 +2,7 @@
 
 import { useDispatch, useSelector } from "react-redux";
 
-import boardSprite from "../../../../sprite/board-sprite.png";
+import boardSprite from "../../../../sprite/board-sprite-2.png";
 import boardFoamSprite from "../../../../sprite/board-foam-sprite.png";
 import surferSprite from "../../../../sprite/surfer.png";
 

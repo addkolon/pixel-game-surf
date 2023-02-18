@@ -57,7 +57,7 @@ export const GameOver = ({ setView }) => {
  return (
   <main className="game-container">
    <section className="game-over-top">
-    <h1>GAME OVER</h1>
+    <h1>BUMMER... GAME OVER!</h1>
     <h3>Your Score: {score}</h3>
     <div className="game-over-cols">
      <section className="game-over-topleft">

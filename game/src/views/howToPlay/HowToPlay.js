@@ -12,7 +12,7 @@ export const HowToPlay = ({ setView }) => {
             <h2>HOW TO PLAY</h2>
             <p>
               The aim of the game is to surf your way to clean the ocean from
-              all the trash all the brash people been throwing into it. But
+              all the trash that the brash people been throwing into it. But
               beware of the stones, they will brake your board.
             </p>
             <img src={arrowKeys} alt="arrow keys" />

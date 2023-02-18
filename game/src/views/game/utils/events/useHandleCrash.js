@@ -9,7 +9,7 @@ import {
 } from "../../../../store/spawnersSlice";
 import { checkIfHit } from "../../../../utils/checkIfHit";
 import { crash } from "../../../../store/soundSlice";
-import boomSprite from "../../../../sprite/Boom.png";
+import boomSprite from "../../../../sprite/Boom-2.png";
 import { settings } from "../../../../config/settings";
 import { useSounds } from "../sounds/useSounds";
 
@@ -29,14 +29,14 @@ export const useHandleCrash = () => {
   for (let i = 0; i < boom.length; i++) {
    context.drawImage(
     boomImage,
-    boom[i].frameX * boom[i].width,
-    boom[i].frameY * boom[i].height,
+    boom[i].frameX * boom[i].width * 2,
+    boom[i].frameY * boom[i].height * 2,
     boom[i].width,
     boom[i].height,
     boom[i].x,
     boom[i].y,
-    boom[i].width,
-    boom[i].height
+    boom[i].width * 1.5,
+    boom[i].height * 1.5
    );
   }
  };
