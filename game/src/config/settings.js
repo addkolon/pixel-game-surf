@@ -17,7 +17,7 @@ export const settings = {
   board: {
     //   speed: 5,
     speed: 0,
-    accSpeed: 0.15,
+    accSpeed: 0.02,
     animationSpeed: 5,
     startPositionX: 0,
     startPositionY: 150,
