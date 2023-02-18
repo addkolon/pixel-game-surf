@@ -383,7 +383,8 @@ export const playerObjectSlice = createSlice({
               //   ---
 
               state.surfer.frameY = 1;
-              state.surfer.x = state.board.x + 134 / 2 - 75 / 2 + 10;
+              // state.surfer.x = state.board.x + 134 / 2 - 75 / 2 + 10;
+              state.surfer.x = state.board.x + 134 / 2 - 75 / 2;
 
               state.hitbox = [
                 {
@@ -427,7 +428,8 @@ export const playerObjectSlice = createSlice({
               }
               //   ---
               //   state.surfer.frameY = 1;
-              state.surfer.x = state.board.x + 134 / 2 - 75 / 2 + 10;
+              // state.surfer.x = state.board.x + 134 / 2 - 75 / 2 + 10;
+              state.surfer.x = state.board.x + 134 / 2 - 75 / 2;
 
               state.hitbox = [
                 {
