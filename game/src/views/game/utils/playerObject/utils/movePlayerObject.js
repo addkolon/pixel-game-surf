@@ -5,9 +5,16 @@ import { settings } from "../../../../../config/settings";
 import { move, playerObject } from "../../../../../store/playerObjectSlice";
 import { useHandleFoam } from "../../wave/useHandleFoam";
 
+import { lives as sliceLives } from "../../../../../store/gameplaySlice";
+
 export const useHandleMovement = () => {
   const dispatch = useDispatch();
   const { board } = useSelector(playerObject);
+
+  const lives = useSelector(sliceLives);
+
+  const Yframe = settings.lives - lives.length;
+
   const { foam } = useHandleFoam();
 
   const movePlayerObject = (keysArray) => {
@@ -30,22 +37,28 @@ export const useHandleMovement = () => {
 
       if (onCanvas) {
         if (!check1() && check2()) {
-          dispatch(move({ direction: "rightUp", reset: false }));
+          dispatch(
+            move({
+              direction: "rightUp",
+              reset: false,
+              lives: Yframe,
+            })
+          );
         } else if (!check1()) {
-          dispatch(move({ direction: "up", reset: false }));
+          dispatch(move({ direction: "up", reset: false, lives: Yframe }));
         }
       }
     }
 
     if (keysArray.includes("ArrowDown")) {
       if (board.y < settings.canvasHeight - board.height - 30) {
-        dispatch(move({ direction: "down", reset: false }));
+        dispatch(move({ direction: "down", reset: false, lives: Yframe }));
       }
     }
 
     if (keysArray.includes("ArrowRight")) {
       if (board.x < settings.canvasWidth - board.width) {
-        dispatch(move({ direction: "right", reset: false }));
+        dispatch(move({ direction: "right", reset: false, lives: Yframe }));
       }
     }
 
@@ -61,12 +74,18 @@ export const useHandleMovement = () => {
 
       if (onCanvas) {
         if (!check1()) {
-          dispatch(move({ direction: "left", reset: false }));
+          dispatch(move({ direction: "left", reset: false, lives: Yframe }));
         } else {
-          dispatch(move({ direction: "leftDown", reset: false }));
+          dispatch(
+            move({
+              direction: "leftDown",
+              reset: false,
+              lives: Yframe,
+            })
+          );
         }
       } else {
-        dispatch(move({ direction: "left", reset: true }));
+        dispatch(move({ direction: "left", reset: true, lives: Yframe }));
       }
     }
 
@@ -89,31 +108,41 @@ export const useHandleMovement = () => {
 
       if (onCanvas) {
         if (!check1() && check2()) {
-          dispatch(move({ direction: "rightUpslow", reset: false }));
+          dispatch(
+            move({
+              direction: "rightUpslow",
+              reset: false,
+              lives: Yframe,
+            })
+          );
         } else if (!check1()) {
-          dispatch(move({ direction: "slowup", reset: false }));
+          dispatch(move({ direction: "slowup", reset: false, lives: Yframe }));
         } else if (check1()) {
-          dispatch(move({ direction: "up", reset: true }));
+          dispatch(move({ direction: "up", reset: true, lives: Yframe }));
         }
       } else {
-        dispatch(move({ direction: "up", reset: true }));
+        dispatch(move({ direction: "up", reset: true, lives: Yframe }));
       }
     }
 
-
-
     if (board.speedDown > 0 && !keysArray.includes("ArrowDown")) {
       if (board.y < settings.canvasHeight - board.height - 30) {
-        dispatch(move({ direction: "slowdown", reset: false }));
+        dispatch(move({ direction: "slowdown", reset: false, lives: Yframe }));
       } else {
-        dispatch(move({ direction: "down", reset: true }));
+        dispatch(move({ direction: "down", reset: true, lives: Yframe }));
       }
     }
     if (board.speedRight > 0 && !keysArray.includes("ArrowRight")) {
       if (board.x < settings.canvasWidth - board.width) {
-        dispatch(move({ direction: "slowright", reset: false }));
+        dispatch(
+          move({
+            direction: "slowright",
+            reset: false,
+            lives: Yframe,
+          })
+        );
       } else {
-        dispatch(move({ direction: "right", reset: true }));
+        dispatch(move({ direction: "right", reset: true, lives: Yframe }));
       }
     }
     if (board.speedLeft > 0 && !keysArray.includes("ArrowLeft")) {
@@ -128,18 +157,26 @@ export const useHandleMovement = () => {
 
       if (onCanvas) {
         if (!check1()) {
-          dispatch(move({ direction: "slowleft", reset: false }));
+          dispatch(
+            move({
+              direction: "slowleft",
+              reset: false,
+              lives: Yframe,
+            })
+          );
         } else {
-          dispatch(move({ direction: "slowleftDown", reset: false }));
+          dispatch(
+            move({
+              direction: "slowleftDown",
+              reset: false,
+              lives: Yframe,
+            })
+          );
         }
       } else {
-        dispatch(move({ direction: "left", reset: true }));
+        dispatch(move({ direction: "left", reset: true, lives: Yframe }));
       }
     }
-
-    
-
-
   };
   return {
     movePlayerObject,

@@ -9,6 +9,8 @@ import { gameScore, lives as sliceLives } from "../../store/gameplaySlice";
 import { useSounds } from "./utils/sounds/useSounds";
 
 import { setMuteAll, muteAll } from "../../store/soundSlice";
+import { setFrameY } from "../../store/playerObjectSlice";
+import { settings } from "../../config/settings";
 
 export const Game = ({ setView }) => {
   const dispatch = useDispatch();
@@ -18,10 +20,19 @@ export const Game = ({ setView }) => {
 
   const { playGameoverSound } = useSounds();
 
+  const Yframe = settings.lives - lives.length;
+
   const handleKeyDown = (e) => {
     if (e.code !== "KeyM") return;
     dispatch(setMuteAll());
   };
+
+  useEffect(
+    (e) => {
+      dispatch(setFrameY({ frameY: Yframe }));
+    },
+    [lives]
+  );
 
   useEffect(() => {
     if (lives.length < 1) {

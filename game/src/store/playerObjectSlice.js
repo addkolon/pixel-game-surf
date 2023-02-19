@@ -4,6 +4,9 @@ import { settings } from "../config/settings";
 
 const accSpeed = settings.board.accSpeed;
 
+const rightFrames = [0, 1, 2, 3, 4, 5];
+const leftFrames = [6, 7, 8, 9, 10, 11];
+
 const roundIt = (sumToRound) => {
   return Math.round(sumToRound * 10) / 10;
 };
@@ -59,9 +62,18 @@ export const playerObjectSlice = createSlice({
   name: "playerObject",
   initialState,
   reducers: {
+    setFrameY: (state, action) => {
+      const Yframe = action.payload.frameY;
+      if (rightFrames.includes(state.board.frameY)) {
+        state.board.frameY = rightFrames[Yframe];
+      } else {
+        state.board.frameY = leftFrames[Yframe];
+      }
+    },
     move: (state, action) => {
       const direction = action.payload.direction;
       const reset = action.payload.reset;
+      const Yframe = action.payload.lives;
       switch (reset) {
         case true:
           switch (direction) {
@@ -83,6 +95,7 @@ export const playerObjectSlice = createSlice({
         default:
           switch (direction) {
             case "up":
+              console.log(Yframe);
               if (action.payload.reset) {
                 return (state.board.speedUp = 0);
               }
@@ -92,11 +105,15 @@ export const playerObjectSlice = createSlice({
               state.board.y = roundIt(state.board.y - state.board.speedUp);
 
               //   test
-              if (state.board.frameY === 0) {
+              if (rightFrames.includes(state.board.frameY)) {
+                state.board.frameY = rightFrames[Yframe];
+
                 state.boardFoam.x =
                   state.board.x + -settings.boardFoam.alignmentX;
                 state.boardFoam.frameY = 0;
               } else {
+                state.board.frameY = leftFrames[Yframe];
+
                 state.boardFoam.x =
                   state.board.x +
                   state.board.width +
@@ -104,28 +121,27 @@ export const playerObjectSlice = createSlice({
                 state.boardFoam.frameY = 1;
               }
               //   ---
-              state.hitbox =
-                state.board.frameY === 0
-                  ? [
-                      {
-                        x: state.board.x + 5,
-                        y: state.board.y,
-                      },
-                      {
-                        x: state.board.x + state.board.width - 5,
-                        y: state.board.y + state.board.height - 5,
-                      },
-                    ]
-                  : [
-                      {
-                        x: state.board.x + 5,
-                        y: state.board.y + state.board.height - 5,
-                      },
-                      {
-                        x: state.board.x + state.board.width - 5,
-                        y: state.board.y + 5,
-                      },
-                    ];
+              state.hitbox = rightFrames.includes(state.board.frameY)
+                ? [
+                    {
+                      x: state.board.x + 5,
+                      y: state.board.y,
+                    },
+                    {
+                      x: state.board.x + state.board.width - 5,
+                      y: state.board.y + state.board.height - 5,
+                    },
+                  ]
+                : [
+                    {
+                      x: state.board.x + 5,
+                      y: state.board.y + state.board.height - 5,
+                    },
+                    {
+                      x: state.board.x + state.board.width - 5,
+                      y: state.board.y + 5,
+                    },
+                  ];
               break;
 
             case "slowup":
@@ -138,11 +154,15 @@ export const playerObjectSlice = createSlice({
               state.board.y = roundIt(state.board.y - state.board.speedUp);
 
               //   test
-              if (state.board.frameY === 0) {
+              if (rightFrames.includes(state.board.frameY)) {
+                state.board.frameY = rightFrames[Yframe];
+
                 state.boardFoam.x =
                   state.board.x + -settings.boardFoam.alignmentX;
                 state.boardFoam.frameY = 0;
               } else {
+                state.board.frameY = leftFrames[Yframe];
+
                 state.boardFoam.x =
                   state.board.x +
                   state.board.width +
@@ -150,28 +170,27 @@ export const playerObjectSlice = createSlice({
                 state.boardFoam.frameY = 1;
               }
               //   ---
-              state.hitbox =
-                state.board.frameY === 0
-                  ? [
-                      {
-                        x: state.board.x + 5,
-                        y: state.board.y,
-                      },
-                      {
-                        x: state.board.x + state.board.width - 5,
-                        y: state.board.y + state.board.height - 5,
-                      },
-                    ]
-                  : [
-                      {
-                        x: state.board.x + 5,
-                        y: state.board.y + state.board.height - 5,
-                      },
-                      {
-                        x: state.board.x + state.board.width - 5,
-                        y: state.board.y + 5,
-                      },
-                    ];
+              state.hitbox = rightFrames.includes(state.board.frameY)
+                ? [
+                    {
+                      x: state.board.x + 5,
+                      y: state.board.y,
+                    },
+                    {
+                      x: state.board.x + state.board.width - 5,
+                      y: state.board.y + state.board.height - 5,
+                    },
+                  ]
+                : [
+                    {
+                      x: state.board.x + 5,
+                      y: state.board.y + state.board.height - 5,
+                    },
+                    {
+                      x: state.board.x + state.board.width - 5,
+                      y: state.board.y + 5,
+                    },
+                  ];
               break;
 
             case "down":
@@ -184,11 +203,15 @@ export const playerObjectSlice = createSlice({
               state.board.y = roundIt(state.board.y + state.board.speedDown);
 
               //   test
-              if (state.board.frameY === 0) {
+              if (rightFrames.includes(state.board.frameY)) {
+                state.board.frameY = rightFrames[Yframe];
+
                 state.boardFoam.x =
                   state.board.x + -settings.boardFoam.alignmentX;
                 state.boardFoam.frameY = 0;
               } else {
+                state.board.frameY = leftFrames[Yframe];
+
                 state.boardFoam.x =
                   state.board.x +
                   state.board.width +
@@ -196,28 +219,27 @@ export const playerObjectSlice = createSlice({
                 state.boardFoam.frameY = 1;
               }
               //   ---
-              state.hitbox =
-                state.board.frameY === 0
-                  ? [
-                      {
-                        x: state.board.x + 5,
-                        y: state.board.y,
-                      },
-                      {
-                        x: state.board.x + state.board.width - 5,
-                        y: state.board.y + state.board.height - 5,
-                      },
-                    ]
-                  : [
-                      {
-                        x: state.board.x + 5,
-                        y: state.board.y + state.board.height - 5,
-                      },
-                      {
-                        x: state.board.x + state.board.width - 5,
-                        y: state.board.y + 5,
-                      },
-                    ];
+              state.hitbox = rightFrames.includes(state.board.frameY)
+                ? [
+                    {
+                      x: state.board.x + 5,
+                      y: state.board.y,
+                    },
+                    {
+                      x: state.board.x + state.board.width - 5,
+                      y: state.board.y + state.board.height - 5,
+                    },
+                  ]
+                : [
+                    {
+                      x: state.board.x + 5,
+                      y: state.board.y + state.board.height - 5,
+                    },
+                    {
+                      x: state.board.x + state.board.width - 5,
+                      y: state.board.y + 5,
+                    },
+                  ];
               break;
 
             case "slowdown":
@@ -232,11 +254,15 @@ export const playerObjectSlice = createSlice({
               state.board.y = roundIt(state.board.y + state.board.speedDown);
 
               //   test
-              if (state.board.frameY === 0) {
+              if (rightFrames.includes(state.board.frameY)) {
+                state.board.frameY = rightFrames[Yframe];
+
                 state.boardFoam.x =
                   state.board.x + -settings.boardFoam.alignmentX;
                 state.boardFoam.frameY = 0;
               } else {
+                state.board.frameY = leftFrames[Yframe];
+
                 state.boardFoam.x =
                   state.board.x +
                   state.board.width +
@@ -244,28 +270,27 @@ export const playerObjectSlice = createSlice({
                 state.boardFoam.frameY = 1;
               }
               //   ---
-              state.hitbox =
-                state.board.frameY === 0
-                  ? [
-                      {
-                        x: state.board.x + 5,
-                        y: state.board.y,
-                      },
-                      {
-                        x: state.board.x + state.board.width - 5,
-                        y: state.board.y + state.board.height - 5,
-                      },
-                    ]
-                  : [
-                      {
-                        x: state.board.x + 5,
-                        y: state.board.y + state.board.height - 5,
-                      },
-                      {
-                        x: state.board.x + state.board.width - 5,
-                        y: state.board.y + 5,
-                      },
-                    ];
+              state.hitbox = rightFrames.includes(state.board.frameY)
+                ? [
+                    {
+                      x: state.board.x + 5,
+                      y: state.board.y,
+                    },
+                    {
+                      x: state.board.x + state.board.width - 5,
+                      y: state.board.y + state.board.height - 5,
+                    },
+                  ]
+                : [
+                    {
+                      x: state.board.x + 5,
+                      y: state.board.y + state.board.height - 5,
+                    },
+                    {
+                      x: state.board.x + state.board.width - 5,
+                      y: state.board.y + 5,
+                    },
+                  ];
               break;
 
             case "right":
@@ -279,17 +304,20 @@ export const playerObjectSlice = createSlice({
 
               state.board.x =
                 Math.round((state.board.x + state.board.speedRight) * 10) / 10;
-              console.log(state.board.x);
               state.board.frameY = 0;
               state.boardFoam.frameY = 0;
 
               //   state.boardFoam.x = state.board.x + -settings.boardFoam.alignmentX;
               //   test
-              if (state.board.frameY === 0) {
+              if (rightFrames.includes(state.board.frameY)) {
+                state.board.frameY = rightFrames[Yframe];
+
                 state.boardFoam.x =
                   state.board.x + -settings.boardFoam.alignmentX;
                 state.boardFoam.frameY = 0;
               } else {
+                state.board.frameY = leftFrames[Yframe];
+
                 state.boardFoam.x =
                   state.board.x +
                   state.board.width +
@@ -328,11 +356,15 @@ export const playerObjectSlice = createSlice({
 
               //  state.boardFoam.x = state.board.x + -settings.boardFoam.alignmentX;
               //   test
-              if (state.board.frameY === 0) {
+              if (rightFrames.includes(state.board.frameY)) {
+                state.board.frameY = rightFrames[Yframe];
+
                 state.boardFoam.x =
                   state.board.x + -settings.boardFoam.alignmentX;
                 state.boardFoam.frameY = 0;
               } else {
+                state.board.frameY = leftFrames[Yframe];
+
                 state.boardFoam.x =
                   state.board.x +
                   state.board.width +
@@ -364,16 +396,20 @@ export const playerObjectSlice = createSlice({
               }
 
               state.board.x = roundIt(state.board.x - state.board.speedLeft);
-              state.board.frameY = 1;
+              state.board.frameY = leftFrames[Yframe];
               state.boardFoam.frameY = 1;
               //   state.boardFoam.x =
               //    state.board.x + state.board.width + -settings.boardFoam.alignmentX;
               //   test
-              if (state.board.frameY === 0) {
+              if (rightFrames.includes(state.board.frameY)) {
+                state.board.frameY = rightFrames[Yframe];
+
                 state.boardFoam.x =
                   state.board.x + -settings.boardFoam.alignmentX;
                 state.boardFoam.frameY = 0;
               } else {
+                state.board.frameY = leftFrames[Yframe];
+
                 state.boardFoam.x =
                   state.board.x +
                   state.board.width +
@@ -415,11 +451,15 @@ export const playerObjectSlice = createSlice({
               //    state.board.x + state.board.width + -settings.boardFoam.alignmentX;
 
               //   test
-              if (state.board.frameY === 0) {
+              if (rightFrames.includes(state.board.frameY)) {
+                state.board.frameY = rightFrames[Yframe];
+
                 state.boardFoam.x =
                   state.board.x + -settings.boardFoam.alignmentX;
                 state.boardFoam.frameY = 0;
               } else {
+                state.board.frameY = leftFrames[Yframe];
+
                 state.boardFoam.x =
                   state.board.x +
                   state.board.width +
@@ -457,7 +497,7 @@ export const playerObjectSlice = createSlice({
 
               state.board.y = roundIt(state.board.y - state.board.speedUp);
               state.board.x = roundIt(state.board.x + state.board.speedUp);
-              state.board.frameY = 0;
+              state.board.frameY = rightFrames[Yframe];
 
               state.boardFoam.x =
                 state.board.x + -settings.boardFoam.alignmentX;
@@ -491,7 +531,7 @@ export const playerObjectSlice = createSlice({
 
               state.board.y = roundIt(state.board.y - state.board.speedUp);
               state.board.x = roundIt(state.board.x + state.board.speedUp);
-              state.board.frameY = 0;
+              state.board.frameY = rightFrames[Yframe];
 
               state.boardFoam.x =
                 state.board.x + -settings.boardFoam.alignmentX;
@@ -525,7 +565,7 @@ export const playerObjectSlice = createSlice({
 
               state.board.y = roundIt(state.board.y + state.board.speedLeft);
               state.board.x = roundIt(state.board.x - state.board.speedLeft);
-              state.board.frameY = 1;
+              state.board.frameY = leftFrames[Yframe];
 
               state.boardFoam.x =
                 state.board.x +
@@ -562,7 +602,7 @@ export const playerObjectSlice = createSlice({
 
               state.board.y = roundIt(state.board.y + state.board.speedLeft);
               state.board.x = roundIt(state.board.x - state.board.speedLeft);
-              state.board.frameY = 1;
+              state.board.frameY = leftFrames[Yframe];
 
               state.boardFoam.x =
                 state.board.x +
@@ -618,6 +658,7 @@ export const playerObjectSlice = createSlice({
 });
 
 export const {
+  setFrameY,
   move,
   animateBoard,
   animateBoardFoam,
