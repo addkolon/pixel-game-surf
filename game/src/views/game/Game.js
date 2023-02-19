@@ -27,12 +27,9 @@ export const Game = ({ setView }) => {
     dispatch(setMuteAll());
   };
 
-  useEffect(
-    (e) => {
-      dispatch(setFrameY({ frameY: Yframe }));
-    },
-    [lives]
-  );
+  useEffect(() => {
+    dispatch(setFrameY({ frameY: Yframe }));
+  }, [lives]);
 
   useEffect(() => {
     if (lives.length < 1) {
