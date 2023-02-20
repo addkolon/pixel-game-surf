@@ -35,6 +35,7 @@ const initialState = {
     frameY: 0,
     moving: false,
   },
+  boardTrail: [],
   surfer: {
     // x: settings.board.startPositionX + settings.surfer.alignmentOnBoardX,
     x: settings.board.startPositionX + 134 / 2 - 75 / 2,
@@ -70,10 +71,35 @@ export const playerObjectSlice = createSlice({
         state.board.frameY = leftFrames[Yframe];
       }
     },
+    popBoardTrail: (state, action) => {
+      state.boardTrail.pop();
+    },
+    pushBoardTrail: (state, action) => {
+      const newBoardTrail = {
+        x: state.boardFoam.x,
+        y: state.boardFoam.y,
+        width: 100,
+        height: 90,
+      };
+      state.boardTrail.push(newBoardTrail);
+    },
     move: (state, action) => {
       const direction = action.payload.direction;
       const reset = action.payload.reset;
       const Yframe = action.payload.lives;
+
+      if (state.boardTrail.length < 30) {
+        const newBoardTrail = {
+          // x: state.boardFoam.x,
+          // y: state.boardFoam.y,
+          x: state.boardFoam.x + 15,
+          y: state.board.y - state.board.height / 2,
+          width: 100,
+          height: 90,
+        };
+        // state.boardTrail.push(newBoardTrail);
+        state.boardTrail = [newBoardTrail, ...state.boardTrail];
+      }
       switch (reset) {
         case true:
           switch (direction) {
@@ -95,7 +121,6 @@ export const playerObjectSlice = createSlice({
         default:
           switch (direction) {
             case "up":
-              console.log(Yframe);
               if (action.payload.reset) {
                 return (state.board.speedUp = 0);
               }
@@ -659,6 +684,8 @@ export const playerObjectSlice = createSlice({
 
 export const {
   setFrameY,
+  popBoardTrail,
+  pushBoardTrail,
   move,
   animateBoard,
   animateBoardFoam,
@@ -675,6 +702,7 @@ export const playerObject = (state) => {
   return {
     board: state.playerObject.board,
     boardFoam: state.playerObject.boardFoam,
+    boardTrail: state.playerObject.boardTrail,
     surfer: state.playerObject.surfer,
     hitbox: state.playerObject.hitbox,
   };
