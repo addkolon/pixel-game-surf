@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { settings } from "../../../../config/settings";
-import foamSprite from "../../../../sprite/foam-sprite.png";
+import foamSprite from "../../../../sprite/foam-sprite-3.png";
 
 export const useHandleFoam = () => {
  const foamImage = new Image();
@@ -15,7 +15,7 @@ export const useHandleFoam = () => {
   x: 0,
   y: 60,
   width: 300,
-  height: 205,
+  height: 287,
   frameX: 0,
   frameY: 0,
   animationSpeed: settings.foam.animationSpeed,

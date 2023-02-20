@@ -74,7 +74,7 @@ export const settings = {
     height: 60,
     mainSpeed: 0.1,
     bg1: {
-      speed: 3,
+      speed: 1,
     },
     bg2: {
       speed: 15,
