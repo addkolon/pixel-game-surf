@@ -37,7 +37,7 @@ export const settings = {
   },
 
   obstacles: {
-    spawnRate: 100,
+    spawnRate: 20,
     speed: 5,
     minimumSize: 24,
     maximumSize: 48,
@@ -104,7 +104,7 @@ export const settings = {
   },
   difficulty: {
     timer: {
-      enabled: true,
+      enabled: false,
       seconds: 1,
     },
     savings: {

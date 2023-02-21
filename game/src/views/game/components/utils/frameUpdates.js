@@ -70,17 +70,22 @@ export const useFrameUpdates = () => {
         score % (settings.difficulty.savings.saves * settings.scorePerSave) ===
           0 &&
         settings.difficulty.savings.saves !== 0 &&
-        score !== 0
+        score !== 0 &&
+        settings.difficulty.savings.enabled
       ) {
+        console.log("speed saves");
         dispatch(updateSpawnersSpeed());
       }
     }
+    // SVÅRIGHET ÖKAR PÅ TID START
+    if (
+      frame % (settings.difficulty.timer.seconds * 65) === 0 &&
+      settings.difficulty.timer.enabled
+    ) {
+      console.log("speed time");
+      dispatch(updateSpawnersSpeed());
+    }
   };
-
-  // SVÅRIGHET ÖKAR PÅ TID START
-  // if (frame % (settings.difficulty.timer.seconds * 65) === 0) {
-  //   dispatch(updateSpawnersSpeed());
-  // }
 
   return {
     frameUpdates,
