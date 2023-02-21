@@ -77,6 +77,7 @@ export const useFrameUpdates = () => {
         dispatch(updateSpawnersSpeed());
       }
     }
+
     // SVÅRIGHET ÖKAR PÅ TID START
     if (
       frame % (settings.difficulty.timer.seconds * 65) === 0 &&
