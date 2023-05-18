@@ -4,11 +4,11 @@ import { PROTECTED_GET, GET, POST, PROTECTED_POST } from "../utils/fetch";
 
 import { settings } from "../config/settings";
 
-export const getToken = createAsyncThunk("getToken", async () => {
- const res = await GET(`/generate_token.php`);
- console.log(res);
- return res;
-});
+// export const getToken = createAsyncThunk("getToken", async () => {
+//  const res = await GET(`/generate_token.php`);
+//  console.log(res);
+//  return res;
+// });
 
 const initLives = () => {
  const arr = [];
@@ -72,22 +72,22 @@ export const gameplaySlice = createSlice({
    state.gameOver = action.payload;
   },
  },
- extraReducers(builder) {
-  builder
-   .addCase(getToken.pending, (state, action) => {
-    state.status = "loading";
-   })
-   .addCase(getToken.fulfilled, (state, action) => {
-    console.log(action.payload.token);
+ //  extraReducers(builder) {
+ //   builder
+ //    .addCase(getToken.pending, (state, action) => {
+ //     state.status = "loading";
+ //    })
+ //    .addCase(getToken.fulfilled, (state, action) => {
+ //     console.log(action.payload.token);
 
-    const { token } = action.payload;
-    state.token = token;
-   })
-   .addCase(getToken.rejected, (state, action) => {
-    state.status = "failed";
-    state.error = action.error.message;
-   });
- },
+ //     const { token } = action.payload;
+ //     state.token = token;
+ //    })
+ //    .addCase(getToken.rejected, (state, action) => {
+ //     state.status = "failed";
+ //     state.error = action.error.message;
+ //    });
+ //  },
 });
 
 export const {

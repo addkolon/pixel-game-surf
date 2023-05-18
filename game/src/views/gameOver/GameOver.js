@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { token, gameScore, resetGameplay } from "../../store/gameplaySlice";
+import { gameScore, resetGameplay } from "../../store/gameplaySlice";
 import { resetPlayer } from "../../store/playerObjectSlice";
-import { createScore, status } from "../../store/scoresSlice";
+import { status } from "../../store/scoresSlice";
 import { resetSpawners } from "../../store/spawnersSlice";
 import { Scoreboard } from "./components/Scoreboard";
 
@@ -12,7 +12,6 @@ export const GameOver = ({ setView }) => {
  const dispatch = useDispatch();
  const score = useSelector(gameScore);
  const scoresStatus = useSelector(status);
- const key = useSelector(token);
 
  const [inputsState, setInputsState] = useState({
   exists: {
@@ -28,8 +27,7 @@ export const GameOver = ({ setView }) => {
  });
 
  const checkAuth = () => {
-  console.log(key);
-  if (Object.values(inputsState.exists).every(Boolean) && key.length) {
+  if (Object.values(inputsState.exists).every(Boolean)) {
    console.log("auth check pass");
    return true;
   } else {
@@ -39,21 +37,12 @@ export const GameOver = ({ setView }) => {
 
  const handleSubmit = (bool) => {
   if (bool && checkAuth()) {
-   console.log(typeof key);
-   //    if (!checkAuth()) {
-   //     return;
-   //    }
-   dispatch(createScore({ ...inputsState.content, token: key }));
   }
   dispatch(resetSpawners());
   dispatch(resetPlayer());
   dispatch(resetGameplay(true));
   setView("home");
  };
-
- if (scoresStatus !== "succeeded") {
-  return <div> loading</div>;
- }
 
  return (
   <main className="game-container">

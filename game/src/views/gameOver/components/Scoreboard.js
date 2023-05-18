@@ -1,12 +1,10 @@
 /** @format */
 
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { data } from "../../../store/scoresSlice";
 
 export const Scoreboard = () => {
  //  const scores = useSelector(data).scores;
- const scores = useSelector(data).scores;
+ const scores = [];
  const [fillOut, setFillOut] = useState([]);
 
  useEffect(() => {

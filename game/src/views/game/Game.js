@@ -63,8 +63,7 @@ export const Game = ({ setView }) => {
      </div>
      <div className="in-game-score">
       <h2>
-       HIGH SCORE:{" "}
-       <span id="high-scoure">{scoreToBeat.score ?? "No scores"}</span>
+       HIGH SCORE: <span id="high-scoure">{false ?? "No scores"}</span>
       </h2>
       <h2>
        YOUR SCORE: <span id="saves">{score}</span>
