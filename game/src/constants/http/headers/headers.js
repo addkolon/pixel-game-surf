@@ -16,7 +16,7 @@ export const headers = {
    "Content-Type": "application/json",
   },
   POST: {
-   auth: `${auth}`,
+   //    auth: `${auth}`,
    "Content-Type": "application/json",
   },
  },

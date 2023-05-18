@@ -1,6 +1,14 @@
 /** @format */
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { PROTECTED_GET, GET, POST, PROTECTED_POST } from "../utils/fetch";
+
 import { settings } from "../config/settings";
+
+export const getToken = createAsyncThunk("getToken", async () => {
+ const res = await GET(`/generate_token.php`);
+ console.log(res);
+ return res;
+});
 
 const initLives = () => {
  const arr = [];
@@ -11,6 +19,7 @@ const initLives = () => {
 };
 
 const initialState = {
+ token: "",
  playerName: "",
  playerEmail: "",
  lives: initLives(),
@@ -63,6 +72,22 @@ export const gameplaySlice = createSlice({
    state.gameOver = action.payload;
   },
  },
+ extraReducers(builder) {
+  builder
+   .addCase(getToken.pending, (state, action) => {
+    state.status = "loading";
+   })
+   .addCase(getToken.fulfilled, (state, action) => {
+    console.log(action.payload.token);
+
+    const { token } = action.payload;
+    state.token = token;
+   })
+   .addCase(getToken.rejected, (state, action) => {
+    state.status = "failed";
+    state.error = action.error.message;
+   });
+ },
 });
 
 export const {
@@ -81,6 +106,7 @@ export const status = (state) => state.gameplay.status;
 export const error = (state) => state.gameplay.error;
 
 // export data
+export const token = (state) => state.gameplay.token;
 export const name = (state) => state.gameplay.playerName;
 export const email = (state) => state.gameplay.playerEmail;
 export const lives = (state) => state.gameplay.lives;

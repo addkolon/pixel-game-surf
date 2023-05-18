@@ -11,6 +11,8 @@
 
 # production
 /build
+/create_score.php
+/get_top_scores.php
 
 # misc
 .DS_Store

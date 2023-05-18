@@ -2,12 +2,9 @@
 
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { gameScore, resetGameplay } from "../../store/gameplaySlice";
+import { token, gameScore, resetGameplay } from "../../store/gameplaySlice";
 import { resetPlayer } from "../../store/playerObjectSlice";
-import {
- createScore,
- status,
-} from "../../store/scoresSlice";
+import { createScore, status } from "../../store/scoresSlice";
 import { resetSpawners } from "../../store/spawnersSlice";
 import { Scoreboard } from "./components/Scoreboard";
 
@@ -15,6 +12,7 @@ export const GameOver = ({ setView }) => {
  const dispatch = useDispatch();
  const score = useSelector(gameScore);
  const scoresStatus = useSelector(status);
+ const key = useSelector(token);
 
  const [inputsState, setInputsState] = useState({
   exists: {
@@ -30,7 +28,9 @@ export const GameOver = ({ setView }) => {
  });
 
  const checkAuth = () => {
-  if (Object.values(inputsState.exists).every(Boolean)) {
+  console.log(key);
+  if (Object.values(inputsState.exists).every(Boolean) && key.length) {
+   console.log("auth check pass");
    return true;
   } else {
    return false;
@@ -38,11 +38,12 @@ export const GameOver = ({ setView }) => {
  };
 
  const handleSubmit = (bool) => {
-  if (bool) {
-   if (!checkAuth()) {
-    return;
-   }
-   dispatch(createScore(inputsState.content));
+  if (bool && checkAuth()) {
+   console.log(typeof key);
+   //    if (!checkAuth()) {
+   //     return;
+   //    }
+   dispatch(createScore({ ...inputsState.content, token: key }));
   }
   dispatch(resetSpawners());
   dispatch(resetPlayer());
@@ -50,7 +51,7 @@ export const GameOver = ({ setView }) => {
   setView("home");
  };
 
- if (scoresStatus === "loading") {
+ if (scoresStatus !== "succeeded") {
   return <div> loading</div>;
  }
 
@@ -63,7 +64,7 @@ export const GameOver = ({ setView }) => {
      <section className="game-over-topleft">
       <Form setInputsState={setInputsState} />
       <div className="game-over-btns">
-       {/* <button onClick={() => handleSubmit(true)}>Submit score</button> */}
+       <button onClick={() => handleSubmit(true)}>Submit score</button>
        <button onClick={() => handleSubmit(false)}>Skip</button>
       </div>
      </section>

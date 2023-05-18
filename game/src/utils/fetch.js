@@ -2,8 +2,8 @@
 
 import { headers } from "../constants";
 
-export const api_address = "http://localhost:5500";
-// export const api_address = "https://game.nordicsurfersmag.se";
+// export const api_address = "http://localhost:5500";
+export const api_address = "https://game.nordicsurfersmag.se";
 
 // const authLevels = {
 //   pleb: 1,
@@ -49,7 +49,7 @@ export const PROTECTED_GET = async (endpoint, authLevel) => {
   //   "Content-Type": "application/json",
   //   //   authorization: getAuthLevel(authLevel),
   // },
-  headers: headers.PROTECTED.GET,
+  // headers: headers.PROTECTED.GET,
  }).then((res) => res.json());
 };
 
@@ -65,17 +65,23 @@ export const POST = async (endpoint, data) => {
  }).then((res) => res.json());
 };
 
-export const PROTECTED_POST = async (endpoint, data, authLevel) => {
+export const PROTECTED_POST = async (endpoint, data, token) => {
+ console.log(token);
+ console.log(data);
  return await fetch(api_address + endpoint, {
   method: "POST",
   // headers: {
   //  "Content-Type": "application/json",
   //  //   authorization: getAuthLevel(authLevel),
   // },
-    headers: headers.PROTECTED.POST,
-//   headers: {
-//    auth: "jafan",
-//   },
+  // headers: headers.PROTECTED.POST,
+  //   headers: {
+  //    auth: "jafan",
+  //   },
+  headers: {
+   //    "Content-Type": "application/json",
+   Token: `${token}`,
+  },
   body: JSON.stringify(data),
   // body: data,
  }).then((res) => res.json());
