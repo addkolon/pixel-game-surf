@@ -116,9 +116,9 @@
 body {
   background: url("../sprite/bg-machine.png"),
     linear-gradient(90deg,
-      rgba(187, 78, 153, 1) 0%,
+      #bb4e99 0%,
       rgba(215, 123, 186, 1) 10%,
-      rgba(215, 123, 186, 1) 90%,
+      #d77bba 90%,
       rgba(187, 78, 153, 1) 100%);
 
   background-position: top center;
@@ -453,7 +453,7 @@ h3 {
   // width: 800px;
   // height: 600px;
   // border: 1px solid black;
-  background: url(../sprite/new-bg-3.png);
+  background: url(../sprite/new-bg-.png);
   // box-shadow: -15px 0 0 0 white, 15px 0 0 0 white, 0 -15px 0 0 white,
   //   0 15px 0 0 white;
 
