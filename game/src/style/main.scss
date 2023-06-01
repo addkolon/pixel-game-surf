@@ -1,89 +1,3 @@
-/**
- * /* @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
- * 
- * {
- *     margin: 0;
- *     padding: 0;
- *     box-sizing: border-box;
- *     font-family: 'VT323', monospace;
- *     font-size: 32px;
- *     color: black;
- * }
- * 
- * .hidden {
- *     display: none;
- * }
- * 
- * body {
- *     background: url('../sprite/bg.gif');
- *     background-size: cover;
- * }
- * 
- * .main {
- *     display: flex;
- *     align-items: center;
- *     height: 100vh;
- *     padding: 0 4rem;
- * }
- * 
- * aside {
- *     width: 100%;
- *     height: 100%;
- *     display: flex;
- *     padding: 2rem;
- *     text-align: center;
- *     flex-direction: column;
- *     
- * }
- * 
- * .scoreboard {
- *     text-align: left;
- *     width: 100%;
- *     padding: 1rem;
- *     box-shadow:   -15px 0 0 0 white,
- *                  15px 0 0 0 white,
- *                  0 -15px 0 0 white,
- *                  0 15px 0 0 white;
- * }
- * 
- * ol {
- *     margin-left: 1.5rem;
- * }
- * 
- * .logo {
- *     width: 320px;
- *     margin-bottom: 2rem;
- * }
- * 
- * h3 {
- *     text-transform: uppercase;
- *     font-size: 1.2rem;
- *     letter-spacing: 5px;
- *     margin-bottom: 0.5rem;
- * }
- * 
- * 
- * .canvas1 {
- *     position: relative;
- *     width: 1200px;
- *     height: 800px;
- *     border: 1px solid black;
- *     background: url(../sprite/water9.png);
- *     box-shadow:   -15px 0 0 0 white,
- *                  15px 0 0 0 white,
- *                  0 -15px 0 0 white,
- *                  0 15px 0 0 white;
- * }
- * 
- * .canvas1 .info {
- *     position: absolute;
- *     top: 1rem;
- *     left: 1rem;
- *     z-index: 999;
- * }
- *
- * @format
- */
 
 @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
 
@@ -114,7 +28,7 @@
 }
 
 body {
- background: url("../sprite/bg-machine.png"),
+ background: url("../sprite/bg-machine-2.png"), 
   linear-gradient(
    90deg,
    #bb4e99 0%,
@@ -124,10 +38,10 @@ body {
   );
 
  background-position: top center;
- background-repeat: no-repeat;
+ background-repeat: no-repeat; 
  overflow: hidden;
  height: 100vh;
-}
+} 
 
 h2 {
 }
@@ -665,7 +579,57 @@ label {
  }
 }
 
+@media screen and (max-width: 420px){
+  body {
+    background: url("../sprite/bg-machine-mobile-export.png"), 
+  linear-gradient(
+   90deg,
+   #bb4e99 0%,
+   rgba(215, 123, 186, 1) 10%,
+   #d77bba 90%,
+   rgba(187, 78, 153, 1) 100%
+  );
+  background-size: contain;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  }
+
+  h1 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-size: 0.75rem;
+  }
+
+  #mobile-screen {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    flex-direction: column;
+    text-align: center;
+    padding-bottom: 50vh;
+
+    .no-mobile-icon {
+      background: url("../sprite/no-phone-icon.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+      margin-bottom: 0.5rem;
+      height: 12vh;
+      width: 12vh;
+
+    }
+  }
+}
+
 .App {
  &.view--mobile {
+  body {
+    background-size: cover;
+  }
  }
 }

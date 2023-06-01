@@ -23,16 +23,13 @@ function App() {
  return (
   <div className={`App ${isNotDesktop ? "view--mobile" : "view--desktop"}`}>
    <If condition={isNotDesktop}>
-    <div
-     style={{
-      height: "100vh",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      background: "#000000a3",
-     }}
-    >
-     <div>mobile/tablet</div>
+    <div id="mobile-screen">
+        <div className="no-mobile-icon"></div>
+        <h1>Out of order</h1>
+        <h2>
+          Sorry, computers ONLY!<br />
+          This game is NOT optimised for phones and tablets!
+        </h2>
     </div>
    </If>
 
