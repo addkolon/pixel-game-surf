@@ -6,6 +6,7 @@ export const Home = ({ setView }) => {
    <div id="fake-canvas" className="game-container">
     <div className="screen"></div>
     <div id="content">
+      <h1 className="game-name">NO TRASH LEFT BEHIND</h1>
      <div className="score-to-beat">
       <h1>SCORE TO BEAT: {false ?? "No scores"}</h1>
      </div>
