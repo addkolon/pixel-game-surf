@@ -120,7 +120,7 @@ const Form = ({ setInputsState }) => {
    </div>
 
    <div>
-    <label htmlFor="">I agree to privacy-policy: </label>
+    <label htmlFor="">I agree to save my data: </label>
     <input
      type="checkbox"
      name=""
