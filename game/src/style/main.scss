@@ -625,24 +625,29 @@ label {
 
   #mobile-screen {
     display: flex;
-    height: 100vh;
+    min-height: 100%;
     align-items: center;
     // justify-content: center;
-    padding: 2rem;
+    padding: 44px 32px;
     flex-direction: column;
     text-align: center;
     padding-bottom: 50vh;
     max-width: 100%;
 
     .no-mobile-icon {
+      content: "";
       background: url("../sprite/no-phone-icon.png");
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center center;
-      margin-bottom: 0.5rem;
-      height: 12vh;
-      width: 12vh;
+      margin-bottom: 20px;
+      min-height: 100px;
+      min-width: 100px;
 
+    }
+
+    h1 {
+      font-size: 1.25rem;
     }
   }
  }

@@ -25,9 +25,8 @@ function App() {
    <If condition={isNotDesktop}>
     <div id="mobile-screen">
         <div className="no-mobile-icon"></div>
-        <h1>Out of order</h1>
+        <h1>Sorry, computers ONLY!</h1>
         <h2>
-          Sorry, computers ONLY!<br />
           This game is NOT optimised for phones and tablets!
         </h2>
     </div>
